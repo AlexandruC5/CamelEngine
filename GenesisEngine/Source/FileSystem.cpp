@@ -48,11 +48,15 @@ void FileSystem::GetPhysFSVersion(std::string& version_str)
 
 void FileSystem::CreateLibraryDirectories()
 {
+	//CreateDir(LIBRARY_PATH);
+	//CreateDir(FOLDERS_PATH);
+	//CreateDir(MESHES_PATH);
+	//CreateDir(TEXTURES_PATH);
+	//CreateDir(MATERIALS_PATH);
 	CreateDir("Assets/Config/");
 	CreateDir("Assets/Textures/");
 	CreateDir("Assets/Models/");
 	CreateDir("Assets/Scenes/");
-	CreateDir("Assets/Shaders/");
 
 	CreateDir("Library/Config/");
 	CreateDir("Library/Models/");
@@ -60,8 +64,11 @@ void FileSystem::CreateLibraryDirectories()
 	CreateDir("Library/Materials/");
 	CreateDir("Library/Textures/");
 	CreateDir("Library/Scenes/");
-	CreateDir("Library/Shaders/");
-
+	//CreateDir("Materials/");
+	//CreateDir(ANIMATIONS_PATH);
+	//CreateDir(PARTICLES_PATH);
+	//CreateDir(SHADERS_PATH);
+	//CreateDir(SCENES_PATH);
 }
 
 // Add a new zip file_path or folder
@@ -492,7 +499,7 @@ std::string FileSystem::GetUniqueName(const char* path, const char* name)
 	return finalName;
 }
 
-std::string FileSystem::GetFileExtension(const char* path)
+std::string FileSystem::GetFileFormat(const char* path)
 {
 	std::string format = PathFindExtensionA(path);
 	std::transform(format.begin(), format.end(), format.begin(), [](unsigned char c) { return std::tolower(c); });

@@ -230,12 +230,6 @@
     <ClCompile Include="TextureImporter.cpp">
       <Filter>FileManagement\Importers</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceShader.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderImporter.cpp">
-      <Filter>FileManagement\Importers</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -579,12 +573,6 @@
       <Filter>FileManagement\Importers</Filter>
     </ClInclude>
     <ClInclude Include="Importers.h">
-      <Filter>FileManagement\Importers</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceShader.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderImporter.h">
       <Filter>FileManagement\Importers</Filter>
     </ClInclude>
   </ItemGroup>
