@@ -16,12 +16,10 @@ public:
 	ResourceShader(uint UID);
 	~ResourceShader();
 
-	void Use();
-
 public:
 	int vertexShader;
 	int fragmentShader;
-	int id;
+	int shaderProgram;
 };
 
 #endif

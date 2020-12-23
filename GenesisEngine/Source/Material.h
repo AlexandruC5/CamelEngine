@@ -7,7 +7,6 @@
 class GnMesh;
 class ResourceMaterial;
 class ResourceTexture;
-class ResourceShader;
 class GnJSONArray;
 
 class Material : public Component {
@@ -18,7 +17,6 @@ public:
 
 	void SetResourceUID(uint UID) override;
 	void BindTexture();
-	void UseShader();
 
 	void Save(GnJSONArray& save_array) override;
 	void Load(GnJSONObj& load_object) override;
@@ -27,9 +25,6 @@ public:
 	void SetTexture(ResourceTexture* texture);
 	void AssignCheckersImage();
 	ResourceTexture* GetDiffuseTexture();
-
-public: 
-	ResourceShader* shader;
 
 private:
 	bool checkers_image;

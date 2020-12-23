@@ -6,12 +6,11 @@
 #include "GameObject.h"
 #include "Application.h"
 #include "ResourceTexture.h"
-#include "ResourceShader.h"
 #include "glew/include/glew.h"
 #include "ResourceMaterial.h"
 #include "WindowAssets.h"
 
-Material::Material() : Component(), checkers_image(false), _resource(nullptr), colored(false), shader(nullptr)
+Material::Material() : Component(), checkers_image(false), _resource(nullptr), colored(false)
 {
 	type = ComponentType::MATERIAL;
 
@@ -43,8 +42,6 @@ Material::Material(GameObject* gameObject) : Component(gameObject), checkers_ima
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-
-	shader = dynamic_cast<ResourceShader*>(App->resources->RequestResource(App->resources->Find("Assets/Shaders/default_shader.vert")));
 }
 
 Material::~Material()
@@ -106,11 +103,6 @@ void Material::BindTexture()
 	{
 		glBindTexture(GL_TEXTURE_2D, checkersID);
 	}
-}
-
-void Material::UseShader()
-{
-	shader->Use();
 }
 
 void Material::Save(GnJSONArray& save_array)
