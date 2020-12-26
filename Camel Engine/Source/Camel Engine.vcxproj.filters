@@ -230,6 +230,12 @@
     <ClCompile Include="TextureImporter.cpp">
       <Filter>FileManagement\Importers</Filter>
     </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioListener.cpp">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -574,6 +580,12 @@
     </ClInclude>
     <ClInclude Include="Importers.h">
       <Filter>FileManagement\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource.h">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioListener.h">
+      <Filter>GameObjects &amp; Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
