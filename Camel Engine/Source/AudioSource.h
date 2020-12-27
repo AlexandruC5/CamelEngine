@@ -1,12 +1,12 @@
 #pragma once
 #include "Globals.h"
 #include "Component.h"
+#include <string>
 
 class GameObject;
 
 class AudioSource : public Component {
 public:
-	AudioSource();
 	AudioSource(GameObject* gameObject);
 	~AudioSource();
 
@@ -25,5 +25,7 @@ public:
 public:
 
 private:
-	int volume;
+	float volume;
+	bool to_loop;
+	std::string audio_path;
 };
