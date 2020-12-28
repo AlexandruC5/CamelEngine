@@ -26,6 +26,6 @@ public:
 
 private:
 	float volume;
-	bool to_loop;
+	bool to_loop, is_spatial;
 	std::string audio_path;
 };
