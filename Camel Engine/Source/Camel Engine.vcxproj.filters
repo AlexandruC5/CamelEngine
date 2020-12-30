@@ -236,6 +236,9 @@
     <ClCompile Include="AudioListener.cpp">
       <Filter>GameObjects &amp; Components</Filter>
     </ClCompile>
+    <ClCompile Include="WwiseLibrary.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -586,6 +589,9 @@
     </ClInclude>
     <ClInclude Include="AudioListener.h">
       <Filter>GameObjects &amp; Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WwiseLibrary.h">
+      <Filter>Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
