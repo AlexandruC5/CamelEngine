@@ -52,7 +52,7 @@ bool Application::Init()
 
 	char* buffer = nullptr;
 
-	uint size = FileSystem::Load("Library/Config/config.json", &buffer);
+	uint size = FileSystem::Load("Config/config.json", &buffer);
 	GnJSONObj config(buffer);
 
 	engine_name = config.GetString("engineName", "Genesis Engine");
