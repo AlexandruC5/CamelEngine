@@ -21,8 +21,8 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-  Version: v2017.2.3  Build: 6575
-  Copyright (c) 2006-2018 Audiokinetic Inc.
+  Version: v2019.2.8  Build: 7432
+  Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 // AkMusicEngine.h
@@ -34,9 +34,9 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AK_MUSICENGINE_H_
 #define _AK_MUSICENGINE_H_
 
-#include "../../SoundEngine/Common/AkSoundEngineExport.h"
-#include "../../SoundEngine/Common/AkTypes.h"
-#include "../../SoundEngine/Common/AkCallback.h"
+#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
+#include <AK/SoundEngine/Common/AkTypes.h>
+#include <AK/SoundEngine/Common/AkCallback.h>
 
 /// Platform-independent initialization settings of the music engine
 /// \sa 
@@ -51,7 +51,9 @@ struct AkMusicSettings
 namespace AK
 {
 	/// Music engine namespace
-	/// \warning The functions in this namespace are not thread-safe, unless stated otherwise.
+	/// \akwarning
+	/// The functions in this namespace are not thread-safe, unless stated otherwise.
+	/// \endakwarning
 	namespace MusicEngine
 	{
         ///////////////////////////////////////////////////////////////////////

@@ -21,14 +21,14 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-  Version: v2017.2.3  Build: 6575
-  Copyright (c) 2006-2018 Audiokinetic Inc.
+  Version: v2019.2.8  Build: 7432
+  Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 #ifndef _AK_SPEAKERCONFIG_H_
 #define _AK_SPEAKERCONFIG_H_
 
-#include "AkTypes.h"
+#include <AK/SoundEngine/Common/AkTypes.h>
 
 /// Standard speakers (channel mask):
 #define AK_SPEAKER_FRONT_LEFT				0x1		///< Front left speaker bit mask
@@ -221,6 +221,8 @@ the specific language governing permissions and limitations under the License.
 
 #endif
 
+#define AK_MAX_AMBISONICS_ORDER	(5)
+
 // Helpers.
 inline void AK_SPEAKER_SETUP_FIX_LEFT_TO_CENTER( AkUInt32 &io_uChannelMask )
 {
@@ -311,7 +313,7 @@ static inline AkChannelMask ChannelMaskFromNumChannels( unsigned int in_uNumChan
 	return uChannelMask;
 }
 
-/// Converts a channel it to a channel index (in Wwise pipeline ordering - LFE at the end), given a channel mask in_uChannelMask.
+/// Converts a channel bit to a channel index (in Wwise pipeline ordering - LFE at the end), given a channel mask in_uChannelMask.
 /// \return Channel index.
 static inline AkUInt8 ChannelBitToIndex(AkChannelMask in_uChannelBit, AkChannelMask in_uChannelMask)
 {
@@ -320,7 +322,7 @@ static inline AkUInt8 ChannelBitToIndex(AkChannelMask in_uChannelBit, AkChannelM
 #endif
 	if (in_uChannelBit == AK_SPEAKER_LOW_FREQUENCY)
 		return ChannelMaskToNumChannels(in_uChannelMask) - 1;
-	return ChannelMaskToNumChannels(in_uChannelMask & ((in_uChannelBit & ~AK_SPEAKER_LOW_FREQUENCY) - 1));
+	return ChannelMaskToNumChannels(in_uChannelMask & ~AK_SPEAKER_LOW_FREQUENCY & (in_uChannelBit - 1)); // Count all channels prior this one except the LFE
 }
 
 /// Returns true when the LFE channel is present in a given channel configuration.

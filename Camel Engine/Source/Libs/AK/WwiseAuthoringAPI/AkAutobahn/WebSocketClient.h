@@ -9,14 +9,15 @@ may use this file in accordance with the end user license agreement provided
 with the software or, alternatively, in accordance with the terms contained in a
 written agreement between you and Audiokinetic Inc.
 
-Version: v2017.2.3  Build: 6575
-Copyright (c) 2006-2018 Audiokinetic Inc.
+Version: v2019.2.8  Build: 7432
+Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 #pragma once
 
+#include <AK/Tools/Common/AkAssert.h>
+
 #include <string>
-#include <cassert>
 
 extern "C" {
     struct mg_connection;
@@ -38,7 +39,7 @@ namespace AK
 			WebSocketClient(IWebSocketClientHandler* handler)
 				: m_handler(handler)
 			{
-				assert(handler != nullptr);
+				AKASSERT(handler != nullptr);
 			}
 
 			~WebSocketClient()
@@ -48,10 +49,10 @@ namespace AK
 				// on an already deleted object.
 			}
 
-			void Connect(const char* host, const int port);
+			bool Connect(const char* host, const int port);
 			void Close();
 
-			void SendUTF8(const std::string& message);
+			bool SendUTF8(const std::string& message, std::string& out_errorMessage);
 
 			bool IsConnected()
 			{
@@ -62,16 +63,17 @@ namespace AK
 
 			static bool m_isNetworkInitialized;
 
-			static inline void EnsureNetworkInit()
+			static inline bool EnsureNetworkInit()
 			{
 				if (!m_isNetworkInitialized)
 				{
-					InitializeNetwork();
-					m_isNetworkInitialized = true;
+					m_isNetworkInitialized = InitializeNetwork();
 				}
+
+				return m_isNetworkInitialized;
 			}
 
-			static void InitializeNetwork();
+			static bool InitializeNetwork();
 
 			static int OnMessage(
 				mg_connection *conn,

@@ -21,8 +21,8 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-  Version: v2017.2.3  Build: 6575
-  Copyright (c) 2006-2018 Audiokinetic Inc.
+  Version: v2019.2.8  Build: 7432
+  Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 /// \file 
@@ -35,9 +35,9 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AK_COMMUNICATION_H
 #define _AK_COMMUNICATION_H
 
-#include "../SoundEngine/Common/AkTypes.h"
-#include "../SoundEngine/Common/AkMemoryMgr.h"
-#include "../Tools/Common/AkPlatformFuncs.h"
+#include <AK/SoundEngine/Common/AkTypes.h>
+#include <AK/SoundEngine/Common/AkMemoryMgr.h>
+#include <AK/Tools/Common/AkPlatformFuncs.h>
 
 #define AK_COMM_SETTINGS_MAX_STRING_SIZE 64
 
@@ -48,13 +48,10 @@ the specific language governing permissions and limitations under the License.
 struct AkCommSettings
 {
 	AkCommSettings()
+		: commSystem(AkCommSystem_Socket)
 	{
 		szAppNetworkName[0] = 0;
 	}
-	AkUInt32	uPoolSize;		///< Size of the communication pool, in bytes. 
-#if defined(AK_USE_NX_HTCS)
-	AkThreadProperties threadProperties; ///< Communication & Connection threading properties (its default priority is AK_THREAD_PRIORITY_ABOVENORMAL)
-#endif
 
 	/// Ports used for communication between the Wwise authoring application and your game.
 	/// All of these ports are opened in the game when Wwise communication is enabled.
@@ -103,6 +100,21 @@ struct AkCommSettings
 	/// - AkCommSettings::Ports
 	/// - AK::Comm::Init()
 	Ports ports;	
+
+	/// Allows selecting the communication system used to connect remotely the Authoring tool on the device.
+	enum AkCommSystem
+	{
+		AkCommSystem_Socket,	/// The recommended default communication system
+		AkCommSystem_HTCS 		/// HTCS when available only, will default to AkCommSystem_Socket if the HTCS system is not available.
+	};
+
+	/// Select the device of the communication system.
+	/// By default, connecting to the Authoring tool 
+	/// \sa
+	/// - \ref initialization_comm
+	/// - AkCommSettings::AkCommSystem
+	/// - AK::Comm::Init()
+	AkCommSystem commSystem;
 
 	/// Tells if the base console communication library should be initialized.  
 	/// If set to false, the game should load/initialize the console's communication library prior to calling this function.

@@ -21,19 +21,19 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-Version: v2017.2.3  Build: 6575
-Copyright (c) 2006-2018 Audiokinetic Inc.
+Version: v2019.2.8  Build: 7432
+Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 #ifndef _KEYARRAY_H_
 #define _KEYARRAY_H_
 
-#include "AkArray.h"
-#include "AkKeyDef.h"
+#include <AK/Tools/Common/AkArray.h>
+#include <AK/Tools/Common/AkKeyDef.h>
 
 // The Key list is simply a list that may be referenced using a key
 // NOTE : 
-template <class T_KEY, class T_ITEM, class U_POOL = ArrayPoolDefault, AkUInt32 TGrowBy = 1, class TMovePolicy = AkAssignmentMovePolicy<MapStruct<T_KEY, T_ITEM> > >
+template <class T_KEY, class T_ITEM, class U_POOL = ArrayPoolDefault, class TGrowBy = AkGrowByPolicy_DEFAULT, class TMovePolicy = AkAssignmentMovePolicy<MapStruct<T_KEY, T_ITEM> > >
 class CAkKeyArray : public AkArray< MapStruct<T_KEY, T_ITEM>, const MapStruct<T_KEY, T_ITEM>&, U_POOL, TGrowBy, TMovePolicy>
 {
 public:
@@ -166,38 +166,38 @@ template <class T_KEY> struct AkDefaultSortedKeyCompare
 {
 public:
 	template<class THIS_CLASS>
-	static AkForceInline bool Greater(THIS_CLASS*, T_KEY &a, T_KEY &b)
-	{
-		return a > b;
-	}
-
-	template<class THIS_CLASS>
 	static AkForceInline bool Lesser(THIS_CLASS*, T_KEY &a, T_KEY &b)
 	{
 		return a < b;
+	}
+
+	template<class THIS_CLASS>
+	static AkForceInline bool Equal(THIS_CLASS*, T_KEY &a, T_KEY &b)
+	{
+		return a == b;
 	}
 };
 
 /// Array of items, sorted by key. Uses binary search for lookups. BEWARE WHEN
 /// MODIFYING THE ARRAY USING BASE CLASS METHODS.
-template <class T_KEY, class T_ITEM, class U_POOL, class U_KEY = AkGetArrayKey< T_KEY, T_ITEM >, unsigned long TGrowBy = 1, class TMovePolicy = AkAssignmentMovePolicy<T_ITEM>, class TComparePolicy = AkDefaultSortedKeyCompare<T_KEY> >
+template <class T_KEY, class T_ITEM, class U_POOL, class U_KEY = AkGetArrayKey< T_KEY, T_ITEM >, class TGrowBy = AkGrowByPolicy_DEFAULT, class TMovePolicy = AkAssignmentMovePolicy<T_ITEM>, class TComparePolicy = AkDefaultSortedKeyCompare<T_KEY> >
 class AkSortedKeyArray : public AkArray< T_ITEM, const T_ITEM &, U_POOL, TGrowBy, TMovePolicy >
 {
-public:
-	AkForceInline bool Greater(T_KEY &a, T_KEY &b) const
-	{
-		return TComparePolicy::Greater((void*)this, a, b);
-	}
-	
+public:	
 	AkForceInline bool Lesser(T_KEY &a, T_KEY &b) const
 	{
 		return TComparePolicy::Lesser((void*)this, a, b);
 	}
 
-	T_ITEM* Exists(T_KEY in_key) const
+	AkForceInline bool Equal(T_KEY &a, T_KEY &b) const
+	{
+		return TComparePolicy::Equal((void*)this, a, b);
+	}
+
+	T_ITEM* Exists(T_KEY in_key) const	
 	{
 		bool bFound;
-		T_ITEM * pItem = BinarySearch(in_key, bFound);
+		T_ITEM* pItem = BinarySearch(in_key, bFound);
 		return bFound ? pItem : NULL;
 	}
 
@@ -238,8 +238,13 @@ public:
 	T_ITEM * Set(T_KEY in_key)
 	{
 		bool bFound;
-		T_ITEM * pItem = BinarySearch(in_key, bFound);
-		if (!bFound)
+		return Set(in_key, bFound);
+	}
+
+	T_ITEM * Set(T_KEY in_key, bool & out_bExists)
+	{
+		T_ITEM * pItem = BinarySearch(in_key, out_bExists);
+		if (!out_bExists)
 		{
 			if (pItem)
 			{
@@ -261,16 +266,16 @@ public:
 
 	bool Unset(T_KEY in_key)
 	{
-		bool bFound;
-		T_ITEM * pItem = BinarySearch(in_key, bFound);
-		if (bFound)
+		T_ITEM * pItem = Exists(in_key);
+		if (pItem)
 		{
 			typename AkArray< T_ITEM, const T_ITEM &, U_POOL, TGrowBy, TMovePolicy >::Iterator it;
 			it.pItem = pItem;
 			this->Erase(it);
+			return true;
 		}
 
-		return bFound;
+		return false;
 	}
 
 	// WARNING: Do not use on types that need constructors or destructor called on Item objects at each creation.
@@ -298,7 +303,7 @@ public:
 				if (uIdx > 1)
 				{
 					T_ITEM * pSecondPrevItem = this->m_pItems + (uIdx - 2);
-					if (Greater(in_NewKey, U_KEY::Get(*pSecondPrevItem)))
+					if (Lesser(U_KEY::Get(*pSecondPrevItem), in_NewKey))
 					{
 						return Swap(pPrevItem, pItem);
 					}
@@ -316,7 +321,7 @@ public:
 		if (!bNeedReordering && uIdx < uLastIdx)
 		{
 			T_ITEM * pNextItem = this->m_pItems + (uIdx + 1);
-			if (Greater(in_NewKey, U_KEY::Get(*pNextItem)))
+			if (Lesser(U_KEY::Get(*pNextItem), in_NewKey))
 			{
 				// Check one step further
 				if (uIdx < (uLastIdx - 1))
@@ -406,30 +411,35 @@ public:
 				*pInsertionEmplacement = ItemtoReinsert;
 			}
 		}
-	}
-
+	}	
 	
+	//If found, returns the item, if not, returns the insertion point.
 	T_ITEM * BinarySearch( T_KEY in_key, bool & out_bFound ) const
 	{
-		AkInt32 uTop = 0, uBottom = this->Length() - 1;
+		AkUInt32 uNumToSearch = this->Length();
+		AkInt32 iBase = 0;
+		AkInt32 iPivot = 0;
 
-		// binary search for key
-		while (uTop <= uBottom)
+		while ( uNumToSearch > 0 )
 		{
-			AkInt32 uThis = (uBottom - uTop) / 2 + uTop;
-			if (Lesser(in_key, U_KEY::Get(this->m_pItems[uThis])))
-				uBottom = uThis - 1;
-			else if (Greater(in_key, U_KEY::Get(this->m_pItems[uThis])))
-				uTop = uThis + 1;
-			else
+			iPivot = iBase + ( uNumToSearch >> 1 );
+			T_KEY pivotKey = U_KEY::Get( this->m_pItems[ iPivot ] );
+			if ( Equal( pivotKey, in_key ) )
 			{
 				out_bFound = true;
-				return this->m_pItems + uThis;
+				return this->m_pItems + iPivot;
 			}
+
+			if ( Lesser( pivotKey, in_key ) )
+			{
+				iBase = iPivot + 1;
+				uNumToSearch--;
+			}
+			uNumToSearch >>= 1;
 		}
 
 		out_bFound = false;
-		return this->m_pItems ? this->m_pItems + uTop : NULL;
+		return this->m_pItems + iBase;
 	}
 
 	AkForceInline void Swap(T_ITEM * in_ItemA, T_ITEM * in_ItemB)

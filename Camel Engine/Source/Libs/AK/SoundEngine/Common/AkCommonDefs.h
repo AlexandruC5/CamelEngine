@@ -21,8 +21,8 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-  Version: v2017.2.3  Build: 6575
-  Copyright (c) 2006-2018 Audiokinetic Inc.
+  Version: v2019.2.8  Build: 7432
+  Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 // AkCommonDefs.h
@@ -34,8 +34,8 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AK_COMMON_DEFS_H_
 #define _AK_COMMON_DEFS_H_
 
-#include "AkSpeakerConfig.h"
-#include "AkSpeakerVolumes.h"
+#include <AK/SoundEngine/Common/AkSpeakerConfig.h>
+#include <AK/SoundEngine/Common/AkSpeakerVolumes.h>
 
 //-----------------------------------------------------------------------------
 // AUDIO DATA FORMAT
@@ -165,6 +165,8 @@ struct AkAudioFormat
 	}
 };
 
+typedef AkUInt8(*AkChannelMappingFunc)(const AkChannelConfig &config, AkUInt8 idx);
+
 enum AkSourceChannelOrdering
 {
 	SourceChannelOrdering_Standard = 0, // SMPTE L-R-C-LFE-RL-RR-RC-SL-SR-HL-HR-HC-HRL-HRR-HRC-T
@@ -188,7 +190,7 @@ enum AkSourceChannelOrdering
 //			* 64-255: Reserved for clients' in-house Plug-ins
 //			* 256-4095: Assigned by Audiokinetic to third-party plug-in developers
 //   - in_pluginID: PluginID as defined in the Plug-in's XML file (16 bits)
-//			* 0-65535: Set freely by the Plug-in developer
+//			* 0-32767: Set freely by the Plug-in developer
 #define AKMAKECLASSID( in_pluginType, in_companyID, in_pluginID ) \
 	( (in_pluginType) + ( (in_companyID) << 4 ) + ( (in_pluginID) << ( 4 + 12 ) ) )
 
@@ -307,6 +309,14 @@ public:
 	}
 
 	/// Attach interleaved data. Allocation is performed outside.
+	inline void AttachInterleavedData( void * in_pData, AkUInt16 in_uMaxFrames, AkUInt16 in_uValidFrames )
+	{ 
+		pData = in_pData; 
+		uMaxFrames = in_uMaxFrames; 
+		uValidFrames = in_uValidFrames; 
+		AKASSERT(channelConfig.IsValid());
+	}
+	/// Attach interleaved data with a new channel config. Allocation is performed outside.
 	inline void AttachInterleavedData( void * in_pData, AkUInt16 in_uMaxFrames, AkUInt16 in_uValidFrames, AkChannelConfig in_channelConfig )
 	{ 
 		pData = in_pData; 
@@ -412,30 +422,7 @@ public:
 		return pDataOld;
 	}
 
-#if defined(AK_CHECK_AUDIO_BUFFER_VALID)
-	bool CheckValidSamples()
-	{
-		// Zero out all channels.
-		const AkUInt32 uNumChannels = NumChannels();
-		for ( AkUInt32 i = 0; i < uNumChannels; ++i )
-		{
-			AkSampleType * AK_RESTRICT pfChan = GetChannel(i);
-			if ( pfChan )
-			{
-				for ( AkUInt32 j = 0; j < uValidFrames; j++ )
-				{
-					AkSampleType fSample = *pfChan++;
-					if ( fSample > 4.f )
-						return false;
-					else if ( fSample < -4.f )
-						return false;
-				}
-			}
-		}
-
-		return true;
-	}
-#endif
+	bool CheckValidSamples();	
 
 	//@}
 

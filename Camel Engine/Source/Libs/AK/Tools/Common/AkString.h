@@ -21,8 +21,8 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-Version: v2017.2.3  Build: 6575
-Copyright (c) 2006-2018 Audiokinetic Inc.
+Version: v2019.2.8  Build: 7432
+Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 #pragma once
 
@@ -339,12 +339,21 @@ public:
 		return *this;
 	}
 
+	// Assign from char string
+	template<typename T_CHAR2>
+	tThis& operator=(const T_CHAR2* in_rhs)
+	{
+		const AkString<TAlloc, T_CHAR2>& convert = in_rhs;
+		Aquire(convert);
+		return *this;
+	}
+
 	~AkDbString()
 	{
 		Release();
 	}
 
-	const T_CHAR* Get()
+	const T_CHAR* Get() const
 	{
 		if (m_uHash != 0)
 		{
@@ -432,8 +441,9 @@ protected:
 			{
 				tStringTable& table = pInstance->table;
 				typename tStringTable::IteratorEx it = table.FindEx(m_uHash);
+				AKASSERT(it != table.End());//<- Check that DbString was properly constructed.
 				Entry& entry = (*it).item;
-				AKASSERT(it != table.End() && entry.refCount > 0);
+				AKASSERT(entry.refCount > 0);
 
 				entry.refCount--;
 				if (entry.refCount == 0)

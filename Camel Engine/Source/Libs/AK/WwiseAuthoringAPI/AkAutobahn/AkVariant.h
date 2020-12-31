@@ -9,17 +9,13 @@ may use this file in accordance with the end user license agreement provided
 with the software or, alternatively, in accordance with the terms contained in a
 written agreement between you and Audiokinetic Inc.
 
-Version: v2017.2.3  Build: 6575
-Copyright (c) 2006-2018 Audiokinetic Inc.
+Version: v2019.2.8  Build: 7432
+Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 #pragma once
 
-#include <cassert>
-
-#ifndef AKASSERT
-#define AKASSERT assert
-#endif
+#include <AK/Tools/Common/AkAssert.h>
 
 #include <AK/WwiseAuthoringAPI/AkVariantBase.h>
 

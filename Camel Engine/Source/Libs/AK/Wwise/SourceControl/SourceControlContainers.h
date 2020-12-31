@@ -21,8 +21,8 @@ under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for
 the specific language governing permissions and limitations under the License.
 
-  Version: v2017.2.3  Build: 6575
-  Copyright (c) 2006-2018 Audiokinetic Inc.
+  Version: v2019.2.8  Build: 7432
+  Copyright (c) 2006-2020 Audiokinetic Inc.
 *******************************************************************************/
 
 /// \file
@@ -49,7 +49,9 @@ namespace AK
 			/// - Type: Class of object stored in the list.
 			/// - Arg_Type: Type used to reference objects stored in the list. Can be a reference.  By default, this is a reference to the type.
 			///
-			/// \warning The functions in this interface are not thread-safe, unless stated otherwise.
+			/// \akwarning
+			/// The functions in this interface are not thread-safe, unless stated otherwise.
+			/// \endakwarning
 			///
 			/// \aknote The class implementing this interface is a wrapper around the MFC \b CList class.  Documentation can be found on MSDN.
 			/// \endaknote
@@ -94,7 +96,9 @@ namespace AK
 			/// - Value: Class of the object stored in the map.
 			/// - Arg_Value: Data type used for Value arguments; usually a reference to Value.
 			///
-			/// \warning The functions in this interface are not thread-safe, unless stated otherwise.
+			/// \akwarning
+			/// The functions in this interface are not thread-safe, unless stated otherwise.
+			/// \endakwarning
 			///
 			/// \aknote The class implementing this interface is a wrapper around the MFC \b CMap class.  Documentation can be found on MSDN.
 			/// \endaknote
