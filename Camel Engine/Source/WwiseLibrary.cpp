@@ -1,54 +1,55 @@
 #include "WwiseLibrary.h"
 
-#include <AK/Common/AkMemoryMgr.h>                  // Memory Manager interface
-#include <AK/Common/AkModule.h>                     // Default memory manager
-#include <AK/Common/IAkStreamMgr.h>                 // Streaming Manager
-#include <AK/Tools/Common/AkPlatformFuncs.h>
-#include <AK/Win32/AkDefaultIOHookBlocking.h>
-#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
-#include <AK/SpatialAudio/Common/AkSpatialAudio.h>				// Spatial audio
+#include "AK/SoundEngine/Common/AkMemoryMgr.h"                  // Memory Manager interface
+#include "AK/SoundEngine/Common/AkModule.h"                     // Default memory manager
+#include "AK/SoundEngine/Common/IAkStreamMgr.h"					// Streaming Manager
+#include "AK/Tools/Common/AkPlatformFuncs.h"
+#include "AK/Win32/AkFilePackageLowLevelIOBlocking.h"
+#include "AK/Win32/AkDefaultIOHookBlocking.h"
+#include "AK/MusicEngine/Common/AkMusicEngine.h"                // Music Engine
+#include "AK/SpatialAudio/Common/AkSpatialAudio.h"				// Spatial audio
 
-#include <AK/Plugin/AkRoomVerbFXFactory.h>
+#include "AK/Plugin/AkRoomVerbFXFactory.h"
 
 #include <assert.h>
 
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
-//namespace AK
-//{
-//	void* AllocHook(size_t in_size)
-//	{
-//		return malloc(in_size);
-//	}
-//
-//	void FreeHook(void* in_ptr)
-//	{
-//		free(in_ptr);
-//	}
-//
-//	void* VirtualAllocHook(
-//		void* in_pMemAddress,
-//		size_t in_size,
-//		DWORD in_dwAllocationType,
-//		DWORD in_dwProtect
-//	)
-//	{
-//		return VirtualAlloc(in_pMemAddress, in_size, in_dwAllocationType, in_dwProtect);
-//	}
-//	void VirtualFreeHook(
-//		void* in_pMemAddress,
-//		size_t in_size,
-//		DWORD in_dwFreeType
-//	)
-//	{
-//		VirtualFree(in_pMemAddress, in_size, in_dwFreeType);
-//	}
-//}
+namespace AK
+{
+	void* AllocHook(size_t in_size)
+	{
+		return malloc(in_size);
+	}
+
+	void FreeHook(void* in_ptr)
+	{
+		free(in_ptr);
+	}
+
+	void* VirtualAllocHook(
+		void* in_pMemAddress,
+		size_t in_size,
+		DWORD in_dwAllocationType,
+		DWORD in_dwProtect
+	)
+	{
+		return VirtualAlloc(in_pMemAddress, in_size, in_dwAllocationType, in_dwProtect);
+	}
+	void VirtualFreeHook(
+		void* in_pMemAddress,
+		size_t in_size,
+		DWORD in_dwFreeType
+	)
+	{
+		VirtualFree(in_pMemAddress, in_size, in_dwFreeType);
+	}
+}
 
 bool InitSoundEngine()
 {
     AkMemSettings memSettings;
-    AK::MemoryMgr::GetDefaultSettings(memSettings);
+	memSettings.uMaxNumPools = 20;
 
     if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
     {
