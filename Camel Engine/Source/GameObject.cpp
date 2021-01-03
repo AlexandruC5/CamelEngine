@@ -4,6 +4,7 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "Camera.h"
+#include "AudioSource.h"
 #include "ImGui/imgui.h"
 #include "GnJSON.h"
 #include "Application.h"
@@ -106,6 +107,12 @@ void GameObject::OnEditor()
 			ImGui::Text("No parent");
 
 		ImGui::Text("UUID: %d", UUID);
+	}
+
+	if (ImGui::Button("Add Audio Component") && _parent != nullptr) {
+		
+		this->AddComponent(ComponentType::AUDIO_SOURCE);
+		LOG("Audio added");
 	}
 }
 
@@ -226,6 +233,9 @@ Component* GameObject::AddComponent(ComponentType type)
 		break;
 	case CAMERA:
 		component = new Camera(this);
+		break;
+	case AUDIO_SOURCE:
+		component = new AudioSource(this);
 		break;
 	case LIGHT:
 		component = new Light(this);

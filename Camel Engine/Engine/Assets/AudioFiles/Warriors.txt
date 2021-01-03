@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	4084976851	Play_Warriors			\Default Work Unit\Play_Warriors	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	688010564	Warriors	C:\Users\admin\Documents\WwiseProjects\try2\.cache\Windows\SFX\Warriors_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Warriors		39284544
+
