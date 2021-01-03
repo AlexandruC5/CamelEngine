@@ -5,7 +5,7 @@
 AudioSource::AudioSource(GameObject* parent)
 {
 	type = ComponentType::AUDIO_SOURCE;
-	audio_name = "Hello";
+	audio_name = "None";
 	music_swap_time = 50.0f;
 	priority = 128;
 	volume = 50, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;

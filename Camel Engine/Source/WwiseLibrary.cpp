@@ -126,6 +126,28 @@ bool InitSoundEngine()
 
 #endif // AK_OPTIMIZED
 
+	AkBankID bankID;
+	AKRESULT base_path_res = g_lowLevelIO.SetBasePath(AKTEXT("../Engine/Assets/AudioFiles/"));
+	if (base_path_res != AK_Success)
+	{
+		assert(!"Invalid base path!");
+		LOG("Invalid base path!");
+		return false;
+	}
+
+	AKRESULT e_res = AK::SoundEngine::LoadBank("Init.bnk", AK_DEFAULT_POOL_ID, bankID);
+
+	if (e_res != AK_Success)
+	{
+		assert(!"Could not initialize soundbank!");
+		LOG("Could not initialize soundbank!");
+		return false;
+	}
+
+	AKRESULT res = AK::StreamMgr::SetCurrentLanguage((AkOSChar*)"English");
+	if (res == AK_Fail)
+		assert(!"Invalid language!");
+
 	return true;
 }
 
