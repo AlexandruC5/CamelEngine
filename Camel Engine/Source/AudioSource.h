@@ -31,8 +31,8 @@ public:
 	const bool& GetLoopActive();
 	void SetLoopActive(bool& on_loop);
 
-	const uint& GetPriority();
-	void SetPriority(uint& _priority);
+	const int& GetPriority();
+	void SetPriority(int& _priority);
 
 	const float& GetVolume();
 	void SetVolume(float& _volume);
@@ -67,7 +67,8 @@ public:
 	void StopAudioByEvent(const char* name);
 
 public:
-
+	GameObject* go;
+	AudioSource* aud_source;
 private:
 
 	const char* audio_name, *audio_to_play;

@@ -31,6 +31,9 @@ GameObject::GameObject(ComponentType component) : GameObject()
 	case ComponentType::LIGHT:
 		name = "Light";
 		break;
+	case ComponentType::AUDIO_SOURCE:
+		name = "Audio";
+		break;
 	default:
 		break;
 	}

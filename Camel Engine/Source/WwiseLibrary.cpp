@@ -148,6 +148,12 @@ bool InitSoundEngine()
 	if (res == AK_Fail)
 		assert(!"Invalid language!");
 
+	// RTPCs
+	AK::SoundEngine::SetRTPCValue("Priority", 0, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("Pitch", 0, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
+	//AK::SoundEngine::SetState("swap_music", "state2");
+
 	return true;
 }
 
