@@ -257,6 +257,9 @@
     <ClCompile Include="Libs\AK\Win32\stdafx.cpp">
       <Filter>Libs\AK</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -311,16 +314,16 @@
       <Filter>Libs\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\wglew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\eglew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\glew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\glxew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\SDL\include\SDL.h">
       <Filter>Libs\SDL</Filter>
@@ -818,6 +821,9 @@
     <ClInclude Include="Libs\AK\Tools\Win32\AkPlatformFuncs.h">
       <Filter>Libs\AK</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -828,9 +834,6 @@
     </Filter>
     <Filter Include="Libs">
       <UniqueIdentifier>{e5b92709-b597-4c4b-bf07-c6d0682bb2af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libs\Glew">
-      <UniqueIdentifier>{2e4c5722-ce7d-4d13-b63c-42035faf7849}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libs\SDL">
       <UniqueIdentifier>{7bb8c861-6eba-490b-baff-8ddadc448f17}</UniqueIdentifier>
@@ -876,6 +879,9 @@
     </Filter>
     <Filter Include="Libs\AK">
       <UniqueIdentifier>{b5beb58a-af81-4af1-881c-dc64156764b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects &amp; Components\Glew">
+      <UniqueIdentifier>{2e4c5722-ce7d-4d13-b63c-42035faf7849}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
