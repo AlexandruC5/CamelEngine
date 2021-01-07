@@ -16,6 +16,7 @@ Application::Application(int argc, char* args[]) : argc(argc), args(args), want_
 	scene = new ModuleScene(true);
 	editor = new Editor(true);
 	resources = new ModuleResources(true);
+	audio = new ModuleAudio(true);
 
 	// Main Modules
 	AddModule(window);
@@ -23,6 +24,7 @@ Application::Application(int argc, char* args[]) : argc(argc), args(args), want_
 	AddModule(camera);
 	AddModule(input);
 	AddModule(scene);
+	AddModule(audio);
 	AddModule(editor);
 
 	// Renderer last!

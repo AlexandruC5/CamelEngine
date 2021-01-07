@@ -24,7 +24,7 @@ AudioSource::AudioSource(GameObject* parent)
 		LOG("Could not register GameObject. See eResult variable to more info");
 	}
 
-	//App->audio->AddSourceToList(this);
+	App->audio->AddSourceToList(this);
 }
 
 AudioSource::~AudioSource()

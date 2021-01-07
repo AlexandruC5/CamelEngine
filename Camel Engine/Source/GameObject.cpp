@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "Mesh.h"
 #include "Material.h"
+#include "AudioListener.h"
 #include "Camera.h"
 #include "AudioSource.h"
 #include "ImGui/imgui.h"
@@ -42,11 +43,13 @@ GameObject::GameObject(ComponentType component) : GameObject()
 GameObject::~GameObject()
 {
 	_parent = nullptr;
-
 	for (size_t i = 0; i < components.size(); i++)
 	{
-		delete components[i];
-		components[i] = nullptr;
+		if (components[i] != nullptr)
+		{
+			delete components[i];
+			components[i] = nullptr;
+		}
 	}
 
 	transform = nullptr;
@@ -112,10 +115,15 @@ void GameObject::OnEditor()
 		ImGui::Text("UUID: %d", UUID);
 	}
 
-	if (ImGui::Button("Add Audio Component") && _parent != nullptr) {
+	if (_parent != nullptr && ImGui::Button("Add Audio Component")) {
 		
 		this->AddComponent(ComponentType::AUDIO_SOURCE);
 		LOG("Audio added");
+	}
+	if (_parent != nullptr && ImGui::Button("Add Listener Component")) {
+
+		this->AddComponent(ComponentType::AUDIO_LISTENER);
+		LOG("Listener added");
 	}
 }
 
@@ -239,6 +247,9 @@ Component* GameObject::AddComponent(ComponentType type)
 		break;
 	case AUDIO_SOURCE:
 		component = new AudioSource(this);
+		break;
+	case AUDIO_LISTENER:
+		component = new AudioListener(this);
 		break;
 	case LIGHT:
 		component = new Light(this);
