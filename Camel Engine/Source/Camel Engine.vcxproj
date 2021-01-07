@@ -43,12 +43,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
-    <LibraryPath>C:\Users\Alex\Desktop\GenesisEngine\GenesisEngine\Camel Engine\Source\Libs;C:\Users\admin\Documents\GitHub\GenesisEngine\Camel Engine\Source\Libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_IncludePath_x86)</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_IncludePath_x86);E:\GitHub\Repositories\GenesisEngine\Camel Engine\Source\Libs</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
-    <LibraryPath>C:\Users\admin\Documents\GitHub\GenesisEngine\Camel Engine\Source\Libs;</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(VC_IncludePath_x86);E:\GitHub\Repositories\GenesisEngine\Camel Engine\Source\Libs</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -57,7 +57,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\Alex\Desktop\GenesisEngine\GenesisEngine\Camel Engine\Source\Libs;C:\Users\admin\Documents\GitHub\GenesisEngine\Camel Engine\Source\Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\GitHub\Repositories\GenesisEngine\Camel Engine\Source\Libs</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
       <StructMemberAlignment>Default</StructMemberAlignment>
@@ -66,7 +66,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\Alex\Desktop\GenesisEngine\GenesisEngine\Camel Engine\Source\Libs;C:\Users\admin\Documents\GitHub\GenesisEngine\Camel Engine\Source\Libs</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\GitHub\Repositories\GenesisEngine\Camel Engine\Source\Libs</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,7 +78,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\admin\Documents\GitHub\GenesisEngine\Camel Engine\Source\Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\GitHub\Repositories\GenesisEngine\Camel Engine\Source\Libs</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
       <StructMemberAlignment>Default</StructMemberAlignment>
@@ -89,7 +89,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\admin\Documents\GitHub\GenesisEngine\Camel Engine\Source\Libs</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\GitHub\Repositories\GenesisEngine\Camel Engine\Source\Libs</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

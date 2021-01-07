@@ -42,17 +42,15 @@ bool ModuleAudio::CleanUp()
 {
 	sources.clear();
 	listeners.clear();
-	delete listener;
-	listener = nullptr;
 
 	TermSoundEngine();
 	return true;
 }
-//
-//const uint ModuleAudio::GetListenerID() const /// TODO
-//{
-//	return listener->GetID();
-//}
+
+const uint ModuleAudio::GetListenerID() const
+{
+	return listener->GetID();
+}
 
 void ModuleAudio::PlayOnAwake() const
 {
