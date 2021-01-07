@@ -126,7 +126,6 @@ bool InitSoundEngine()
 
 #endif // AK_OPTIMIZED
 
-	AkBankID bankID;
 	AKRESULT base_path_res = g_lowLevelIO.SetBasePath(AKTEXT("../Engine/Assets/AudioFiles/"));
 	if (base_path_res != AK_Success)
 	{
@@ -135,6 +134,7 @@ bool InitSoundEngine()
 		return false;
 	}
 
+	AkBankID bankID;
 	AKRESULT e_res = AK::SoundEngine::LoadBank("Init.bnk", AK_DEFAULT_POOL_ID, bankID);
 
 	if (e_res != AK_Success)

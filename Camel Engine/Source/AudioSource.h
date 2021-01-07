@@ -15,12 +15,14 @@ public:
 	void Update() override;
 	void OnEditor() override;
 
+	void Save(GnJSONArray& save_array) override;
+	void Load(GnJSONObj& load_object) override;
+
 	const char* GetName();
 	const float3& GetSourcePosition();
 	const uint& GetID();
 
 	const char* GetAudioBank();
-	void SetAudioBank(char* name);
 
 	const bool& GetMuted();
 	void SetMuted(bool& muted);
@@ -71,7 +73,7 @@ public:
 	AudioSource* aud_source;
 private:
 
-	const char* audio_name, *audio_to_play;
+	char* audio_name, *audio_to_play;
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
 

@@ -3,7 +3,7 @@
 #include "Module.h"
 #include "WwiseLibrary.h"
 
-#include <list>
+#include <vector>
 
 class AudioSource;
 class AudioListener;
@@ -21,6 +21,9 @@ public:
 
 	const uint GetListenerID() const;
 
+	void LoadAudioBank(char* name);
+	void UnLoadAudioBank(char* name);
+
 	void PlayOnAwake()const;
 	void StopAudio()const;
 	void PauseAudio()const;
@@ -32,10 +35,11 @@ public:
 
 private:
 	AudioListener* listener;
+	AudioSource* aud_source;
 	bool isAudioPlayed = false;
 
 public:
-	std::list<AudioSource*> sources;
-	std::list<AudioListener*> listeners;
+	std::vector<AudioSource*> sources;
+	std::vector<AudioListener*> listeners;
 };
 

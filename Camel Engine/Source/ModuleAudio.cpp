@@ -6,7 +6,7 @@
 
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
 {
-	this->name = "audio";
+	name = "audio";
 }
 
 ModuleAudio::~ModuleAudio()
@@ -16,6 +16,7 @@ ModuleAudio::~ModuleAudio()
 bool ModuleAudio::Start()
 {
 	InitSoundEngine();
+	LoadAudioBank("Warriors.bnk");
 	return true;
 }
 
@@ -42,6 +43,7 @@ bool ModuleAudio::CleanUp()
 {
 	sources.clear();
 	listeners.clear();
+	UnLoadAudioBank("Warriors.bnk");
 
 	TermSoundEngine();
 	return true;
@@ -52,9 +54,29 @@ const uint ModuleAudio::GetListenerID() const
 	return listener->GetID();
 }
 
+void ModuleAudio::LoadAudioBank(char* name)
+{
+	AkBankID bankID;
+	AKRESULT eResult = AK::SoundEngine::LoadBank(name, AK_DEFAULT_POOL_ID, bankID);
+
+	if (eResult == AK_Success)
+	{
+		LOG("Bank created");
+	}
+}
+
+void ModuleAudio::UnLoadAudioBank(char* name)
+{
+	AKRESULT eResult = AK::SoundEngine::UnloadBank(name, NULL);
+	if (eResult == AK_Success)
+	{
+		LOG("Bank unloaded");
+	}
+}
+
 void ModuleAudio::PlayOnAwake() const
 {
-	std::list<AudioSource*>::const_iterator it;
+	std::vector<AudioSource*>::const_iterator it;
 	for (it = sources.begin(); it != sources.end(); ++it)
 	{
 		if ((*it)->GetPlayOnAwake() == true)

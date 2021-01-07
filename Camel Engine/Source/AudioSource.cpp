@@ -4,13 +4,14 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "MathGeoLib/include/Algorithm/Random/LCG.h"
+#include "GnJSON.h"
 
 AudioSource::AudioSource(GameObject* parent)
 {
 	type = ComponentType::AUDIO_SOURCE;
 	
 	id = LCG().Int();
-	audio_name = new char[1000];
+	audio_name = new char[256];
 	music_swap_time = 50.0f;
 	priority = 128;
 	volume = 50, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
@@ -29,6 +30,13 @@ AudioSource::AudioSource(GameObject* parent)
 
 AudioSource::~AudioSource()
 {
+	AKRESULT eResult = AK::SoundEngine::UnregisterGameObj(id);
+	RELEASE_ARRAY(audio_name);
+	if (eResult != AK_Success)
+	{
+		assert(!"Could not unregister GameObject. See eResult variable to more info");
+		LOG("Could not unregister GameObject. See eResult variable to more info");
+	}
 }
 
 void AudioSource::Update()
@@ -81,6 +89,12 @@ void AudioSource::OnEditor()
 		ImGui::Checkbox(" Enabled", &enabled);
 
 		ImGui::Text("Audio File: %s", audio_name);
+
+		GetMuted();
+		if (ImGui::Checkbox("Muted", &is_muted))
+		{
+			SetMuted(is_muted);
+		}
 
 		GetPlayOnAwake();
 		if (ImGui::Checkbox("Play On Awake", &play_on_awake))
@@ -149,6 +163,27 @@ void AudioSource::OnEditor()
 	}
 }
 
+void AudioSource::Save(GnJSONArray& save_array)
+{
+	GnJSONObj save_object;
+
+	save_object.AddInt("Type", type);
+	save_object.AddBool("Muted", is_muted);
+	save_object.AddBool("Play On Awake", play_on_awake);
+	save_object.AddBool("Loop", to_loop);
+
+	//is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial
+
+	save_array.AddObject(save_object);
+}
+
+void AudioSource::Load(GnJSONObj& load_object)
+{
+	is_muted = load_object.GetBool("Muted");
+	play_on_awake = load_object.GetBool("Play On Awake");
+	to_loop = load_object.GetBool("Loop");
+}
+
 const char* AudioSource::GetName()
 {
 	return audio_name;
@@ -168,10 +203,6 @@ const uint& AudioSource::GetID()
 const char* AudioSource::GetAudioBank()
 {
 	return nullptr;
-}
-
-void AudioSource::SetAudioBank(char* name)
-{
 }
 
 const bool& AudioSource::GetMuted()
