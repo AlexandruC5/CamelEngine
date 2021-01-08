@@ -2,14 +2,14 @@
  "SoundBanksInfo": {
   "Platform": "Windows",
   "BasePlatform": "Windows",
-  "SchemaVersion": "12",
-  "SoundbankVersion": "135",
+  "SchemaVersion": "11",
+  "SoundbankVersion": "128",
   "RootPaths": {
-   "ProjectRoot": "H:\\Wwisetest\\TestingSoundBanks\\",
-   "SourceFilesRoot": "H:\\Wwisetest\\TestingSoundBanks\\.cache\\Windows\\",
-   "SoundBanksRoot": "C:\\Users\\Alex\\Desktop\\SoundBankTest\\",
+   "ProjectRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\",
+   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\GeneratedSoundBanks\\Windows\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "H:\\Wwisetest\\TestingSoundBanks\\GeneratedSoundBanks\\Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\GeneratedSoundBanks\\Windows"
   },
   "DialogueEvents": [],
   "StreamedFiles": [],
@@ -18,24 +18,34 @@
    {
     "Id": "1355168291",
     "Language": "SFX",
-    "Hash": "3791779620",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk"
    },
    {
-    "Id": "1910840812",
+    "Id": "1566889391",
     "Language": "SFX",
-    "Hash": "3690617520",
-    "ObjectPath": "\\SoundBanks\\Default Work Unit\\StaticMusic",
-    "ShortName": "StaticMusic",
-    "Path": "StaticMusic.bnk",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Engine_Banks",
+    "ShortName": "Engine_Banks",
+    "Path": "Engine_Banks.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "1256202815",
+      "Name": "Play",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play"
+     },
+     {
+      "Id": "788884573",
+      "Name": "Stop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop"
+     }
+    ],
     "IncludedMemoryFiles": [
      {
-      "Id": "656230889",
+      "Id": "86310040",
       "Language": "SFX",
       "ShortName": "test.wav",
-      "Path": "SFX\\test_D79FB2B7.wem"
+      "Path": "SFX\\test_1C9C67B2.wem"
      }
     ]
    }

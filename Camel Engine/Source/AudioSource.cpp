@@ -97,7 +97,7 @@ void AudioSource::OnEditor()
 		GetPlayOnAwake();
 		if (ImGui::Checkbox("Play On Awake", &play_on_awake))
 		{
-			//SetPlayOnAwake(play_on_awake);
+			SetPlayOnAwake(play_on_awake);
 		}
 		
 		GetLoopActive();
