@@ -68,9 +68,6 @@ public:
 	void ResumeAudioByEvent(const char* name);
 	void StopAudioByEvent(const char* name);
 
-public:
-	GameObject* go;
-	AudioSource* aud_source;
 private:
 
 	char* audio_name, *audio_to_play;

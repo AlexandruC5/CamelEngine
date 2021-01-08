@@ -19,7 +19,7 @@ bool ModuleAudio::Start()
 {
 	InitSoundEngine();
 	LoadBankInfo();
-	//LoadAudioBank("Warriors.bnk");
+	LoadAudioBank(banks[0]->bank_name.c_str());
 	return true;
 }
 
@@ -38,6 +38,7 @@ update_status ModuleAudio::Update(float dt)
 
 update_status ModuleAudio::PostUpdate(float dt)
 {
+	banks;
 	ProcessAudio();
 	return UPDATE_CONTINUE;
 }
@@ -64,9 +65,15 @@ bool ModuleAudio::CleanUp()
 			LOG("Could not unregister GameObject. See eResult variable to more info");
 		}
 	}
+	std::vector<Bank*>::const_iterator it_b;
+	for (it_b = banks.begin(); it_b != banks.end(); ++it_b)
+	{
+		UnLoadAudioBank((*it_b)->bank_name.c_str());
+		delete (*it_b);
+	}
 	sources.clear();
 	listeners.clear();
-	//UnLoadAudioBank("Engine_Banks.bnk");
+	banks.clear();
 
 	TermSoundEngine();
 	return true;
@@ -83,38 +90,42 @@ void ModuleAudio::LoadBankInfo()
 	uint size = FileSystem::Load("Assets/AudioFiles/SoundbanksInfo.json", &buffer);
 
 	GnJSONObj banks_info(buffer);
-	GnJSONArray banks_array(banks_info.GetArray("SoundBanks"), banks_info.GetJSONObject());
+	GnJSONObj sound_banks(banks_info.GetJSONObjectByName("SoundBanksInfo"));
+	GnJSONArray banks_array(sound_banks.GetArray("SoundBanks"), sound_banks.GetJSONObject());
 
-	for (uint cursor = 0u; cursor < banks_array.Size() && banks_array.GetObjectAt(cursor).GetString("ShortName", "") != "Init.bnk"; ++cursor)
+	for (uint cursor = 0u; cursor < banks_array.Size(); ++cursor)
 	{
-		Bank* tmp_bank = new Bank();
-		GnJSONObj tmp_obj = banks_array.GetObjectAt(cursor);
-		GnJSONArray tmp_events;
-		GnJSONArray tmp_audios;
-
-		tmp_bank->bank_name = tmp_obj.GetString("ShortName", "");
-		tmp_bank->id = tmp_obj.GetInt("Id");
-
-		// Load bank events data
-		tmp_events = tmp_obj.GetArray("IncludedEvents");
-		for (uint event_cursor = 0u; event_cursor < tmp_events.Size(); ++event_cursor)
+		if (strcmp(banks_array.GetObjectAt(cursor).GetString("ShortName", ""), "Init") != 0)
 		{
-			tmp_bank->events[tmp_events.GetObjectAt(event_cursor).GetInt("Id")] = tmp_events.GetObjectAt(event_cursor).GetString("Name", "");
-		}
+			Bank* tmp_bank = new Bank();
+			GnJSONObj tmp_obj = banks_array.GetObjectAt(cursor);
+			GnJSONArray tmp_events;
+			GnJSONArray tmp_audios;
 
-		// Load bank files data
-		tmp_audios = tmp_obj.GetArray("IncludedMemoryFiles");
-		for (uint audio_cursor = 0u; audio_cursor < tmp_audios.Size(); ++audio_cursor)
-		{
-			tmp_bank->audios[tmp_audios.GetObjectAt(audio_cursor).GetInt("Id")] = tmp_audios.GetObjectAt(audio_cursor).GetString("Name", "");
-		}
+			tmp_bank->bank_name = tmp_obj.GetString("ShortName", "");
+			tmp_bank->id = tmp_obj.GetInt("Id");
 
-		banks.push_back(tmp_bank);
+			// Load bank events data
+			tmp_events = tmp_obj.GetArray("IncludedEvents");
+			for (uint event_cursor = 0u; event_cursor < tmp_events.Size(); ++event_cursor)
+			{
+				tmp_bank->events[tmp_events.GetObjectAt(event_cursor).GetInt("Id")] = tmp_events.GetObjectAt(event_cursor).GetString("Name", "");
+			}
+
+			// Load bank files data
+			tmp_audios = tmp_obj.GetArray("IncludedMemoryFiles");
+			for (uint audio_cursor = 0u; audio_cursor < tmp_audios.Size(); ++audio_cursor)
+			{
+				tmp_bank->audios[tmp_audios.GetObjectAt(audio_cursor).GetInt("Id")] = tmp_audios.GetObjectAt(audio_cursor).GetString("Name", "");
+			}
+
+			banks.push_back(tmp_bank);
+		}
 	}
 }
 
 
-void ModuleAudio::LoadAudioBank(char* name)
+void ModuleAudio::LoadAudioBank(const char* name)
 {
 	AkBankID bankID;
 	AKRESULT eResult = AK::SoundEngine::LoadBank(name, AK_DEFAULT_POOL_ID, bankID);
@@ -126,7 +137,7 @@ void ModuleAudio::LoadAudioBank(char* name)
 	
 }
 
-void ModuleAudio::UnLoadAudioBank(char* name)
+void ModuleAudio::UnLoadAudioBank(const char* name)
 {
 	AKRESULT eResult = AK::SoundEngine::UnloadBank(name, NULL);
 	if (eResult == AK_Success)

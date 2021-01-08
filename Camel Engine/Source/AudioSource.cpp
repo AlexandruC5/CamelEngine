@@ -16,7 +16,7 @@ AudioSource::AudioSource(GameObject* parent)
 	priority = 128;
 	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
 	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
-	go = parent;
+	_gameObject = parent;
 
 	AKRESULT eResult = AK::SoundEngine::RegisterGameObj(id, audio_name);
 	if (eResult != AK_Success)
@@ -26,6 +26,9 @@ AudioSource::AudioSource(GameObject* parent)
 	}
 
 	App->audio->AddSourceToList(this);
+	audio_name = "test.wav";
+	SetAudioToPlay("test.wav");
+	PlayAudioByEvent("Play");
 }
 
 AudioSource::~AudioSource()
@@ -35,7 +38,7 @@ AudioSource::~AudioSource()
 
 void AudioSource::Update()
 {
-	Transform* trans = (Transform*)go->GetComponent(ComponentType::TRANSFORM);
+	Transform* trans = (Transform*)_gameObject->GetComponent(ComponentType::TRANSFORM);
 
 	if (trans != nullptr)
 	{
@@ -83,10 +86,7 @@ void AudioSource::OnEditor()
 		ImGui::Checkbox(" Enabled", &enabled);
 
 		GetAudioToPlay();
-		if (ImGui::InputText("Audio File: ", audio_name, 100, ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue)) 
-		{
-			SetAudioToPlay(audio_name);
-		}
+		ImGui::Text("Audio File: %s", audio_name);
 
 		GetMuted();
 		if (ImGui::Checkbox("Muted", &is_muted))

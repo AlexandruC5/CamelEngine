@@ -33,8 +33,8 @@ public:
 	const uint GetListenerID() const;
 
 	void LoadBankInfo();
-	void LoadAudioBank(char* name);
-	void UnLoadAudioBank(char* name);
+	void LoadAudioBank(const char* name);
+	void UnLoadAudioBank(const char* name);
 
 	void PlayOnAwake()const;
 	void StopAudio()const;

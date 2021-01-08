@@ -19,6 +19,7 @@ AudioListener::AudioListener(GameObject* game_object)
 	{
 		LOG_ERROR("Could not create a listener.");
 	}
+	SetDefaultListener();
 
 	Update();
 }
