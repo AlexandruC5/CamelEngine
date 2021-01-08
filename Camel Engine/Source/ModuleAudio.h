@@ -4,9 +4,20 @@
 #include "WwiseLibrary.h"
 
 #include <vector>
+#include <string>
+#include <map>
 
 class AudioSource;
 class AudioListener;
+
+typedef struct
+{
+	std::string						bank_name;
+	bool							loaded_in_heap;
+	uint64							id = 0u;
+	std::map<uint64, std::string>	events;
+	std::map<uint64, std::string>	audios;
+} Bank;
 
 class ModuleAudio : public Module
 {
@@ -21,6 +32,7 @@ public:
 
 	const uint GetListenerID() const;
 
+	void LoadBankInfo();
 	void LoadAudioBank(char* name);
 	void UnLoadAudioBank(char* name);
 
@@ -39,6 +51,8 @@ private:
 	bool isAudioPlayed = false;
 
 public:
+	std::vector<Bank*> banks;
+
 	std::vector<AudioSource*> sources;
 	std::vector<AudioListener*> listeners;
 };
