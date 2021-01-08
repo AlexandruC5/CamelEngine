@@ -41,9 +41,29 @@ update_status ModuleAudio::PostUpdate(float dt)
 
 bool ModuleAudio::CleanUp()
 {
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AKRESULT eResult = AK::SoundEngine::UnregisterGameObj((*it)->GetID());
+		if (eResult != AK_Success)
+		{
+			assert(!"Could not unregister GameObject. See eResult variable to more info");
+			LOG("Could not unregister GameObject. See eResult variable to more info");
+		}
+	}
+	std::vector<AudioListener*>::const_iterator it_l;
+	for (it_l = listeners.begin(); it_l != listeners.end(); ++it_l)
+	{
+		AKRESULT eResult = AK::SoundEngine::UnregisterGameObj((*it_l)->GetID());
+		if (eResult != AK_Success)
+		{
+			assert(!"Could not unregister GameObject. See eResult variable to more info");
+			LOG("Could not unregister GameObject. See eResult variable to more info");
+		}
+	}
 	sources.clear();
 	listeners.clear();
-	UnLoadAudioBank("Warriors.bnk");
+	UnLoadAudioBank("Engine_Banks.bnk");
 
 	TermSoundEngine();
 	return true;
@@ -63,6 +83,7 @@ void ModuleAudio::LoadAudioBank(char* name)
 	{
 		LOG("Bank created");
 	}
+	
 }
 
 void ModuleAudio::UnLoadAudioBank(char* name)

@@ -152,7 +152,7 @@ bool InitSoundEngine()
 	AK::SoundEngine::SetRTPCValue("Priority", 0, AK_INVALID_GAME_OBJECT);
 	AK::SoundEngine::SetRTPCValue("Pitch", 0, AK_INVALID_GAME_OBJECT);
 	AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
-	//AK::SoundEngine::SetState("swap_music", "state2");
+	//AK::SoundEngine::SetState("Change_Song", "state2");
 
 	return true;
 }

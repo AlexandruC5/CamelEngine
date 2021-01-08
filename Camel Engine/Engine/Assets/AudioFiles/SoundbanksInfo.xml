@@ -16,10 +16,19 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3671595352" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\Warriors</ObjectPath>
-			<ShortName>Warriors</ShortName>
-			<Path>Warriors.bnk</Path>
+		<SoundBank Id="1566889391" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Engine_Banks</ObjectPath>
+			<ShortName>Engine_Banks</ShortName>
+			<Path>Engine_Banks.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4084976851" Name="Play_Warriors" ObjectPath="\Events\Default Work Unit\Play_Warriors"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="742690568" Language="SFX">
+					<ShortName>Warriors.wav</ShortName>
+					<Path>SFX\Warriors_1C9C67B2.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

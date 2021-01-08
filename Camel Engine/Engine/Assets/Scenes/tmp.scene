@@ -1,7 +1,7 @@
 {
     "Game Objects": [
         {
-            "UUID": 1512482902,
+            "UUID": 1200577059,
             "Parent UUID": 0,
             "Name": "Root",
             "Components": [
@@ -27,8 +27,8 @@
             ]
         },
         {
-            "UUID": 2072436355,
-            "Parent UUID": 1512482902,
+            "UUID": 642075251,
+            "Parent UUID": 1200577059,
             "Name": "rayman",
             "Components": [
                 {
@@ -53,8 +53,8 @@
             ]
         },
         {
-            "UUID": 2081974432,
-            "Parent UUID": 2072436355,
+            "UUID": 646948721,
+            "Parent UUID": 642075251,
             "Name": "DrawCall_0",
             "Components": [
                 {
@@ -88,8 +88,8 @@
             ]
         },
         {
-            "UUID": 2092139098,
-            "Parent UUID": 2072436355,
+            "UUID": 652031054,
+            "Parent UUID": 642075251,
             "Name": "DrawCall_8",
             "Components": [
                 {
@@ -123,8 +123,8 @@
             ]
         },
         {
-            "UUID": 1019293630,
-            "Parent UUID": 1512482902,
+            "UUID": 1771682896,
+            "Parent UUID": 1200577059,
             "Name": "street environment_v01",
             "Components": [
                 {
@@ -149,8 +149,8 @@
             ]
         },
         {
-            "UUID": 1034819113,
-            "Parent UUID": 1019293630,
+            "UUID": 1784214676,
+            "Parent UUID": 1771682896,
             "Name": "Sky001",
             "Components": [
                 {
@@ -194,8 +194,8 @@
             ]
         },
         {
-            "UUID": 1047768619,
-            "Parent UUID": 1019293630,
+            "UUID": 1794309721,
+            "Parent UUID": 1771682896,
             "Name": "Dummy001",
             "Components": [
                 {
@@ -220,8 +220,8 @@
             ]
         },
         {
-            "UUID": 1056053518,
-            "Parent UUID": 1047768619,
+            "UUID": 1799600917,
+            "Parent UUID": 1794309721,
             "Name": "City_building_004",
             "Components": [
                 {
@@ -255,8 +255,8 @@
             ]
         },
         {
-            "UUID": 1066635910,
-            "Parent UUID": 1047768619,
+            "UUID": 1807537711,
+            "Parent UUID": 1794309721,
             "Name": "City_building_001",
             "Components": [
                 {
@@ -290,8 +290,8 @@
             ]
         },
         {
-            "UUID": 1076800576,
-            "Parent UUID": 1047768619,
+            "UUID": 1815474505,
+            "Parent UUID": 1794309721,
             "Name": "City_building_007",
             "Components": [
                 {
@@ -325,8 +325,8 @@
             ]
         },
         {
-            "UUID": 1081395562,
-            "Parent UUID": 1047768619,
+            "UUID": 1819094797,
+            "Parent UUID": 1794309721,
             "Name": "City_building_008",
             "Components": [
                 {
@@ -360,8 +360,8 @@
             ]
         },
         {
-            "UUID": 1093161511,
-            "Parent UUID": 1047768619,
+            "UUID": 1828702495,
+            "Parent UUID": 1794309721,
             "Name": "Line002",
             "Components": [
                 {
@@ -394,8 +394,8 @@
             ]
         },
         {
-            "UUID": 1096572940,
-            "Parent UUID": 1047768619,
+            "UUID": 1831208851,
+            "Parent UUID": 1794309721,
             "Name": "Plane001",
             "Components": [
                 {
@@ -428,8 +428,8 @@
             ]
         },
         {
-            "UUID": 1100402095,
-            "Parent UUID": 1047768619,
+            "UUID": 1833993691,
+            "Parent UUID": 1794309721,
             "Name": "City_building_010",
             "Components": [
                 {
@@ -463,8 +463,8 @@
             ]
         },
         {
-            "UUID": 1115857957,
-            "Parent UUID": 1047768619,
+            "UUID": 1845968503,
+            "Parent UUID": 1794309721,
             "Name": "City_building_011",
             "Components": [
                 {
@@ -498,8 +498,8 @@
             ]
         },
         {
-            "UUID": 1120313701,
-            "Parent UUID": 1047768619,
+            "UUID": 1849171069,
+            "Parent UUID": 1794309721,
             "Name": "City_building_013",
             "Components": [
                 {
@@ -533,8 +533,8 @@
             ]
         },
         {
-            "UUID": 1124769445,
-            "Parent UUID": 1047768619,
+            "UUID": 1852443256,
+            "Parent UUID": 1794309721,
             "Name": "City_building_014",
             "Components": [
                 {
@@ -568,8 +568,8 @@
             ]
         },
         {
-            "UUID": 1129712536,
-            "Parent UUID": 1047768619,
+            "UUID": 1855645822,
+            "Parent UUID": 1794309721,
             "Name": "City_building_016",
             "Components": [
                 {
@@ -603,8 +603,8 @@
             ]
         },
         {
-            "UUID": 1149624142,
-            "Parent UUID": 1047768619,
+            "UUID": 1870057369,
+            "Parent UUID": 1794309721,
             "Name": "City_building_017",
             "Components": [
                 {
@@ -638,8 +638,8 @@
             ]
         },
         {
-            "UUID": 1154010265,
-            "Parent UUID": 1047768619,
+            "UUID": 1873190314,
+            "Parent UUID": 1794309721,
             "Name": "City_building_022",
             "Components": [
                 {
@@ -673,8 +673,8 @@
             ]
         },
         {
-            "UUID": 1158466009,
-            "Parent UUID": 1047768619,
+            "UUID": 1876323259,
+            "Parent UUID": 1794309721,
             "Name": "City_building_023",
             "Components": [
                 {
@@ -708,8 +708,8 @@
             ]
         },
         {
-            "UUID": 1162643269,
-            "Parent UUID": 1047768619,
+            "UUID": 1879456204,
+            "Parent UUID": 1794309721,
             "Name": "City_building_024",
             "Components": [
                 {
@@ -743,8 +743,8 @@
             ]
         },
         {
-            "UUID": 1166820529,
-            "Parent UUID": 1047768619,
+            "UUID": 1883006875,
+            "Parent UUID": 1794309721,
             "Name": "City_building_026",
             "Components": [
                 {
@@ -778,8 +778,8 @@
             ]
         },
         {
-            "UUID": 1171206652,
-            "Parent UUID": 1047768619,
+            "UUID": 1886487925,
+            "Parent UUID": 1794309721,
             "Name": "City_building_028",
             "Components": [
                 {
@@ -813,8 +813,8 @@
             ]
         },
         {
-            "UUID": 1198149979,
-            "Parent UUID": 1047768619,
+            "UUID": 1904867869,
+            "Parent UUID": 1794309721,
             "Name": "Object010",
             "Components": [
                 {
@@ -847,8 +847,8 @@
             ]
         },
         {
-            "UUID": 1201979134,
-            "Parent UUID": 1047768619,
+            "UUID": 1907652709,
+            "Parent UUID": 1794309721,
             "Name": "City_building_030",
             "Components": [
                 {
@@ -882,8 +882,8 @@
             ]
         },
         {
-            "UUID": 1206295636,
-            "Parent UUID": 1047768619,
+            "UUID": 1912317316,
+            "Parent UUID": 1794309721,
             "Name": "City_building_031",
             "Components": [
                 {
@@ -917,8 +917,8 @@
             ]
         },
         {
-            "UUID": 1210821001,
-            "Parent UUID": 1047768619,
+            "UUID": 1915519882,
+            "Parent UUID": 1794309721,
             "Name": "City_building_032",
             "Components": [
                 {
@@ -952,8 +952,8 @@
             ]
         },
         {
-            "UUID": 1215067882,
-            "Parent UUID": 1047768619,
+            "UUID": 1918583206,
+            "Parent UUID": 1794309721,
             "Name": "City_building_033",
             "Components": [
                 {
@@ -987,8 +987,8 @@
             ]
         },
         {
-            "UUID": 1219454005,
-            "Parent UUID": 1047768619,
+            "UUID": 1921785772,
+            "Parent UUID": 1794309721,
             "Name": "City_building_034",
             "Components": [
                 {
@@ -1022,8 +1022,8 @@
             ]
         },
         {
-            "UUID": 1223770507,
-            "Parent UUID": 1047768619,
+            "UUID": 1924988338,
+            "Parent UUID": 1794309721,
             "Name": "City_building_035",
             "Components": [
                 {
@@ -1057,8 +1057,8 @@
             ]
         },
         {
-            "UUID": 1228087009,
-            "Parent UUID": 1047768619,
+            "UUID": 1928051662,
+            "Parent UUID": 1794309721,
             "Name": "City_building_036",
             "Components": [
                 {
@@ -1092,8 +1092,8 @@
             ]
         },
         {
-            "UUID": 1232403511,
-            "Parent UUID": 1047768619,
+            "UUID": 1931184607,
+            "Parent UUID": 1794309721,
             "Name": "City_building_037",
             "Components": [
                 {
@@ -1127,8 +1127,8 @@
             ]
         },
         {
-            "UUID": 1268258326,
-            "Parent UUID": 1047768619,
+            "UUID": 1957083619,
+            "Parent UUID": 1794309721,
             "Name": "City_building_038",
             "Components": [
                 {
@@ -1162,8 +1162,8 @@
             ]
         },
         {
-            "UUID": 1272574828,
-            "Parent UUID": 1047768619,
+            "UUID": 1960355806,
+            "Parent UUID": 1794309721,
             "Name": "City_building_039",
             "Components": [
                 {
@@ -1197,8 +1197,8 @@
             ]
         },
         {
-            "UUID": 1276821709,
-            "Parent UUID": 1047768619,
+            "UUID": 1963419130,
+            "Parent UUID": 1794309721,
             "Name": "City_building_040",
             "Components": [
                 {
@@ -1232,8 +1232,8 @@
             ]
         },
         {
-            "UUID": 1281207832,
-            "Parent UUID": 1047768619,
+            "UUID": 1966552075,
+            "Parent UUID": 1794309721,
             "Name": "City_building_041",
             "Components": [
                 {
@@ -1267,8 +1267,8 @@
             ]
         },
         {
-            "UUID": 1293948475,
-            "Parent UUID": 1019293630,
+            "UUID": 1975811668,
+            "Parent UUID": 1771682896,
             "Name": "Camera001",
             "Components": [
                 {
@@ -1323,8 +1323,8 @@
             ]
         },
         {
-            "UUID": 1335233728,
-            "Parent UUID": 1019293630,
+            "UUID": 2002267648,
+            "Parent UUID": 1771682896,
             "Name": "Spot001",
             "Components": [
                 {
@@ -1368,8 +1368,8 @@
             ]
         },
         {
-            "UUID": 1105608320,
-            "Parent UUID": 1512482902,
+            "UUID": 994071715,
+            "Parent UUID": 1200577059,
             "Name": "Main Camera",
             "Components": [
                 {
@@ -1422,10 +1422,9 @@
                     ]
                 },
                 {
-                    "name": "",
                     "Type": 5,
                     "Muted": false,
-                    "Play On Awake": false,
+                    "Play On Awake": true,
                     "Loop": false
                 }
             ]

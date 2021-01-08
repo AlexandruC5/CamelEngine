@@ -14,7 +14,7 @@ AudioSource::AudioSource(GameObject* parent)
 	audio_name = new char[256];
 	music_swap_time = 50.0f;
 	priority = 128;
-	volume = 50, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
+	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
 	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
 	go = parent;
 
@@ -30,13 +30,7 @@ AudioSource::AudioSource(GameObject* parent)
 
 AudioSource::~AudioSource()
 {
-	AKRESULT eResult = AK::SoundEngine::UnregisterGameObj(id);
 	RELEASE_ARRAY(audio_name);
-	if (eResult != AK_Success)
-	{
-		assert(!"Could not unregister GameObject. See eResult variable to more info");
-		LOG("Could not unregister GameObject. See eResult variable to more info");
-	}
 }
 
 void AudioSource::Update()
@@ -88,7 +82,11 @@ void AudioSource::OnEditor()
 	{
 		ImGui::Checkbox(" Enabled", &enabled);
 
-		ImGui::Text("Audio File: %s", audio_name);
+		GetAudioToPlay();
+		if (ImGui::InputText("Audio File: ", audio_name, 100, ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue)) 
+		{
+			SetAudioToPlay(audio_name);
+		}
 
 		GetMuted();
 		if (ImGui::Checkbox("Muted", &is_muted))
@@ -99,19 +97,19 @@ void AudioSource::OnEditor()
 		GetPlayOnAwake();
 		if (ImGui::Checkbox("Play On Awake", &play_on_awake))
 		{
-			SetPlayOnAwake(play_on_awake);
+			//SetPlayOnAwake(play_on_awake);
 		}
 		
 		GetLoopActive();
 		if (ImGui::Checkbox("Loop", &to_loop))
 		{
-			SetLoopActive(to_loop);
+			//SetLoopActive(to_loop);
 		}
 		
 		GetPriority();
 		if (ImGui::SliderInt("Priority", &priority, 0, 256))
 		{
-			SetPriority(priority);
+			//SetPriority(priority);
 		}
 		
 		GetVolume();
@@ -123,7 +121,7 @@ void AudioSource::OnEditor()
 		GetPitch();
 		if (ImGui::SliderFloat("Pitch", &pitch, -1.0f, 1.0f))
 		{
-			SetPitch(pitch);
+			//SetPitch(pitch);
 		}
 		
 		GetStereo();
@@ -133,7 +131,7 @@ void AudioSource::OnEditor()
 
 			is_mono = false;
 			is_stereo = true;
-			SetStereo(is_stereo);
+			//SetStereo(is_stereo);
 		}
 
 		ImGui::SameLine();
@@ -143,7 +141,7 @@ void AudioSource::OnEditor()
 		{
 			is_mono = true;
 			is_stereo = false;
-			SetStereo(is_stereo);
+			//SetStereo(is_stereo);
 		}
 
 		if (ImGui::Checkbox("Spatial Audio", &is_spatial))
@@ -218,6 +216,7 @@ void AudioSource::SetMuted(bool& muted)
 	else {
 		AK::SoundEngine::SetGameObjectOutputBusVolume(id, AK_INVALID_GAME_OBJECT, volume);
 	}
+	is_muted = muted;
 }
 
 const bool& AudioSource::GetPlayOnAwake()
@@ -227,6 +226,7 @@ const bool& AudioSource::GetPlayOnAwake()
 
 void AudioSource::SetPlayOnAwake(bool& _play_on_awake)
 {
+	play_on_awake = _play_on_awake;
 }
 
 const bool& AudioSource::GetLoopActive()
@@ -236,6 +236,7 @@ const bool& AudioSource::GetLoopActive()
 
 void AudioSource::SetLoopActive(bool& on_loop)
 {
+	to_loop = on_loop;
 }
 
 const int& AudioSource::GetPriority()
@@ -246,6 +247,7 @@ const int& AudioSource::GetPriority()
 void AudioSource::SetPriority(int& _priority)
 {
 	AK::SoundEngine::SetRTPCValue("Priority", _priority, AK_INVALID_GAME_OBJECT);
+	priority = _priority;
 }
 
 const float& AudioSource::GetVolume()
@@ -256,6 +258,7 @@ const float& AudioSource::GetVolume()
 void AudioSource::SetVolume(float& _volume)
 {
 	AK::SoundEngine::SetGameObjectOutputBusVolume(id, AK_INVALID_GAME_OBJECT, _volume);
+	volume = _volume;
 }
 
 const float& AudioSource::GetPitch()
@@ -263,9 +266,10 @@ const float& AudioSource::GetPitch()
 	return pitch;
 }
 
-void AudioSource::SetPitch(float& pitch)
+void AudioSource::SetPitch(float& _pitch)
 {
-	AK::SoundEngine::SetRTPCValue("Pitch", pitch, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("Pitch", _pitch, AK_INVALID_GAME_OBJECT);
+	pitch = _pitch;
 }
 
 const bool& AudioSource::GetStereo()
@@ -286,6 +290,8 @@ void AudioSource::SetStereo(bool& stereo)
 
 	AK::SoundEngine::SetBusConfig(id, config);
 	config.Clear();
+
+	is_stereo = stereo;
 }
 
 const float& AudioSource::GetStereoPan()
@@ -296,6 +302,7 @@ const float& AudioSource::GetStereoPan()
 void AudioSource::SetStereoPan(float& pan)
 {
 	AK::SoundEngine::SetRTPCValue("StereoPan", pan, AK_INVALID_GAME_OBJECT);
+	stereo_pan = pan;
 }
 
 const bool& AudioSource::GetIsSpatial()
@@ -305,6 +312,7 @@ const bool& AudioSource::GetIsSpatial()
 
 void AudioSource::SetIsSpatial(bool& spatial)
 {
+	is_spatial = spatial;
 }
 
 const float& AudioSource::GetSpatialMaxDist()
@@ -314,6 +322,7 @@ const float& AudioSource::GetSpatialMaxDist()
 
 void AudioSource::SetSpatialMaxDist(float& max_dist)
 {
+	spatial_max_distance = max_dist;
 }
 
 const float& AudioSource::GetSpatialMinDist()
@@ -323,6 +332,7 @@ const float& AudioSource::GetSpatialMinDist()
 
 void AudioSource::SetSpatialMinDistance(float& min_dist)
 {
+	spatial_min_distance = min_dist;
 }
 
 const uint& AudioSource::GetMusicSwapTime()
@@ -332,6 +342,7 @@ const uint& AudioSource::GetMusicSwapTime()
 
 void AudioSource::SetMusicSwapTime(uint& swap_time)
 {
+	music_swap_time = swap_time;
 }
 
 const char* AudioSource::GetAudioToPlay()
@@ -341,10 +352,12 @@ const char* AudioSource::GetAudioToPlay()
 
 void AudioSource::SetAudioToPlay(char* audio)
 {
+	audio_to_play = audio;
 }
 
 void AudioSource::PlayAudioByEvent(const char* name)
 {
+	AK::SoundEngine::PostEvent(name, id);
 }
 
 void AudioSource::PauseAudioByEvent(const char* name)
@@ -357,4 +370,5 @@ void AudioSource::ResumeAudioByEvent(const char* name)
 
 void AudioSource::StopAudioByEvent(const char* name)
 {
+	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Stop);
 }

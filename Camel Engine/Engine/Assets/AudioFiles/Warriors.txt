@@ -1,8 +1,0 @@
-Game Parameter	ID	Name			Wwise Object Path	Notes
-	960462717	Priority			\Default Work Unit\Priority	
-	1908158473	Pitch			\Default Work Unit\Pitch	
-	2415836739	Volume			\Default Work Unit\Volume	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	677931111	Warriors	C:\Users\admin\Documents\WwiseProjects\try2\.cache\Windows\SFX\Warriors_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Warriors		39284544
-
