@@ -19,7 +19,7 @@ bool ModuleAudio::Start()
 {
 	InitSoundEngine();
 	LoadBankInfo();
-	LoadAudioBank("Warriors.bnk");
+	//LoadAudioBank("Warriors.bnk");
 	return true;
 }
 
@@ -66,7 +66,7 @@ bool ModuleAudio::CleanUp()
 	}
 	sources.clear();
 	listeners.clear();
-	UnLoadAudioBank("Engine_Banks.bnk");
+	//UnLoadAudioBank("Engine_Banks.bnk");
 
 	TermSoundEngine();
 	return true;
