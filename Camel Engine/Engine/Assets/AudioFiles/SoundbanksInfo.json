@@ -1,0 +1,44 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "12",
+  "SoundbankVersion": "135",
+  "RootPaths": {
+   "ProjectRoot": "H:\\Wwisetest\\TestingSoundBanks\\",
+   "SourceFilesRoot": "H:\\Wwisetest\\TestingSoundBanks\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\Alex\\Desktop\\SoundBankTest\\",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "H:\\Wwisetest\\TestingSoundBanks\\GeneratedSoundBanks\\Windows"
+  },
+  "DialogueEvents": [],
+  "StreamedFiles": [],
+  "MediaFilesNotInAnyBank": [],
+  "SoundBanks": [
+   {
+    "Id": "1355168291",
+    "Language": "SFX",
+    "Hash": "3791779620",
+    "ObjectPath": "Init",
+    "ShortName": "Init",
+    "Path": "Init.bnk"
+   },
+   {
+    "Id": "1910840812",
+    "Language": "SFX",
+    "Hash": "3690617520",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\StaticMusic",
+    "ShortName": "StaticMusic",
+    "Path": "StaticMusic.bnk",
+    "IncludedMemoryFiles": [
+     {
+      "Id": "656230889",
+      "Language": "SFX",
+      "ShortName": "test.wav",
+      "Path": "SFX\\test_D79FB2B7.wem"
+     }
+    ]
+   }
+  ]
+ }
+}
