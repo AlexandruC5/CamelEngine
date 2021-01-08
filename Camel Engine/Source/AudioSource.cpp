@@ -11,14 +11,15 @@ AudioSource::AudioSource(GameObject* parent)
 	type = ComponentType::AUDIO_SOURCE;
 	
 	id = LCG().Int();
-	audio_name = new char[256];
+	name = new char[256];
+	name = parent->GetName();
 	music_swap_time = 50.0f;
 	priority = 128;
 	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
 	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
 	_gameObject = parent;
 
-	AKRESULT eResult = AK::SoundEngine::RegisterGameObj(id, audio_name);
+	AKRESULT eResult = AK::SoundEngine::RegisterGameObj(id, name);
 	if (eResult != AK_Success)
 	{
 		assert(!"Could not register GameObject. See eResult variable to more info");
@@ -26,14 +27,14 @@ AudioSource::AudioSource(GameObject* parent)
 	}
 
 	App->audio->AddSourceToList(this);
-	audio_name = "test.wav";
+
 	SetAudioToPlay("test.wav");
 	PlayAudioByEvent("Play");
 }
 
 AudioSource::~AudioSource()
 {
-	RELEASE_ARRAY(audio_name);
+	RELEASE_ARRAY(name);
 }
 
 void AudioSource::Update()
@@ -86,7 +87,7 @@ void AudioSource::OnEditor()
 		ImGui::Checkbox(" Enabled", &enabled);
 
 		GetAudioToPlay();
-		ImGui::Text("Audio File: %s", audio_name);
+		ImGui::Text("Audio File: %s", name);
 
 		GetMuted();
 		if (ImGui::Checkbox("Muted", &is_muted))
@@ -184,7 +185,7 @@ void AudioSource::Load(GnJSONObj& load_object)
 
 const char* AudioSource::GetName()
 {
-	return audio_name;
+	return name;
 }
 
 const float3& AudioSource::GetSourcePosition()

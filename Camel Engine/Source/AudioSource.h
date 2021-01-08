@@ -70,7 +70,8 @@ public:
 
 private:
 
-	char* audio_name, *audio_to_play;
+	const char* name;
+	char* audio_to_play;
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
 

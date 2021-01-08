@@ -37,13 +37,19 @@ bool ModuleScene::Start()
 	AddGameObject(street_environment);
 	
 	GameObject* camera = new GameObject();
-	camera->AddComponent(ComponentType::CAMERA);
 	camera->SetName("Main Camera");
+	camera->AddComponent(ComponentType::CAMERA);
+	camera->AddComponent(ComponentType::AUDIO_LISTENER);
 	camera->GetTransform()->SetPosition(float3(0.0f, 1.0f, -5.0f));
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
 
-	//uint baker_house_texture = App->resources->ImportFile("Assets/Textures/Baker_house.png");
+	GameObject* testSound = new GameObject();
+	testSound->SetName("Test SOund");
+	testSound->AddComponent(ComponentType::AUDIO_SOURCE);
+	testSound->GetTransform()->SetPosition(float3(0.0f, 0.0f, 0.0f));
+	AddGameObject(testSound);
+
 
 	return ret;
 }

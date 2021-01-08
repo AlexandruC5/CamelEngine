@@ -8,7 +8,9 @@
 
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
 {
+	
 	name = "audio";
+	InitSoundEngine();
 }
 
 ModuleAudio::~ModuleAudio()
@@ -17,7 +19,6 @@ ModuleAudio::~ModuleAudio()
 
 bool ModuleAudio::Start()
 {
-	InitSoundEngine();
 	LoadBankInfo();
 	LoadAudioBank(banks[0]->bank_name.c_str());
 	return true;
