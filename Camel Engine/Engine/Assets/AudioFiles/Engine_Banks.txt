@@ -1,7 +1,21 @@
 Event	ID	Name			Wwise Object Path	Notes
+	782097372	Play_Legends			\Default Work Unit\Play_Legends	
 	788884573	Stop			\Default Work Unit\Stop	
-	1256202815	Play			\Default Work Unit\Play	
+	4084976851	Play_Warriors			\Default Work Unit\Play_Warriors	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	756344465	Change_Track			\Default Work Unit\Change_Track	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Change_Track			
+	1148849101	Legends	Change_Track			
+	3671595352	Warriors	Change_Track			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	960462717	Priority			\Default Work Unit\Priority	
+	1908158473	Pitch			\Default Work Unit\Pitch	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	86310040	test	C:\Users\admin\Documents\WwiseProjects\Try3\.cache\Windows\SFX\test_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\test		34496576
+	811455978	Warriors	C:\Users\admin\Documents\WwiseProjects\Try3\.cache\Windows\SFX\Warriors_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Warriors		39284544
+	854000191	LegendsNeverDie	C:\Users\admin\Documents\WwiseProjects\Try3\.cache\Windows\SFX\LegendsNeverDie_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\LegendsNeverDie		40332096
 

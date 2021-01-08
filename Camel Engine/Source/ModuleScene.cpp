@@ -45,9 +45,9 @@ bool ModuleScene::Start()
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
 
 	GameObject* testSound = new GameObject();
-	testSound->SetName("Test SOund");
+	testSound->SetName("Test Sound");
 	testSound->AddComponent(ComponentType::AUDIO_SOURCE);
-	testSound->GetTransform()->SetPosition(float3(0.0f, 0.0f, 0.0f));
+	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
 
 

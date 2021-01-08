@@ -8,7 +8,6 @@
 
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
 {
-	
 	name = "audio";
 	InitSoundEngine();
 }
@@ -31,8 +30,9 @@ update_status ModuleAudio::Update(float dt)
 		if (!isAudioPlayed)
 		{
 			PlayOnAwake();
-			isAudioPlayed = true;
 		}
+
+		isAudioPlayed = true;
 	}
 	return UPDATE_CONTINUE;
 }
@@ -117,7 +117,7 @@ void ModuleAudio::LoadBankInfo()
 			tmp_audios = tmp_obj.GetArray("IncludedMemoryFiles");
 			for (uint audio_cursor = 0u; audio_cursor < tmp_audios.Size(); ++audio_cursor)
 			{
-				tmp_bank->audios[tmp_audios.GetObjectAt(audio_cursor).GetInt("Id")] = tmp_audios.GetObjectAt(audio_cursor).GetString("Name", "");
+				tmp_bank->audios[tmp_audios.GetObjectAt(audio_cursor).GetInt("Id")] = tmp_audios.GetObjectAt(audio_cursor).GetString("ShortName", "");
 			}
 
 			banks.push_back(tmp_bank);
@@ -154,7 +154,7 @@ void ModuleAudio::PlayOnAwake() const
 	{
 		if ((*it)->GetPlayOnAwake() == true)
 		{
-			(*it)->PlayAudioByEvent((*it)->GetAudioToPlay());
+			(*it)->PlayAudioByEvent("Play_Legends");
 		}
 	}
 }

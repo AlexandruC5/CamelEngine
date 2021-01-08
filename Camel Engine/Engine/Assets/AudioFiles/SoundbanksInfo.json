@@ -30,9 +30,14 @@
     "Path": "Engine_Banks.bnk",
     "IncludedEvents": [
      {
-      "Id": "1256202815",
-      "Name": "Play",
-      "ObjectPath": "\\Events\\Default Work Unit\\Play"
+      "Id": "782097372",
+      "Name": "Play_Legends",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Legends"
+     },
+     {
+      "Id": "4084976851",
+      "Name": "Play_Warriors",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Warriors"
      },
      {
       "Id": "788884573",
@@ -42,10 +47,16 @@
     ],
     "IncludedMemoryFiles": [
      {
-      "Id": "86310040",
+      "Id": "811455978",
       "Language": "SFX",
-      "ShortName": "test.wav",
-      "Path": "SFX\\test_1C9C67B2.wem"
+      "ShortName": "Warriors.wav",
+      "Path": "SFX\\Warriors_1C9C67B2.wem"
+     },
+     {
+      "Id": "854000191",
+      "Language": "SFX",
+      "ShortName": "LegendsNeverDie.wav",
+      "Path": "SFX\\LegendsNeverDie_1C9C67B2.wem"
      }
     ]
    }

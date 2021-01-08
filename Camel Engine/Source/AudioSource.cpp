@@ -3,16 +3,17 @@
 #include "ImGui/imgui.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "ModuleAudio.h"
 #include "MathGeoLib/include/Algorithm/Random/LCG.h"
-#include "GnJSON.h"
 
 AudioSource::AudioSource(GameObject* parent)
 {
 	type = ComponentType::AUDIO_SOURCE;
 	
 	id = LCG().Int();
-	name = new char[256];
+	audio_to_play = new char[256];
 	name = parent->GetName();
+	audio_to_play = (char*)App->audio->banks[0]->audios[0].c_str();
 	music_swap_time = 50.0f;
 	priority = 128;
 	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
@@ -28,8 +29,8 @@ AudioSource::AudioSource(GameObject* parent)
 
 	App->audio->AddSourceToList(this);
 
-	SetAudioToPlay("test.wav");
-	PlayAudioByEvent("Play");
+	SetAudioToPlay(audio_to_play);
+	//PlayAudioByEvent("Play_Legends");
 }
 
 AudioSource::~AudioSource()
@@ -78,6 +79,8 @@ void AudioSource::Update()
 
 		AK::SoundEngine::SetPosition(id, source_pos);
 	}
+
+
 }
 
 void AudioSource::OnEditor()
@@ -87,7 +90,7 @@ void AudioSource::OnEditor()
 		ImGui::Checkbox(" Enabled", &enabled);
 
 		GetAudioToPlay();
-		ImGui::Text("Audio File: %s", name);
+		ImGui::Text("Audio File: %s", audio_to_play);
 
 		GetMuted();
 		if (ImGui::Checkbox("Muted", &is_muted))
@@ -110,7 +113,7 @@ void AudioSource::OnEditor()
 		GetPriority();
 		if (ImGui::SliderInt("Priority", &priority, 0, 256))
 		{
-			//SetPriority(priority);
+			SetPriority(priority);
 		}
 		
 		GetVolume();
@@ -122,7 +125,7 @@ void AudioSource::OnEditor()
 		GetPitch();
 		if (ImGui::SliderFloat("Pitch", &pitch, -1.0f, 1.0f))
 		{
-			//SetPitch(pitch);
+			SetPitch(pitch);
 		}
 		
 		GetStereo();
@@ -132,7 +135,7 @@ void AudioSource::OnEditor()
 
 			is_mono = false;
 			is_stereo = true;
-			//SetStereo(is_stereo);
+			SetStereo(is_stereo);
 		}
 
 		ImGui::SameLine();
@@ -142,7 +145,7 @@ void AudioSource::OnEditor()
 		{
 			is_mono = true;
 			is_stereo = false;
-			//SetStereo(is_stereo);
+			SetStereo(is_stereo);
 		}
 
 		if (ImGui::Checkbox("Spatial Audio", &is_spatial))
@@ -269,7 +272,7 @@ const float& AudioSource::GetPitch()
 
 void AudioSource::SetPitch(float& _pitch)
 {
-	AK::SoundEngine::SetRTPCValue("Pitch", _pitch, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("Pitch", _pitch, id);
 	pitch = _pitch;
 }
 
@@ -302,7 +305,7 @@ const float& AudioSource::GetStereoPan()
 
 void AudioSource::SetStereoPan(float& pan)
 {
-	AK::SoundEngine::SetRTPCValue("StereoPan", pan, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("StereoPan", pan, id);
 	stereo_pan = pan;
 }
 

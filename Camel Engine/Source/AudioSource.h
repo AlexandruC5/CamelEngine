@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "WwiseLibrary.h"
 #include "MathGeoLib/include/MathGeoLib.h"
+#include "GnJSON.h"
 #include <string>
 
 class GameObject;
@@ -78,4 +79,6 @@ private:
 	int priority;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
 	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
+
+	GnJSONObj tmp_obj;
 };

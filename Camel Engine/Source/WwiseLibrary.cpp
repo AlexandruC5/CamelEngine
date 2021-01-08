@@ -151,8 +151,8 @@ bool InitSoundEngine()
 	// RTPCs
 	AK::SoundEngine::SetRTPCValue("Priority", 0, AK_INVALID_GAME_OBJECT);
 	AK::SoundEngine::SetRTPCValue("Pitch", 0, AK_INVALID_GAME_OBJECT);
-	AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
-	//AK::SoundEngine::SetState("Change_Song", "state2");
+	//AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetState("Change Track", "state2");
 
 	return true;
 }
