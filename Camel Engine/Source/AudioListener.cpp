@@ -9,16 +9,17 @@ AudioListener::AudioListener(GameObject* game_object)
 {
 	enabled = true;
 	_gameObject = game_object;
-	type = ComponentType::AUDIO_SOURCE;
+	type = ComponentType::AUDIO_LISTENER;
 	id = LCG().Int();
 	name = new char[128];
-	name = "listener";
+	name = game_object->GetName();
 	App->audio->AddListenerToList(this);
 	AKRESULT  eResult = AK::SoundEngine::RegisterGameObj(id, name);
 	if (eResult != AK_Success)
 	{
 		LOG_ERROR("Could not create a listener.");
 	}
+	SetDefaultListener();
 
 	Update();
 }

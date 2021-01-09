@@ -1,0 +1,65 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "11",
+  "SoundbankVersion": "128",
+  "RootPaths": {
+   "ProjectRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\",
+   "SourceFilesRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\GeneratedSoundBanks\\Windows\\",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "C:\\Users\\admin\\Documents\\WwiseProjects\\Try3\\GeneratedSoundBanks\\Windows"
+  },
+  "DialogueEvents": [],
+  "StreamedFiles": [],
+  "MediaFilesNotInAnyBank": [],
+  "SoundBanks": [
+   {
+    "Id": "1355168291",
+    "Language": "SFX",
+    "ObjectPath": "Init",
+    "ShortName": "Init",
+    "Path": "Init.bnk"
+   },
+   {
+    "Id": "1566889391",
+    "Language": "SFX",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Engine_Banks",
+    "ShortName": "Engine_Banks",
+    "Path": "Engine_Banks.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "782097372",
+      "Name": "Play_Legends",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Legends"
+     },
+     {
+      "Id": "4084976851",
+      "Name": "Play_Warriors",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Warriors"
+     },
+     {
+      "Id": "788884573",
+      "Name": "Stop",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop"
+     }
+    ],
+    "IncludedMemoryFiles": [
+     {
+      "Id": "811455978",
+      "Language": "SFX",
+      "ShortName": "Warriors.wav",
+      "Path": "SFX\\Warriors_1C9C67B2.wem"
+     },
+     {
+      "Id": "854000191",
+      "Language": "SFX",
+      "ShortName": "LegendsNeverDie.wav",
+      "Path": "SFX\\LegendsNeverDie_1C9C67B2.wem"
+     }
+    ]
+   }
+  ]
+ }
+}

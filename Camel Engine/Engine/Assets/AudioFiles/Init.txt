@@ -1,3 +1,11 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	756344465	Change_Track			\Default Work Unit\Change_Track	
+
+State	ID	Name	State Group			Notes
+	748895195	None	Change_Track			
+	1148849101	Legends	Change_Track			
+	3671595352	Warriors	Change_Track			
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	504532776	Brick			\Factory Reflect Acoustic Textures\Textures\Brick	
 	513139656	Mountain			\Factory Reflect Acoustic Textures\Textures\Mountain	
@@ -7,6 +15,7 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	1970351858	Fabric			\Factory Reflect Acoustic Textures\Textures\Fabric	
 	2058049674	Wood			\Factory Reflect Acoustic Textures\Textures\Wood	
 	2412606308	Carpet			\Factory Reflect Acoustic Textures\Textures\Carpet	
+	2415836739	Volume			\Default Work Unit\Volume	
 	2637588553	Tile			\Factory Reflect Acoustic Textures\Textures\Tile	
 	2928161104	Curtains			\Factory Reflect Acoustic Textures\Textures\Curtains	
 	3195498748	Cork_Tiles			\Factory Reflect Acoustic Textures\Textures\Cork_Tiles	

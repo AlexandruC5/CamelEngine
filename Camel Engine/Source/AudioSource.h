@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "WwiseLibrary.h"
 #include "MathGeoLib/include/MathGeoLib.h"
+#include "GnJSON.h"
 #include <string>
 
 class GameObject;
@@ -15,12 +16,14 @@ public:
 	void Update() override;
 	void OnEditor() override;
 
+	void Save(GnJSONArray& save_array) override;
+	void Load(GnJSONObj& load_object) override;
+
 	const char* GetName();
 	const float3& GetSourcePosition();
 	const uint& GetID();
 
 	const char* GetAudioBank();
-	void SetAudioBank(char* name);
 
 	const bool& GetMuted();
 	void SetMuted(bool& muted);
@@ -66,16 +69,16 @@ public:
 	void ResumeAudioByEvent(const char* name);
 	void StopAudioByEvent(const char* name);
 
-public:
-	GameObject* go;
-	AudioSource* aud_source;
 private:
 
-	const char* audio_name, *audio_to_play;
+	const char* name;
+	char* audio_to_play;
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
 
 	int priority;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
 	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
+
+	GnJSONObj tmp_obj;
 };

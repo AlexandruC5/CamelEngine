@@ -23,6 +23,7 @@ public:
 	~GnJSONObj();
 
 	JSON_Object* GetJSONObject();
+	JSON_Object* GetJSONObjectByName(const char* name);
 	JSON_Value* GetValue();
 	void Release();
 

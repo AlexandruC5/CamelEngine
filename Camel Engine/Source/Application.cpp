@@ -23,8 +23,8 @@ Application::Application(int argc, char* args[]) : argc(argc), args(args), want_
 	AddModule(resources);
 	AddModule(camera);
 	AddModule(input);
-	AddModule(scene);
 	AddModule(audio);
+	AddModule(scene);
 	AddModule(editor);
 
 	// Renderer last!

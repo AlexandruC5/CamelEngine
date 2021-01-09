@@ -126,7 +126,6 @@ bool InitSoundEngine()
 
 #endif // AK_OPTIMIZED
 
-	AkBankID bankID;
 	AKRESULT base_path_res = g_lowLevelIO.SetBasePath(AKTEXT("../Engine/Assets/AudioFiles/"));
 	if (base_path_res != AK_Success)
 	{
@@ -135,6 +134,7 @@ bool InitSoundEngine()
 		return false;
 	}
 
+	AkBankID bankID;
 	AKRESULT e_res = AK::SoundEngine::LoadBank("Init.bnk", AK_DEFAULT_POOL_ID, bankID);
 
 	if (e_res != AK_Success)
@@ -151,8 +151,8 @@ bool InitSoundEngine()
 	// RTPCs
 	AK::SoundEngine::SetRTPCValue("Priority", 0, AK_INVALID_GAME_OBJECT);
 	AK::SoundEngine::SetRTPCValue("Pitch", 0, AK_INVALID_GAME_OBJECT);
-	AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
-	//AK::SoundEngine::SetState("swap_music", "state2");
+	//AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetState("Change Track", "state2");
 
 	return true;
 }
