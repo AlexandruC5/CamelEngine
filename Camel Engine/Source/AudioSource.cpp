@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "MathGeoLib/include/Algorithm/Random/LCG.h"
 
+
 AudioSource::AudioSource(GameObject* parent)
 {
 	type = ComponentType::AUDIO_SOURCE;
@@ -60,23 +61,8 @@ void AudioSource::Update()
 		top_rotation.Normalize();
 
 		// Apply values to listener //
-		AkVector ak_position, ak_front_rotation, ak_top_rotation;
 
-		ak_position.X = position.x;
-		ak_position.Y = position.y;
-		ak_position.Z = position.z;
-
-		ak_front_rotation.X = front_rotation.x;
-		ak_front_rotation.Y = front_rotation.y;
-		ak_front_rotation.Z = front_rotation.z;
-
-		ak_top_rotation.X = top_rotation.x;
-		ak_top_rotation.Y = top_rotation.y;
-		ak_top_rotation.Z = top_rotation.z;
-
-		source_pos.Set(ak_position, ak_front_rotation, ak_top_rotation);
-
-		AK::SoundEngine::SetPosition(id, source_pos);
+		SetSourcePos(position.x, position.y, position.z, front_rotation.x, front_rotation.y, front_rotation.z, top_rotation.x, top_rotation.y, top_rotation.z);
 	}
 
 
@@ -376,6 +362,54 @@ void AudioSource::ResumeAudioByEvent(const char* name)
 void AudioSource::StopAudioByEvent(const char* name)
 {
 	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Stop);
+}
+
+void AudioSource::SetSourcePos(float x, float y,float z, float x_front, float y_front, float z_front, float x_top, float y_top, float z_top)
+{
+
+	//Reciving values
+	ak_position.X = x;
+	ak_position.Y = y;
+	ak_position.Z = Z;
+
+	ak_front_rotation.X = x_front;
+	ak_front_rotation.Y = y_front;
+	ak_front_rotation.Z = z_front;
+
+	ak_top_rotation.X = x_top;
+	ak_top_rotation.Y = y_top;
+	ak_top_rotation.Z = z_top;
+
+	//Creating normalization values
+	float length_front = sqrt(pow(ak_front_rotation.X, 2) + pow(ak_front_rotation.Y, 2) + pow(ak_front_rotation.Z, 2));
+	float lenght_top = sqrt(pow(ak_top_rotation.X, 2) + pow(ak_top_rotation.Y, 2) + pow(ak_top_rotation.Z, 2));
+
+
+	//Vector normalization
+	ak_front_rotation.X = ak_front_rotation.X / length_front;
+	ak_front_rotation.Y = ak_front_rotation.Y / length_front;
+	ak_front_rotation.Z = ak_front_rotation.Z / length_front;
+
+	ak_top_rotation.X = ak_top_rotation.X / lenght_top;
+	ak_top_rotation.Y = ak_top_rotation.Y / lenght_top;
+	ak_top_rotation.Z = ak_top_rotation.Z / lenght_top;
+
+	//Checking if there are orthogonals
+
+	float dot_prod = ak_top_rotation.X * ak_front_rotation.X + ak_top_rotation.Y * ak_front_rotation.Y + ak_top_rotation.Z * ak_front_rotation.Z;
+
+	if (dot_prod >= 0.0001)
+		assert(!"Vectors are not orthogonal!");
+
+
+	//Updating the position of the GameObject with the audioSource
+	AkSoundPosition sound_pos;
+	sound_pos.Set(ak_position, ak_front_rotation, ak_top_rotation);
+
+	AKRESULT res = AK::SoundEngine::SetPosition((AkGameObjectID)id, sound_pos);
+	if (res != AK_Success)
+		assert(!"Something went wrong, check the res variables for more info.");
+
 }
 
 void AudioSource::ChangeState(const char* general_state, const char* sub_state)
