@@ -69,6 +69,8 @@ public:
 	void ResumeAudioByEvent(const char* name);
 	void StopAudioByEvent(const char* name);
 
+	void ChangeState(const char* general_state, const char* sub_state);
+
 private:
 
 	const char* name;

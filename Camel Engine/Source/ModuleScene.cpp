@@ -6,11 +6,15 @@
 #include "FileSystem.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "Time.h"
+#include "AudioSource.h"
 
 ModuleScene::ModuleScene(bool start_enabled) : Module(start_enabled), show_grid(true), selectedGameObject(nullptr), root(nullptr) 
 {
 	name = "scene";
-
+	background_audio = nullptr;
+	swapped = false;
+	current_time = 0.0f;
 	mCurrentGizmoOperation = ImGuizmo::OPERATION::TRANSLATE;
 	mCurrentGizmoMode = ImGuizmo::MODE::WORLD;
 }
@@ -49,8 +53,7 @@ bool ModuleScene::Start()
 	testSound->AddComponent(ComponentType::AUDIO_SOURCE);
 	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
-
-
+	background_audio = (AudioSource*)testSound->GetComponent(ComponentType::AUDIO_SOURCE);
 	return ret;
 }
 
@@ -71,6 +74,21 @@ update_status ModuleScene::Update(float dt)
 	HandleInput();
 
 	root->Update();
+
+	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - current_time) > background_audio->GetMusicSwapTime()))
+	{
+		if (swapped)
+		{
+			background_audio->ChangeState("Change_Track", "Warriors");
+			swapped = false;
+		}
+		if (!swapped)
+		{
+			background_audio->ChangeState("Change_Track", "Legends");
+			swapped = true;
+		}
+		current_time = Time::gameClock.timer.ReadSec();
+	}
 
 	return UPDATE_CONTINUE;
 }
