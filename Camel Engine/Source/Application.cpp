@@ -16,12 +16,14 @@ Application::Application(int argc, char* args[]) : argc(argc), args(args), want_
 	scene = new ModuleScene(true);
 	editor = new Editor(true);
 	resources = new ModuleResources(true);
+	audio = new ModuleAudio(true);
 
 	// Main Modules
 	AddModule(window);
 	AddModule(resources);
 	AddModule(camera);
 	AddModule(input);
+	AddModule(audio);
 	AddModule(scene);
 	AddModule(editor);
 
@@ -52,7 +54,7 @@ bool Application::Init()
 
 	char* buffer = nullptr;
 
-	uint size = FileSystem::Load("Library/Config/config.json", &buffer);
+	uint size = FileSystem::Load("Config/config.json", &buffer);
 	GnJSONObj config(buffer);
 
 	engine_name = config.GetString("engineName", "Genesis Engine");

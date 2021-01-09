@@ -49,6 +49,11 @@ JSON_Object* GnJSONObj::GetJSONObject()
 	return _object;
 }
 
+JSON_Object* GnJSONObj::GetJSONObjectByName(const char* name)
+{
+	return json_object_get_object(_object,name);
+}
+
 JSON_Value* GnJSONObj::GetValue()
 {
 	return _root;

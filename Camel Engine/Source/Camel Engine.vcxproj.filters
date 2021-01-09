@@ -230,6 +230,36 @@
     <ClCompile Include="TextureImporter.cpp">
       <Filter>FileManagement\Importers</Filter>
     </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioListener.cpp">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClCompile>
+    <ClCompile Include="WwiseLibrary.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\AK\Win32\AkDefaultIOHookBlocking.cpp">
+      <Filter>Libs\AK</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\AK\Win32\AkDefaultIOHookDeferred.cpp">
+      <Filter>Libs\AK</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\AK\Win32\AkFileLocationBase.cpp">
+      <Filter>Libs\AK</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\AK\Win32\AkFilePackage.cpp">
+      <Filter>Libs\AK</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\AK\Win32\AkFilePackageLUT.cpp">
+      <Filter>Libs\AK</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\AK\Win32\stdafx.cpp">
+      <Filter>Libs\AK</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -284,16 +314,16 @@
       <Filter>Libs\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\wglew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\eglew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\glew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glew\include\glxew.h">
-      <Filter>Libs\Glew</Filter>
+      <Filter>GameObjects &amp; Components\Glew</Filter>
     </ClInclude>
     <ClInclude Include="Libs\SDL\include\SDL.h">
       <Filter>Libs\SDL</Filter>
@@ -575,6 +605,225 @@
     <ClInclude Include="Importers.h">
       <Filter>FileManagement\Importers</Filter>
     </ClInclude>
+    <ClInclude Include="AudioSource.h">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioListener.h">
+      <Filter>GameObjects &amp; Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WwiseLibrary.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkDefaultIOHookBlocking.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkDefaultIOHookDeferred.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFileHelpers.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFileLocationBase.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFilePackage.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFilePackageLowLevelIO.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFilePackageLowLevelIOBlocking.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFilePackageLowLevelIODeferred.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\AkFilePackageLUT.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Win32\stdafx.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkBytesMem.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkCallback.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkCommonDefs.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkDynamicDialogue.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkDynamicSequence.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkFPUtilities.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkMemoryMgr.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkMidiTypes.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkModule.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkQueryParameters.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkSimd.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkSoundEngine.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkSoundEngineExport.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkSpeakerConfig.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkSpeakerVolumes.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkStreamMgrModule.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkTypes.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\AkVirtualAcoustics.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\IAkMixerPlugin.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\IAkPlugin.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\IAkPluginMemAlloc.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\IAkProcessorFeatures.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\IAkRTPCSubscriber.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Common\IAkStreamMgr.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\arm_neon\AkSimd.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\arm_neon\AkSimdShuffle.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\Generic\AkSimd.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\Generic\AkSpeakerVolumes.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\POSIX\AkTypes.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\SSE\AkSimd.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\Windows\AkSimd.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\Windows\AkTypes.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\SoundEngine\Platforms\Windows\AkWinSoundEngine.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\MusicEngine\Common\AkMusicEngine.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkAllocator.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkArray.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkAssert.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkAutoLock.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkBankReadHelpers.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkDynaBlkPool.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkFNVHash.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkHashList.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkKeyArray.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkKeyDef.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkListBare.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkListBareLight.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkLock.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkMonitorError.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkObject.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkPlatformFuncs.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkSet.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkSmartPtr.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkString.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkSyncCaller.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Common\AkVectors.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\POSIX\AkLock.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\POSIX\AkPlatformFuncs.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Win32\AkLock.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\AK\Tools\Win32\AkPlatformFuncs.h">
+      <Filter>Libs\AK</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -585,9 +834,6 @@
     </Filter>
     <Filter Include="Libs">
       <UniqueIdentifier>{e5b92709-b597-4c4b-bf07-c6d0682bb2af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libs\Glew">
-      <UniqueIdentifier>{2e4c5722-ce7d-4d13-b63c-42035faf7849}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libs\SDL">
       <UniqueIdentifier>{7bb8c861-6eba-490b-baff-8ddadc448f17}</UniqueIdentifier>
@@ -631,6 +877,12 @@
     <Filter Include="Libs\parson">
       <UniqueIdentifier>{03cd38a1-3ea2-4234-89ff-3f9057e2f643}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libs\AK">
+      <UniqueIdentifier>{b5beb58a-af81-4af1-881c-dc64156764b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects &amp; Components\Glew">
+      <UniqueIdentifier>{2e4c5722-ce7d-4d13-b63c-42035faf7849}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Libs\MathGeoLib\include\Math\Matrix.inl">
@@ -653,6 +905,9 @@
     </None>
     <None Include="..\Engine\Library\Config\config.json">
       <Filter>FileManagement</Filter>
+    </None>
+    <None Include="Libs\AK\Win32\AkFilePackageLowLevelIO.inl">
+      <Filter>Libs\AK</Filter>
     </None>
   </ItemGroup>
 </Project>

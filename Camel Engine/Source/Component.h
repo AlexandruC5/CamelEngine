@@ -13,7 +13,9 @@ enum ComponentType {
 	MESH,
 	MATERIAL, 
 	CAMERA, 
-	LIGHT
+	LIGHT,
+	AUDIO_SOURCE,
+	AUDIO_LISTENER,
 };
 
 class Component {
