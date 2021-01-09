@@ -19,6 +19,7 @@ public:
 	bool Start();
 	bool Init();
 	bool LoadConfig(GnJSONObj& config) override;
+	void CreateTestAudioObjects();
 	update_status Update(float dt);
 	void HandleInput();
 	bool CleanUp();

@@ -37,8 +37,8 @@ bool ModuleScene::Start()
 	GameObject* rayman = App->resources->RequestGameObject("Assets/Models/Rayman/rayman.fbx");
 	AddGameObject(rayman);
 
-	GameObject* street_environment = App->resources->RequestGameObject("Assets/Models/street/Street environment_V01.fbx");
-	AddGameObject(street_environment);
+	/*GameObject* street_environment = App->resources->RequestGameObject("Assets/Models/street/Street environment_V01.fbx");
+	AddGameObject(street_environment);*/
 	
 	GameObject* camera = new GameObject();
 	camera->SetName("Main Camera");
@@ -47,6 +47,10 @@ bool ModuleScene::Start()
 	camera->GetTransform()->SetPosition(float3(0.0f, 1.0f, -5.0f));
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
+
+	
+
+
 
 	GameObject* testSound = new GameObject();
 	testSound->SetName("Test Sound");
@@ -291,3 +295,21 @@ bool ModuleScene::LoadConfig(GnJSONObj& config)
 
 
 
+void ModuleScene::CreateTestAudioObjects()
+{
+
+	//Static Object
+	GameObject* cube = new GameObject();
+	cube = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
+	cube->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+
+
+	//Moving Object
+	GameObject* sphere = new GameObject();
+	sphere = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
+
+
+	
+	
+
+}

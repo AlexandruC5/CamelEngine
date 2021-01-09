@@ -68,6 +68,7 @@ public:
 	void PauseAudioByEvent(const char* name);
 	void ResumeAudioByEvent(const char* name);
 	void StopAudioByEvent(const char* name);
+	void SetSourcePos(float x, float y,float z, float x_front, float y_front, float z_front, float x_top, float y_top, float z_top);
 
 	void ChangeState(const char* general_state, const char* sub_state);
 
@@ -83,4 +84,8 @@ private:
 	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
 
 	GnJSONObj tmp_obj;
+
+public:
+	AkVector ak_position, ak_front_rotation, ak_top_rotation;
+
 };
