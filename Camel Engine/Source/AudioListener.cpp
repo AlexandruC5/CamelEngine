@@ -54,6 +54,8 @@ void AudioListener::Update()
 		SetListenerPos(position.x, position.y, position.z, front_rotation.x, front_rotation.y, front_rotation.z, top_rotation.x, top_rotation.y, top_rotation.z);
 		//LOG("GO Position: %.2f, %.2f, %.2f", position.x, position.y, position.z);
 		//LOG("AK Position: %.2f, %.2f, %.2f", listener_position.Position().X, listener_position.Position().Y, listener_position.Position().Z);
+
+
 	}
 }
 

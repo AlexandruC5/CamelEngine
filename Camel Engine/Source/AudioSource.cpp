@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "MathGeoLib/include/Algorithm/Random/LCG.h"
 
+
 AudioSource::AudioSource(GameObject* parent)
 {
 	type = ComponentType::AUDIO_SOURCE;
@@ -62,7 +63,6 @@ void AudioSource::Update()
 		// Apply values to listener //
 
 		SetSourcePos(position.x, position.y, position.z, front_rotation.x, front_rotation.y, front_rotation.z, top_rotation.x, top_rotation.y, top_rotation.z);
-
 	}
 
 

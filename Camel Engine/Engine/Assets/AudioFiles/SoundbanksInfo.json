@@ -30,6 +30,11 @@
     "Path": "Engine_Banks.bnk",
     "IncludedEvents": [
      {
+      "Id": "3864097025",
+      "Name": "Pause_All",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_All"
+     },
+     {
       "Id": "782097372",
       "Name": "Play_Legends",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Legends"
@@ -40,9 +45,14 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Warriors"
      },
      {
-      "Id": "788884573",
-      "Name": "Stop",
-      "ObjectPath": "\\Events\\Default Work Unit\\Stop"
+      "Id": "3679762312",
+      "Name": "Resume_All",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_All"
+     },
+     {
+      "Id": "452547817",
+      "Name": "Stop_All",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_All"
      }
     ],
     "IncludedMemoryFiles": [

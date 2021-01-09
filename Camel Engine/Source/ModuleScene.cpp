@@ -48,6 +48,10 @@ bool ModuleScene::Start()
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
 
+	
+
+
+
 	GameObject* testSound = new GameObject();
 	testSound->SetName("Test Sound");
 	testSound->AddComponent(ComponentType::AUDIO_SOURCE);
@@ -291,3 +295,21 @@ bool ModuleScene::LoadConfig(GnJSONObj& config)
 
 
 
+void ModuleScene::CreateTestAudioObjects()
+{
+
+	//Static Object
+	GameObject* cube = new GameObject();
+	cube = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
+	cube->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+
+
+	//Moving Object
+	GameObject* sphere = new GameObject();
+	sphere = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
+
+
+	
+	
+
+}
