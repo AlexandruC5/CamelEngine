@@ -14,7 +14,7 @@ AudioSource::AudioSource(GameObject* parent)
 	audio_to_play = new char[256];
 	name = parent->GetName();
 	audio_to_play = (char*)App->audio->banks[0]->audios[811455978].c_str();
-	music_swap_time = 50.0f;
+	music_swap_time = 5.0f;
 	priority = 128;
 	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
 	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
@@ -365,10 +365,12 @@ void AudioSource::PlayAudioByEvent(const char* name)
 
 void AudioSource::PauseAudioByEvent(const char* name)
 {
+	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Pause, id);
 }
 
 void AudioSource::ResumeAudioByEvent(const char* name)
 {
+	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Resume);
 }
 
 void AudioSource::StopAudioByEvent(const char* name)
