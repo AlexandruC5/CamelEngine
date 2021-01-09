@@ -15,9 +15,9 @@ AudioSource::AudioSource(GameObject* parent)
 	audio_to_play = new char[256];
 	name = parent->GetName();
 	audio_to_play = (char*)App->audio->banks[0]->audios[811455978].c_str();
-	music_swap_time = 5.0f;
+	music_swap_time = 15.0f;
 	priority = 128;
-	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
+	volume = 0.5, pitch = 0, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
 	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
 	_gameObject = parent;
 
@@ -114,14 +114,24 @@ void AudioSource::OnEditor()
 		}
 		
 		GetStereo();
-		if (ImGui::Checkbox("Stereo", &is_stereo))
-		{
-			ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f);
+		ImGui::Checkbox("Stereo", &is_stereo);
+		if (is_stereo) {
 
 			is_mono = false;
-			is_stereo = true;
+
+			if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
+
+				SetStereoPan(stereo_pan);
+			}
 			SetStereo(is_stereo);
 		}
+		/*if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
+
+			SetStereo(is_stereo);
+				
+		}
+		is_mono = false;
+		is_stereo = true;*/
 
 		ImGui::SameLine();
 
@@ -237,7 +247,7 @@ const int& AudioSource::GetPriority()
 
 void AudioSource::SetPriority(int& _priority)
 {
-	AK::SoundEngine::SetRTPCValue("Priority", _priority, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("Priority", _priority, id);
 	priority = _priority;
 }
 
@@ -270,6 +280,7 @@ const bool& AudioSource::GetStereo()
 
 void AudioSource::SetStereo(bool& stereo)
 {
+	is_stereo = stereo;
 	AkChannelConfig config;
 
 	if (stereo) {
@@ -281,8 +292,6 @@ void AudioSource::SetStereo(bool& stereo)
 
 	AK::SoundEngine::SetBusConfig(id, config);
 	config.Clear();
-
-	is_stereo = stereo;
 }
 
 const float& AudioSource::GetStereoPan()
@@ -353,7 +362,7 @@ void AudioSource::PlayAudioByEvent(const char* name)
 
 void AudioSource::PauseAudioByEvent(const char* name)
 {
-	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Pause, id);
+	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Pause);
 }
 
 void AudioSource::ResumeAudioByEvent(const char* name)
@@ -414,12 +423,7 @@ void AudioSource::SetSourcePos(float x, float y,float z, float x_front, float y_
 
 }
 
-void AudioSource::ChangeState(const char* general_state, const char* sub_state)
+void AudioSource::ChangeEvent(const char* event_name)
 {
-	//AKRESULT res = AK::SoundEngine::SetSwitch(general_state, sub_state, id);
-	AKRESULT res = AK::SoundEngine::SetState(general_state, sub_state);
-	if (res != AK_Success)
-	{
-		LOG_WARNING("Couldn't change between music states")
-	}
+	AK::SoundEngine::PostEvent(event_name, id);
 }

@@ -80,12 +80,12 @@ update_status ModuleScene::Update(float dt)
 	{
 		if (music_state==1)
 		{
-			background_audio->ChangeState("Change_Track", "Warriors");
+			background_audio->ChangeEvent("Play_Legends");
 			music_state = 2;
 		}
-		if (music_state == 2)
+		else
 		{
-			background_audio->ChangeState("Change_Track", "Legends");
+			background_audio->ChangeEvent("Play_Warriors");
 			music_state = 1;
 		}
 		current_time = Time::gameClock.timer.ReadSec();
