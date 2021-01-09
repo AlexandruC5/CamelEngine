@@ -13,7 +13,7 @@ AudioSource::AudioSource(GameObject* parent)
 	id = LCG().Int();
 	audio_to_play = new char[256];
 	name = parent->GetName();
-	audio_to_play = (char*)App->audio->banks[0]->audios[0].c_str();
+	audio_to_play = (char*)App->audio->banks[0]->audios[811455978].c_str();
 	music_swap_time = 50.0f;
 	priority = 128;
 	volume = 0.5, pitch = 1, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
@@ -30,7 +30,7 @@ AudioSource::AudioSource(GameObject* parent)
 	App->audio->AddSourceToList(this);
 
 	SetAudioToPlay(audio_to_play);
-	//PlayAudioByEvent("Play_Legends");
+	PlayAudioByEvent(App->audio->banks[0]->events[4084976851].c_str());
 }
 
 AudioSource::~AudioSource()

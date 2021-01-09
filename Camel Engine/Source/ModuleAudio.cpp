@@ -110,14 +110,14 @@ void ModuleAudio::LoadBankInfo()
 			tmp_events = tmp_obj.GetArray("IncludedEvents");
 			for (uint event_cursor = 0u; event_cursor < tmp_events.Size(); ++event_cursor)
 			{
-				tmp_bank->events[tmp_events.GetObjectAt(event_cursor).GetInt("Id")] = tmp_events.GetObjectAt(event_cursor).GetString("Name", "");
+				tmp_bank->events[std::stoull(tmp_events.GetObjectAt(event_cursor).GetString("Id", ""))] = tmp_events.GetObjectAt(event_cursor).GetString("Name", "");
 			}
 
 			// Load bank files data
 			tmp_audios = tmp_obj.GetArray("IncludedMemoryFiles");
 			for (uint audio_cursor = 0u; audio_cursor < tmp_audios.Size(); ++audio_cursor)
 			{
-				tmp_bank->audios[tmp_audios.GetObjectAt(audio_cursor).GetInt("Id")] = tmp_audios.GetObjectAt(audio_cursor).GetString("ShortName", "");
+				tmp_bank->audios[std::stoull(tmp_audios.GetObjectAt(audio_cursor).GetString("Id", ""))] = tmp_audios.GetObjectAt(audio_cursor).GetString("ShortName", "");
 			}
 
 			banks.push_back(tmp_bank);
