@@ -26,6 +26,7 @@ AudioListener::AudioListener(GameObject* game_object)
 
 AudioListener::~AudioListener()
 {
+	AK::SoundEngine::UnregisterGameObj(id);
 }
 
 void AudioListener::Update()

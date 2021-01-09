@@ -34,7 +34,7 @@ update_status ModuleAudio::Update(float dt)
 
 		isAudioPlayed = true;
 	}
-	if (Time::gameClock.paused) {
+	/*if (Time::gameClock.paused) {
 		
 		if (!isAudioPlayed) {
 			std::vector<AudioSource*>::const_iterator it;
@@ -47,7 +47,7 @@ update_status ModuleAudio::Update(float dt)
 			}
 		}
 		isAudioPlayed = false;
-	}
+	}*/
 	/*else if (!Time::gameClock.paused) {
 		ResumeAudio();
 	}*/

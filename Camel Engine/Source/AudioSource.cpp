@@ -35,7 +35,7 @@ AudioSource::AudioSource(GameObject* parent)
 
 AudioSource::~AudioSource()
 {
-	RELEASE_ARRAY(name);
+	AK::SoundEngine::UnregisterGameObj(id);
 }
 
 void AudioSource::Update()
@@ -155,6 +155,7 @@ void AudioSource::Save(GnJSONArray& save_array)
 	GnJSONObj save_object;
 
 	save_object.AddInt("Type", type);
+	save_object.AddString("Audio Source", audio_to_play);
 	save_object.AddBool("Muted", is_muted);
 	save_object.AddBool("Play On Awake", play_on_awake);
 	save_object.AddBool("Loop", to_loop);
@@ -166,6 +167,7 @@ void AudioSource::Save(GnJSONArray& save_array)
 
 void AudioSource::Load(GnJSONObj& load_object)
 {
+	audio_to_play = (char*)load_object.GetString("Audio Source", "");
 	is_muted = load_object.GetBool("Muted");
 	play_on_awake = load_object.GetBool("Play On Awake");
 	to_loop = load_object.GetBool("Loop");

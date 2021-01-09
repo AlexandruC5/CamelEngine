@@ -451,8 +451,10 @@ void Editor::ShowGameButtons()
 				App->StartGame();
 		}
 		else {
-			if (ImGui::Button("Stop", ImVec2(40, 20)))
+			if (ImGui::Button("Stop", ImVec2(40, 20))) {
 				App->StopGame();
+				App->audio->StopAudio();
+			}
 		}
 
 		ImGui::NextColumn();
