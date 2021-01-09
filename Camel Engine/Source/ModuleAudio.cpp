@@ -154,7 +154,7 @@ void ModuleAudio::PlayOnAwake() const
 	{
 		if ((*it)->GetPlayOnAwake() == true)
 		{
-			(*it)->PlayAudioByEvent("Play_Legends");
+			(*it)->PlayAudioByEvent(App->audio->banks[0]->events[4084976851].c_str());
 		}
 	}
 }

@@ -8,6 +8,7 @@
 
 class GameObject;
 class GnTexture;
+class AudioSource;
 
 class ModuleScene : public Module
 {
@@ -40,6 +41,11 @@ public:
 
 private:
 	GameObject* root;
+
 	ImGuizmo::OPERATION mCurrentGizmoOperation;
 	ImGuizmo::MODE mCurrentGizmoMode;
+
+	AudioSource* background_audio;
+	float current_time;
+	bool swapped;
 };

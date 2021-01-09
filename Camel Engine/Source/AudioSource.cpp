@@ -30,7 +30,6 @@ AudioSource::AudioSource(GameObject* parent)
 	App->audio->AddSourceToList(this);
 
 	SetAudioToPlay(audio_to_play);
-	PlayAudioByEvent(App->audio->banks[0]->events[4084976851].c_str());
 }
 
 AudioSource::~AudioSource()
@@ -375,4 +374,14 @@ void AudioSource::ResumeAudioByEvent(const char* name)
 void AudioSource::StopAudioByEvent(const char* name)
 {
 	AK::SoundEngine::ExecuteActionOnEvent(name, AK::SoundEngine::AkActionOnEventType_Stop);
+}
+
+void AudioSource::ChangeState(const char* general_state, const char* sub_state)
+{
+	//AKRESULT res = AK::SoundEngine::SetSwitch(general_state, sub_state, id);
+	AKRESULT res = AK::SoundEngine::SetState(general_state, sub_state);
+	if (res != AK_Success)
+	{
+		LOG_WARNING("Couldn't change between music states")
+	}
 }
