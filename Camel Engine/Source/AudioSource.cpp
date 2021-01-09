@@ -76,7 +76,9 @@ void AudioSource::Update()
 
 		source_pos.Set(ak_position, ak_front_rotation, ak_top_rotation);
 
-		AK::SoundEngine::SetPosition(id, source_pos);
+		AKRESULT res =AK::SoundEngine::SetPosition(id, source_pos);
+		if (res != AK_Success)
+			assert(!"Something went wrong. Check the res variable for more info");
 	}
 
 
