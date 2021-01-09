@@ -50,23 +50,8 @@ void AudioListener::Update()
 		top_rotation.Normalize();
 
 		// Apply values to listener //
-		AkVector ak_position, ak_front_rotation, ak_top_rotation;
 
-		ak_position.X = position.x;
-		ak_position.Y = position.y;
-		ak_position.Z = position.z;
-
-		ak_front_rotation.X = front_rotation.x;
-		ak_front_rotation.Y = front_rotation.y;
-		ak_front_rotation.Z = front_rotation.z;
-
-		ak_top_rotation.X = top_rotation.x;
-		ak_top_rotation.Y = top_rotation.y;
-		ak_top_rotation.Z = top_rotation.z;
-
-		listener_position.Set(ak_position, ak_front_rotation, ak_top_rotation);
-
-		AK::SoundEngine::SetPosition(id, listener_position);
+		SetListenerPos(position.x, position.y, position.z, front_rotation.x, front_rotation.y, front_rotation.z, top_rotation.x, top_rotation.y, top_rotation.z);
 		//LOG("GO Position: %.2f, %.2f, %.2f", position.x, position.y, position.z);
 		//LOG("AK Position: %.2f, %.2f, %.2f", listener_position.Position().X, listener_position.Position().Y, listener_position.Position().Z);
 	}
@@ -100,4 +85,24 @@ void AudioListener::SetDefaultListener()
 		return;
 	}
 	App->audio->SetListener(this);
+}
+
+void AudioListener::SetListenerPos(float pos_x, float pos_y, float pos_z, float front_rot_x, float front_rot_y, float front_rot_z, float top_rot_x, float top_rot_y, float top_rot_z)
+{
+
+	ak_position.X = pos_x;
+	ak_position.Y = pos_y;
+	ak_position.Z = pos_z;
+
+	ak_front_rotation.X = front_rot_x;
+	ak_front_rotation.Y = front_rot_y;
+	ak_front_rotation.Z = front_rot_z;
+
+	ak_top_rotation.X = top_rot_x;
+	ak_top_rotation.Y = top_rot_y;
+	ak_top_rotation.Z = top_rot_z;
+
+	listener_position.Set(ak_position, ak_front_rotation, ak_top_rotation);
+	AK::SoundEngine::SetPosition(id, listener_position);
+
 }
