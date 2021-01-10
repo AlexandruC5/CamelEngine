@@ -24,6 +24,7 @@ The high level system we had to implement its an audio engine called [Wwise](htt
   - Camera
   - Culling
   - Mouse Picking
+  - Guizmos
 
 * Third Assignment
 
