@@ -98,7 +98,7 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 * In case the clip has 2 audios attached to it you can add events to it.
   In the inspector you can choose what bank you can use and what event you want to use in the respective gameObject, the events makes a call to the respective audio and it saves   on the object that the event is called
   
-  Enable/Disable option for the source and listener wich cannot play a track if its disabled.
+    - Enable/Disable option for the source and listener wich cannot play a track if its disabled.
 
 ### Time to Swap
 
@@ -120,16 +120,15 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 
 ### Pitch
 
-Depending on the slider value the sound will reproduce with more deep tones or higher tones.
+* Depending on the slider value the sound will reproduce with more deep tones or higher tones.
  
  
 ### IsSpatial
-VALORS 0-1
-SpatialAudio option has 2 values(0 and 1) and if we choose 1 the spatial option is enabled and we can hear the sound depending where the default listener is.
-(Still developing) We can choose the minimal distance and the max distance of where we can hear the audio in the 3D spatial mode
+* SpatialAudio option has 2 values(0 and 1) and if we choose 1 the spatial option is enabled and we can hear the sound depending where the default listener is.
+*(Still developing)* We can choose the minimal distance and the max distance of where we can hear the audio in the 3D spatial mode
 
 
-If we choose to be 2d we can use stereo option, if we enable it, we can edit the pan of the left and right speakers as we want. We can also mute.
+* If we choose to be 2d we can use stereo option, if we enable it, we can edit the pan of the left and right speakers as we want. We can also mute.
 
  
  
