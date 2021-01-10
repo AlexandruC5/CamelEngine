@@ -69,6 +69,10 @@ void AudioListener::OnEditor()
 	{
 		if (ImGui::Checkbox(" Enabled", &enabled)) {}
 	}
+	if (ImGui::Button("Set as default listener"))
+	{
+		SetDefaultListener();
+	}
 }
 
 const char* AudioListener::GetName() const
@@ -118,6 +122,10 @@ void AudioListener::Save(GnJSONArray& save_array)
 	GnJSONObj save_object;
 	save_object.AddInt("Type", type);
 	save_object.AddString("Name", name);
+	if (App->audio->GetListenerID() == id)
+		save_object.AddBool("Default", true);
+	else
+		save_object.AddBool("Default", false);
 
 	save_array.AddObject(save_object);
 }
@@ -125,6 +133,8 @@ void AudioListener::Save(GnJSONArray& save_array)
 void AudioListener::Load(GnJSONObj& load_object)
 {
 	name = (char*)load_object.GetString("Name", "");
+	if (load_object.GetBool("Default"))
+		SetDefaultListener();
 }
 
 void AudioListener::DebugDraw()

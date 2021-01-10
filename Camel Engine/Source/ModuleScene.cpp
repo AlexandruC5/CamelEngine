@@ -13,7 +13,6 @@ ModuleScene::ModuleScene(bool start_enabled) : Module(start_enabled), show_grid(
 {
 	name = "scene";
 	background_audio = nullptr;
-	music_state = 1;
 	current_time = 0.0f;
 	mCurrentGizmoOperation = ImGuizmo::OPERATION::TRANSLATE;
 	mCurrentGizmoMode = ImGuizmo::MODE::WORLD;
@@ -55,6 +54,7 @@ bool ModuleScene::Start()
 	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
 	background_audio = (AudioSource*)testSound->GetComponent(ComponentType::AUDIO_SOURCE);
+	background_audio->SetAudioToPlay("Play_Warriors");
 
 	CreateTestAudioObjects();
 
@@ -81,16 +81,10 @@ update_status ModuleScene::Update(float dt)
 
 	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - current_time) > background_audio->GetMusicSwapTime()))
 	{
-		if (music_state==1)
-		{
+		if (background_audio->GetAudioToPlay() == "Play_Warriors")
 			background_audio->ChangeEvent("Play_Legends");
-			music_state = 2;
-		}
 		else
-		{
 			background_audio->ChangeEvent("Play_Warriors");
-			music_state = 1;
-		}
 		current_time = Time::gameClock.timer.ReadSec();
 	}
 

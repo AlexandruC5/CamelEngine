@@ -34,7 +34,6 @@ private:
 	const char* name;
 	uint id;
 
-
 public:
 	AkVector ak_position, ak_front_rotation, ak_top_rotation;
 };
