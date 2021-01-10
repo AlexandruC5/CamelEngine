@@ -16,20 +16,20 @@ The high level system we had to implement its an audio engine called [Wwise](htt
 
 * First Assignment
 
-- Configuration Window
-- Primitives
+  - Configuration Window
+  - Primitives
 
 * Second Assignment
 
-- Camera
-- Culling
-- Mouse Picking
+  - Camera
+  - Culling
+  - Mouse Picking
 
 * Third Assignment
 
-- Audio Source
-- Audio Source UI
-- Wwise parameters
+  - Audio Source
+  - Audio Source UI
+  - Wwise parameters
 
 ### [Alexandru Cercel](https://github.com/alexandruc5)
 ![](WebAssets/drum.png)
@@ -38,21 +38,21 @@ The high level system we had to implement its an audio engine called [Wwise](htt
 
 * First Assignment
 
-- UI Editor
-- Console
-- Hierarchy inspector
-- Window About
+  - UI Editor
+  - Console
+  - Hierarchy inspector
+  - Window About
 
 * Second Assignment
 
-- Play/Timer
-- Reparenting
+  - Play/Timer
+  - Reparenting
 
 * Third Assignment
 
-- Implement Wwise Library
-- SpatialAudio
-- Debug
+  - Implement Wwise Library
+  - SpatialAudio
+  - Debug
 
 
 
@@ -63,19 +63,19 @@ The high level system we had to implement its an audio engine called [Wwise](htt
 
 * First Assignment
 
-- File System
-- Load/Save meshes
+  - File System
+  - Load/Save meshes
 
 * Second Assignment
 
-- Custome File
+  - Custome File
 
 * Third Assignment
 
-- Load/Save events and banks
-- Component Listener
-- Module Audio
-- Play/Pause events
+  - Load/Save events and banks
+  - Component Listener
+  - Module Audio
+  - Play/Pause events
 
 
 ### Game Objects Inspector actions
