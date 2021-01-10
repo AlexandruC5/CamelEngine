@@ -47,7 +47,7 @@ bool ModuleScene::Start()
 	camera->GetTransform()->SetPosition(float3(0.0f, 1.0f, -5.0f));
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
-
+	CreateTestAudioObjects();
 	// Empty music game object
 	GameObject* testSound = new GameObject();
 	testSound->SetName("Test Sound");
@@ -76,6 +76,8 @@ update_status ModuleScene::Update(float dt)
 
 	root->Update();
 
+	MoveObject(spehre_ref);
+
 	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - current_time) > background_audio->GetMusicSwapTime()))
 	{
 		if (music_state==1)
@@ -90,6 +92,8 @@ update_status ModuleScene::Update(float dt)
 		}
 		current_time = Time::gameClock.timer.ReadSec();
 	}
+
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -295,18 +299,65 @@ bool ModuleScene::LoadConfig(GnJSONObj& config)
 void ModuleScene::CreateTestAudioObjects()
 {
 
-	//Static Object
-	GameObject* cube = new GameObject();
-	cube = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
-	cube->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-
+	////Static Object
+	//cube_ref = new GameObject();
+	//cube_ref = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
+	//cube_ref->SetName("Cube");
+	//cube_ref->AddComponent(ComponentType::TRANSFORM);
+	//cube_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	//AddGameObject(cube_ref);
 
 	//Moving Object
-	GameObject* sphere = new GameObject();
-	sphere = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
+	spehre_ref = new GameObject();
+	spehre_ref = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
+	spehre_ref->SetName("Sphere");
+	spehre_ref->AddComponent(ComponentType::TRANSFORM);
+	spehre_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	AddGameObject(spehre_ref);
+
+}
 
 
+void ModuleScene::MoveObject(GameObject* objectToMove)
+{
+
+	math::float3 cur_position = objectToMove->GetTransform()->GetPosition();
+	math::float3 pos_a = {3.0f,0.0f, 0.0f};
+	math::float3 pos_b = {-3.0f,0.0f, 0.0f};
+
+	bool going_a=false, going_b=false;
 	
-	
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
+
+	int velocity = 1;
+
+	if (going_a == true)
+	{
+		if (cur_position.x <= pos_a.x)
+		{
+			cur_position.x += velocity;
+		}
+		else {
+			going_a = false;
+			going_b = true;
+		}
+	}
+	else {
+		if (cur_position.x >= pos_b.x)
+		{
+			cur_position.x -= velocity;
+		}
+		else {
+			going_a = true;
+			going_b = false;
+		}
+	}
+
+
+	math::float3 move = math::float3(x, y, z);
+	move += cur_position;
+	objectToMove->GetChildAt(0)->GetTransform()->SetPosition(move);
 
 }

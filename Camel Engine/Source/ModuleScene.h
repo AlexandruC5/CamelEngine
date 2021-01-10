@@ -20,6 +20,7 @@ public:
 	bool Init();
 	bool LoadConfig(GnJSONObj& config) override;
 	void CreateTestAudioObjects();
+	void MoveObject(GameObject* objectToMove);
 	update_status Update(float dt);
 	void HandleInput();
 	bool CleanUp();
@@ -42,6 +43,8 @@ public:
 
 private:
 	GameObject* root;
+	GameObject* cube_ref;
+	GameObject* spehre_ref;
 
 	ImGuizmo::OPERATION mCurrentGizmoOperation;
 	ImGuizmo::MODE mCurrentGizmoMode;
