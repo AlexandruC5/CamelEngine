@@ -144,7 +144,7 @@ bool InitSoundEngine()
 		return false;
 	}
 
-	AKRESULT res = AK::StreamMgr::SetCurrentLanguage((AkOSChar*)"English");
+	AKRESULT res = AK::StreamMgr::SetCurrentLanguage((AkOSChar*)"English(US)");
 	if (res == AK_Fail)
 		assert(!"Invalid language!");
 

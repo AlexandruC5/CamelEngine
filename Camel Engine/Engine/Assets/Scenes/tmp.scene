@@ -1,7 +1,7 @@
 {
     "Game Objects": [
         {
-            "UUID": 1519173629,
+            "UUID": 1544726074,
             "Parent UUID": 0,
             "Name": "Root",
             "Components": [
@@ -27,8 +27,8 @@
             ]
         },
         {
-            "UUID": 1460521042,
-            "Parent UUID": 1519173629,
+            "UUID": 673951930,
+            "Parent UUID": 1544726074,
             "Name": "rayman",
             "Components": [
                 {
@@ -49,12 +49,17 @@
                         1,
                         1
                     ]
+                },
+                {
+                    "Type": 6,
+                    "Name": "rayman",
+                    "Default": true
                 }
             ]
         },
         {
-            "UUID": 1468945183,
-            "Parent UUID": 1460521042,
+            "UUID": 675205108,
+            "Parent UUID": 673951930,
             "Name": "DrawCall_0",
             "Components": [
                 {
@@ -88,8 +93,8 @@
             ]
         },
         {
-            "UUID": 1476185767,
-            "Parent UUID": 1460521042,
+            "UUID": 676179802,
+            "Parent UUID": 673951930,
             "Name": "DrawCall_8",
             "Components": [
                 {
@@ -123,69 +128,8 @@
             ]
         },
         {
-            "UUID": 1845946531,
-            "Parent UUID": 1519173629,
-            "Name": "Main Camera",
-            "Components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        1,
-                        -5
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "name": "",
-                    "Type": 3,
-                    "Main Camera": true,
-                    "position": [
-                        0,
-                        1,
-                        -5
-                    ],
-                    "up": [
-                        0,
-                        1,
-                        0
-                    ],
-                    "front": [
-                        0,
-                        0,
-                        1
-                    ],
-                    "horizontalFOV": 0.018277045339345932,
-                    "verticalFOV": 0.010961169376969337,
-                    "nearPlane": 0.30000001192092896,
-                    "farPlane": 1000,
-                    "aspectRatio": 1.7777777910232544,
-                    "reference": [
-                        -431602080,
-                        -431602080,
-                        -431602080
-                    ]
-                },
-                {
-                    "Type": 6,
-                    "Name": "Main Camera",
-                    "Default": true
-                }
-            ]
-        },
-        {
-            "UUID": 1968688354,
-            "Parent UUID": 1519173629,
+            "UUID": 1038392273,
+            "Parent UUID": 1544726074,
             "Name": "Test Sound",
             "Components": [
                 {
@@ -211,9 +155,9 @@
                     "Type": 5,
                     "Name": "Test Sound",
                     "Audio Source": "Play_Legends",
-                    "Music Swap Time": 15,
-                    "Volume": 0.5,
-                    "Pitch": 0,
+                    "Music Swap Time": 45,
+                    "Volume": 1,
+                    "Pitch": -0.44600000977516174,
                     "Stereo Pan": 0,
                     "Spatial Min Distance": 1,
                     "Spatial Max Distance": 500,
@@ -227,8 +171,8 @@
             ]
         },
         {
-            "UUID": 347778539,
-            "Parent UUID": 1519173629,
+            "UUID": 2121302022,
+            "Parent UUID": 1544726074,
             "Name": "Cube_Test",
             "Components": [
                 {
@@ -253,8 +197,8 @@
             ]
         },
         {
-            "UUID": 382101692,
-            "Parent UUID": 347778539,
+            "UUID": 2123042547,
+            "Parent UUID": 2121302022,
             "Name": "Cube",
             "Components": [
                 {
@@ -287,8 +231,8 @@
             ]
         },
         {
-            "UUID": 1850073260,
-            "Parent UUID": 1519173629,
+            "UUID": 1755333676,
+            "Parent UUID": 1544726074,
             "Name": "Shpere_Test",
             "Components": [
                 {
@@ -313,8 +257,8 @@
             ]
         },
         {
-            "UUID": 1869288656,
-            "Parent UUID": 1850073260,
+            "UUID": 1757840032,
+            "Parent UUID": 1755333676,
             "Name": "Sphere",
             "Components": [
                 {
