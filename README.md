@@ -123,28 +123,13 @@ Depending on the slider value the sound will reproduce with more deep tones or h
  
  
 ### IsSpatial
-
 VALORS 0-1
-SI ES 2D -> POTS FER SERVIR STEREO O MUTE
-SI ES 3D -> SPATIAL AUDIO
-INICIALMENT EL VALOR DE SPATIAL AUDIO SURT AMB UNS VALORS RAROS PERO UN COP ES SELECCIONE ES SETEJA BE
-
-Stereo/Mono Si fiquem que es stereo sens fa enable a la option de PAN
-Mono = segueix igual
-
-Min/Max Distances(still developing), we can select the minimal distance and the max distance of where we can listen our songs.
+SpatialAudio option has 2 values(0 and 1) and if we choose 1 the spatial option is enabled and we can hear the sound depending where the default listener is.
+(Still developing) We can choose the minimal distance and the max distance of where we can hear the audio in the 3D spatial mode
 
 
+If we choose to be 2d we can use stereo option, if we enable it, we can edit the pan of the left and right speakers as we want. We can also mute.
 
-Si marquem que la opcio es 3d(valor 1)
-
-El so es sentira respecte la posicio i la ortientacio de la main camera(listener) o del objecte que tingui el DefaultListener
-
-
-
-
-
- 
  
  
  ### Camera Controls:
