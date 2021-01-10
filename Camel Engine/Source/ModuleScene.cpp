@@ -13,7 +13,7 @@ ModuleScene::ModuleScene(bool start_enabled) : Module(start_enabled), show_grid(
 {
 	name = "scene";
 	background_audio = nullptr;
-	current_time = 0.0f;
+	sfx_time = current_time = 0.0f;
 	mCurrentGizmoOperation = ImGuizmo::OPERATION::TRANSLATE;
 	mCurrentGizmoMode = ImGuizmo::MODE::WORLD;
 }
@@ -79,7 +79,8 @@ update_status ModuleScene::Update(float dt)
 
 	root->Update();
 
-	MoveObject(spehre_ref);
+	/*MoveObject(spehre_ref);
+	MoveObject(spehre_ref);*/
 
 	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - current_time) > background_audio->GetMusicSwapTime()))
 	{
@@ -88,6 +89,13 @@ update_status ModuleScene::Update(float dt)
 		else
 			background_audio->ChangeEvent("Play_Warriors");
 		current_time = Time::gameClock.timer.ReadSec();
+	}
+
+	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - sfx_time) > Rammus->GetMusicSwapTime()))
+	{
+		Rammus->ChangeEvent("Play_Rammus");
+		Rammus2->ChangeEvent("Play_Rammus");
+		sfx_time = Time::gameClock.timer.ReadSec();
 	}
 
 	return UPDATE_CONTINUE;
@@ -288,19 +296,20 @@ bool ModuleScene::LoadConfig(GnJSONObj& config)
 	return true;
 }
 
-
-
-
 void ModuleScene::CreateTestAudioObjects()
 {
+	uint aux = 2u;
 
-	////Static Object
-	//cube_ref = new GameObject();
-	//cube_ref = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
-	//cube_ref->SetName("Cube");
-	//cube_ref->AddComponent(ComponentType::TRANSFORM);
-	//cube_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-	//AddGameObject(cube_ref);
+	//Static Object
+	cube_ref = new GameObject();
+	cube_ref = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
+	cube_ref->SetName("Cube");
+	cube_ref->AddComponent(ComponentType::TRANSFORM);
+	cube_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	AddGameObject(cube_ref);
+	Rammus2 = (AudioSource*)cube_ref->AddComponent(ComponentType::AUDIO_SOURCE);
+	Rammus2->SetAudioToPlay("Play_Rammus");
+	Rammus2->SetMusicSwapTime(aux);
 
 	//Moving Object
 	spehre_ref = new GameObject();
@@ -308,15 +317,14 @@ void ModuleScene::CreateTestAudioObjects()
 	spehre_ref->SetName("Sphere");
 	spehre_ref->AddComponent(ComponentType::TRANSFORM);
 	spehre_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-	AddGameObject(spehre_ref->GetChildAt(0));
-    
-
+	AddGameObject(spehre_ref);
+	Rammus = (AudioSource*)spehre_ref->AddComponent(ComponentType::AUDIO_SOURCE);
+	Rammus->SetAudioToPlay("Play_Rammus");
+	Rammus->SetMusicSwapTime(aux);
 }
-
 
 void ModuleScene::MoveObject(GameObject* objectToMove)
 {
-
 	math::float3 cur_position = objectToMove->GetChildAt(0)->GetTransform()->GetPosition();
 	math::float3 pos_a = {3.0f,0.0f, 0.0f};
 	math::float3 pos_b = {-3.0f,0.0f, 0.0f};

@@ -33,23 +33,7 @@ update_status ModuleAudio::Update(float dt)
 			isAudioPlayed = true;
 		}
 	}
-	/*if (Time::gameClock.paused) {
-		
-		if (!isAudioPlayed) {
-			std::vector<AudioSource*>::const_iterator it;
-			for (it = sources.begin(); it != sources.end(); ++it)
-			{
-				if ((*it)->GetPlayOnAwake() == true)
-				{
-					(*it)->PauseAudioByEvent(banks[0]->events[3864097025].c_str());
-				}
-			}
-		}
-		isAudioPlayed = false;
-	}*/
-	/*else if (!Time::gameClock.paused) {
-		ResumeAudio();
-	}*/
+	
 	return UPDATE_CONTINUE;
 }
 

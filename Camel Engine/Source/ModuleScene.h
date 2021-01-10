@@ -50,5 +50,7 @@ private:
 	ImGuizmo::MODE mCurrentGizmoMode;
 
 	AudioSource* background_audio;
-	float current_time;
+	AudioSource* Rammus;
+	AudioSource* Rammus2;
+	float current_time, sfx_time;
 };
