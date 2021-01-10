@@ -12,11 +12,70 @@ The high level system we had to implement its an audio engine called [Wwise](htt
 ### [Pol Camacho](https://github.com/polcamacho)
 ![](WebAssets/pok.png)
 
+### Contributions:
+
+* First Assignment
+
+- Configuration Window
+- Primitives
+
+* Second Assignment
+
+- Camera
+- Culling
+- Mouse Picking
+
+* Third Assignment
+
+- Audio Source
+- Audio Source UI
+- Wwise parameters
+
 ### [Alexandru Cercel](https://github.com/alexandruc5)
 ![](WebAssets/drum.png)
 
+### Contributions:
+
+* First Assignment
+
+- UI Editor
+- Console
+- Hierarchy inspector
+- Window About
+
+* Second Assignment
+
+- Play/Timer
+- Reparenting
+
+* Third Assignment
+
+- Implement Wwise Library
+- SpatialAudio
+- Debug
+
+
+
 ### [Marc Rosell](https://github.com/MarcRosellH)
 ![](WebAssets/marc.png)
+
+### Contributions: 
+
+* First Assignment
+
+- File System
+- Load/Save meshes
+
+* Second Assignment
+
+- Custome File
+
+* Third Assignment
+
+- Load/Save events and banks
+- Component Listener
+- Module Audio
+- Play/Pause events
 
 
 ### Game Objects Inspector actions
