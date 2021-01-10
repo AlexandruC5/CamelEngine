@@ -9,14 +9,14 @@ The high level system we had to implement its an audio engine called [Wwise](htt
 
 ## Team Members
 
-### [Marc Rosell](https://github.com/MarcRosellH)
-![](WebAssets/marc.png)
+### [Pol Camacho](https://github.com/polcamacho)
+![](WebAssets/pok.png)
 
 ### [Alexandru Cercel](https://github.com/alexandruc5)
 ![](WebAssets/drum.png)
 
-### [Pol Camacho](https://github.com/polcamacho)
-![](WebAssets/pok.png)
+### [Marc Rosell](https://github.com/MarcRosellH)
+![](WebAssets/marc.png)
 
 
 ### Game Objects Inspector actions
@@ -152,3 +152,25 @@ In the inspector you can choose what bank you can use and what event you want to
  - L: Move Down.
  - Hold Shift: Duplicate movement speed.
  
+ 
+  ### Licenses
+ 
+ Copyright (c) 2020 Pol Camacho, Alexandru Cercel, Marc Rosell, Marc Pages Francesch
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files Genesis Engine, to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and /or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions :
+ 
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED 'AS I', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
