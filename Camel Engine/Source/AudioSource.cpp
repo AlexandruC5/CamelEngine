@@ -17,7 +17,7 @@ AudioSource::AudioSource(GameObject* parent)
 	audio_to_play = (char*)App->audio->banks[0]->audios[811455978].c_str();
 	music_swap_time = 100.0f;
 	volume = 0.5, pitch = 0, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
-	is_muted = false, play_on_awake = true, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
+	is_muted = false, play_on_awake = true,  is_stereo = false, is_mono = true, is_spatial = false;
 	_gameObject = parent;
 
 	AKRESULT eResult = AK::SoundEngine::RegisterGameObj(id, name);
@@ -88,11 +88,7 @@ void AudioSource::OnEditor()
 			SetPlayOnAwake(play_on_awake);
 		}
 		
-		GetLoopActive();
-		if (ImGui::Checkbox("Loop", &to_loop))
-		{
-			//SetLoopActive(to_loop);
-		}
+	
 		
 		GetVolume();
 		if (ImGui::SliderFloat("Volume", &volume, 0.0f, 1.0f))
@@ -162,7 +158,6 @@ void AudioSource::Save(GnJSONArray& save_array)
 	save_object.AddString("Audio Source", audio_to_play);
 	save_object.AddBool("Muted", is_muted);
 	save_object.AddBool("Play On Awake", play_on_awake);
-	save_object.AddBool("Loop", to_loop);
 
 	//is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial
 
@@ -174,7 +169,6 @@ void AudioSource::Load(GnJSONObj& load_object)
 	audio_to_play = (char*)load_object.GetString("Audio Source", "");
 	is_muted = load_object.GetBool("Muted");
 	play_on_awake = load_object.GetBool("Play On Awake");
-	to_loop = load_object.GetBool("Loop");
 }
 
 const char* AudioSource::GetName()
@@ -224,15 +218,7 @@ void AudioSource::SetPlayOnAwake(bool& _play_on_awake)
 	play_on_awake = _play_on_awake;
 }
 
-const bool& AudioSource::GetLoopActive()
-{
-	return to_loop;
-}
 
-void AudioSource::SetLoopActive(bool& on_loop)
-{
-	to_loop = on_loop;
-}
 
 const float& AudioSource::GetVolume()
 {
