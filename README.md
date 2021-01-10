@@ -78,6 +78,7 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 
 ### Audio Listener
 * Audio Listener component to mark from whatever GameObject we want to listen our sounds in our case we have the main camera as our main listener.
+![](WebAssets/EnableListener.gif)
 
 ![](WebAssets/Listener.jpg)
 
