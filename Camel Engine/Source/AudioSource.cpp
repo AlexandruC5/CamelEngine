@@ -16,10 +16,9 @@ AudioSource::AudioSource(GameObject* parent)
 	audio_to_play = new char[256];
 	name = parent->GetName();
 	audio_to_play = "";
-	music_swap_time = 15.0f;
-	priority = 128;
+	music_swap_time = 100.0f;
 	volume = 0.5, pitch = 0, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
-	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
+	is_muted = false, play_on_awake = true, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
 	_gameObject = parent;
 
 	AKRESULT eResult = AK::SoundEngine::RegisterGameObj(id, name);
@@ -131,12 +130,6 @@ void AudioSource::OnEditor()
 			//SetLoopActive(to_loop);
 		}
 		
-		GetPriority();
-		if (ImGui::SliderInt("Priority", &priority, 0, 256))
-		{
-			SetPriority(priority);
-		}
-		
 		GetVolume();
 		if (ImGui::SliderFloat("Volume", &volume, 0.0f, 1.0f))
 		{
@@ -148,41 +141,42 @@ void AudioSource::OnEditor()
 		{
 			SetPitch(pitch);
 		}
-		
-		GetStereo();
-		ImGui::Checkbox("Stereo", &is_stereo);
-		if (is_stereo) {
 
-			is_mono = false;
+		GetIsSpatial();
+		if (ImGui::SliderInt("Spatial Audio", &position, 0, 1)) 
+		{
+			SetIsSpatial(position);
+		}
 
-			if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
+		if (position == 0) {
 
-				SetStereoPan(stereo_pan);
+			if (ImGui::Checkbox("Stereo", &is_stereo))
+			{
+				is_stereo = true;
+				is_mono = false;
+
+				SetStereo(is_stereo);
 			}
-			SetStereo(is_stereo);
+
+			if (is_stereo) {
+
+
+				if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
+
+					SetStereoPan(stereo_pan);
+				}
+			}
+
+			GetStereo();
+			if (ImGui::Checkbox("Mono", &is_mono))
+			{
+				is_mono = true;
+				is_stereo = false;
+				SetStereo(is_stereo);
+			}
 		}
-		/*if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
 
-			SetStereo(is_stereo);
-				
-		}
-		is_mono = false;
-		is_stereo = true;*/
-
-		ImGui::SameLine();
-
-		GetStereo();
-		if (ImGui::Checkbox("Mono", &is_mono))
-		{
-			is_mono = true;
-			is_stereo = false;
-			SetStereo(is_stereo);
-		}
-
-		if (ImGui::Checkbox("Spatial Audio", &is_spatial))
-		{
-
-		}
+		
 		
 		if (ImGui::SliderFloat("Min distance", &spatial_min_distance, 1.0f, 10000.0f))
 		{
@@ -204,7 +198,6 @@ void AudioSource::Save(GnJSONArray& save_array)
 	save_object.AddString("Name", name);
 	save_object.AddString("Audio Source", audio_to_play);
 	save_object.AddInt("Music Swap Time", music_swap_time);
-	save_object.AddInt("Priority", priority);
 	save_object.AddFloat("Volume", volume);
 	save_object.AddFloat("Pitch", pitch);
 	save_object.AddFloat("Stereo Pan", stereo_pan);
@@ -225,7 +218,6 @@ void AudioSource::Load(GnJSONObj& load_object)
 	name = (char*)load_object.GetString("Name", "");
 	audio_to_play = (char*)load_object.GetString("Audio Source", "");
 	music_swap_time = load_object.GetInt("Music Swap Time");
-	priority = load_object.GetInt("Priority");
 	volume = load_object.GetFloat("Volume");
 	pitch = load_object.GetFloat("Pitch");
 	stereo_pan = load_object.GetFloat("Stereo Pan");
@@ -296,17 +288,6 @@ void AudioSource::SetLoopActive(bool& on_loop)
 	to_loop = on_loop;
 }
 
-const int& AudioSource::GetPriority()
-{
-	return priority;
-}
-
-void AudioSource::SetPriority(int& _priority)
-{
-	AK::SoundEngine::SetRTPCValue("Priority", _priority, id);
-	priority = _priority;
-}
-
 const float& AudioSource::GetVolume()
 {
 	return volume;
@@ -325,8 +306,8 @@ const float& AudioSource::GetPitch()
 
 void AudioSource::SetPitch(float& _pitch)
 {
-	AK::SoundEngine::SetRTPCValue("Pitch", _pitch, id);
 	pitch = _pitch;
+	AK::SoundEngine::SetRTPCValue("Pitch", pitch, id);
 }
 
 const bool& AudioSource::GetStereo()
@@ -357,18 +338,19 @@ const float& AudioSource::GetStereoPan()
 
 void AudioSource::SetStereoPan(float& pan)
 {
-	AK::SoundEngine::SetRTPCValue("StereoPan", pan, id);
 	stereo_pan = pan;
+	AK::SoundEngine::SetRTPCValue("Pan", stereo_pan, id);
 }
 
 const bool& AudioSource::GetIsSpatial()
 {
-	return is_spatial;
+	return position;
 }
 
-void AudioSource::SetIsSpatial(bool& spatial)
+void AudioSource::SetIsSpatial(int& pos)
 {
-	is_spatial = spatial;
+	AK::SoundEngine::SetRTPCValue("Position", position, id);
+	position = pos;
 }
 
 const float& AudioSource::GetSpatialMaxDist()

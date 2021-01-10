@@ -25,6 +25,9 @@ public:
 
 	void Save(GnJSONArray& save_array) override;
 	void Load(GnJSONObj& load_object) override;
+	void DebugDraw();
+
+
 private:
 
 	AkListenerPosition listener_position;
@@ -34,7 +37,6 @@ private:
 
 public:
 	AkVector ak_position, ak_front_rotation, ak_top_rotation;
-
 };
 
 #endif // !__AUDIOLISTENER_H__
