@@ -1,29 +1,31 @@
-# Genesis Engine v0.2
-  Genesis Engine is a game engine made in C and C++ for learning purposes. I'm Marc Pagès Francesch, 
-  a Game Development Student in CITM (Terrassa, Catalonia, Spain).
+# Genesis Engine 
+Genesis Engine is a game engine made in C and C++ for learning purposes.
+This engine is made for Game Engine subject in the 3rd year of [Game Design and Development](https://www.citm.upc.edu/ing/estudis/graus-videojocs/) grade of [CITM](https://www.citm.upc.edu/ing/)   [UPC](https://www.upc.edu/en?set_language=en). It has been done in a four month period and tries to be a basic Unity like engine with one high level system.
+  
+The high level system we had to implement its an audio engine called [Wwise] https://www.audiokinetic.com/products/wwise/), so in this engine you are able to create audio listeners, audio sources and audio reverb zones to give audio to the games made with it.
 
-  Engine GitHub page: https://github.com/marcpages2020/GenesisEngine
-  My personal GitHub profile: https://github.com/marcpages2020
+## Team Members
+
+### [Marc Rosell](https://github.com/MarcRosellH)
+![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/marc.png)
+
+Main Contributions:
+
+### [Pol Camacho](https://github.com/polcamacho)
+![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/pok.png)
+
+Main Contributions:
+
+### [Alexandru Cercel](https://github.com/alexandruc5)
+![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png)
+
+Main Contributions:
 
 ## Controls: 
  
   To freely move the camera in the scene, the scene window must be selected or focused.
 
-### Camera Controls:
 
- - W / Up Arrow: Move Forward
- - A / Left Arrow: Move Left
- - S / Down Arrow: Move Backwards
- - D / Right Arrow: Move Right
-
- - Mouse Wheel: Zoom In/Out
- - Middle Mouse: Drag to move horizontally and vertically. 
- - Right Click: Orbit around the selected object. (If an object is not selected it will orbit around the center of the scene).
- - F: Focus the camera around the selected object.(If an object is not selected it will focus around the center of the scene).
- - O: Move Up.
- - L: Move Down.
- - Hold Shift: Duplicate movement speed.
- 
 ### Game Objects Inspector actions
  - Transform: Translate, Rotate and Scale the object. 
  - Mesh: Toggle the view of the vertex and face normals. 
@@ -72,3 +74,65 @@ There are plenty of importing options specially for textures. When the file is d
  - Interactive path in assets window which lets the user move easilly bacwards in the file or folder path. 
  - Meshes can be selected individually from inside a model pushing the arrow next to the file in the assets window. 
  - Inside the configuration window there is an option under the resources tab which lets you delete all meta files and library files at shutdown so projects can be cleaned before releases or sending to mates. 
+ 
+ 
+ ## Third Assignment
+ 
+ - Included Wwise SDK and libraries into our engine
+ 
+ ## Audio Sub-System
+Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to read and use the audio banks.
+
+### Audio Listener
+* Audio Listener component to mark from whatever GameObject we want to listen our sounds
+
+### Audio Source
+
+* With this component we can add it to a object to mark it as a Audio Emitter and it will reproduce audios if we add a AudioSource to it.
+
+### Audio Clip
+
+* In case the clip has 2 audios attached to it you can set the time it will have to wait until it changes the audio.
+
+### Time to Swap
+
+* With this function we can crossfade audios and swap them with a smooth transition.
+
+### Play Stop
+* It allows you to play and stop the clip so you have a preview of how it will sound when you enter to the game-mode.
+
+### Mute
+
+* It let's you mute the clip.
+
+### PlayOnAwake
+* It has the option to set the audio as PlayOnAwake, so it starts reproducing at the moment you enter to the game_mode.
+
+###Volume
+
+* It lets you select the volume that the clip will have when it’s reproduced.
+
+
+### Audio Reverb Zone
+
+* This GameObject component allows you to create a zone (cube or sphere depending on users preference) that will affect the reverberation of the AudioSources that are inside it.
+
+
+ 
+ 
+ 
+ ### Camera Controls:
+
+ - W / Up Arrow: Move Forward
+ - A / Left Arrow: Move Left
+ - S / Down Arrow: Move Backwards
+ - D / Right Arrow: Move Right
+
+ - Mouse Wheel: Zoom In/Out
+ - Middle Mouse: Drag to move horizontally and vertically. 
+ - Right Click: Orbit around the selected object. (If an object is not selected it will orbit around the center of the scene).
+ - F: Focus the camera around the selected object.(If an object is not selected it will focus around the center of the scene).
+ - O: Move Up.
+ - L: Move Down.
+ - Hold Shift: Duplicate movement speed.
+ 
