@@ -152,13 +152,11 @@ In the inspector you can choose what bank you can use and what event you want to
  - L: Move Down.
  - Hold Shift: Duplicate movement speed.
  
- 
- ### Video
+### Video
  
 <iframe width="560" height="315" src="https://youtu.be/5aWU25UBkmc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
  
- 
- ### Licenses
+### Licenses
  
  Copyright (c) 2020 Pol Camacho, Alexandru Cercel, Marc Rosell, Marc Pages Francesch
  
