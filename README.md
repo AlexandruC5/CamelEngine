@@ -80,17 +80,20 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 * Audio Listener component to mark from whatever GameObject we want to listen our sounds in our case we have the main camera as our main listener.
 ![](WebAssets/EnableListener.gif)
 
-![](WebAssets/Listener.jpg)
-
 ### Audio Source
 
 * With this component we can add it to a object to mark it as a Audio Emitter and it will reproduce audios if we add a AudioSource to it.
+![](WebAssets/AddSource.gif)
 
 ### Audio Clip
 * In case the clip has 2 audios attached to it you can add events to it.
 In the inspector you can choose what bank you can use and what event you want to use in the respective gameObject, the events makes a call to the respective audio and it    saves  on the object that the event is called
+
+
   
    - Enable/Disable option for the source and listener wich cannot play a track if its disabled.
+   
+   ![](WebAssets/ChooseBanks.gif)
 
 ### Time to Swap
 
@@ -110,17 +113,24 @@ In the inspector you can choose what bank you can use and what event you want to
 
 * It lets you select the volume that the clip will have when it’s reproduced.
 
+![](WebAssets/VolumeAndMute.gif)
+
 ### Pitch
 
 * Depending on the slider value the sound will reproduce with more deep tones or higher tones.
+
+![](WebAssets/Pich.gif)
  
  
 ### IsSpatial
 * SpatialAudio option has 2 values(0 and 1) and if we choose 1 the spatial option is enabled and we can hear the sound depending where the default listener is.
   - *(Still developing)* We can choose the minimal distance and the max distance of where we can hear the audio in the 3D spatial mode
+  ![](WebAssets/SpatialAudioEnab.gif)
 
 
 * If we choose to be 2d we can use stereo option, if we enable it, we can edit the pan of the left and right speakers as we want. We can also mute.
+
+![](WebAssets/StereoPan.gif)
 
  
 ## Controls: 
