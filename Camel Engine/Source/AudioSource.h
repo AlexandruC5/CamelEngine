@@ -84,8 +84,6 @@ private:
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
 	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
 
-	GnJSONObj tmp_obj;
-
 public:
 	AkVector ak_position, ak_front_rotation, ak_top_rotation;
 

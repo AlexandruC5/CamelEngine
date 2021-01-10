@@ -14,7 +14,7 @@ AudioSource::AudioSource(GameObject* parent)
 	id = LCG().Int();
 	audio_to_play = new char[256];
 	name = parent->GetName();
-	audio_to_play = (char*)App->audio->banks[0]->audios[811455978].c_str();
+	audio_to_play = (char*)App->audio->banks[0]->events[4084976851].c_str();
 	music_swap_time = 15.0f;
 	priority = 128;
 	volume = 0.5, pitch = 0, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
@@ -35,6 +35,8 @@ AudioSource::AudioSource(GameObject* parent)
 
 AudioSource::~AudioSource()
 {
+	if (audio_to_play != nullptr)
+		StopAudioByEvent(audio_to_play);
 	AK::SoundEngine::UnregisterGameObj(id);
 }
 
@@ -165,22 +167,42 @@ void AudioSource::Save(GnJSONArray& save_array)
 	GnJSONObj save_object;
 
 	save_object.AddInt("Type", type);
+	save_object.AddString("Name", name);
 	save_object.AddString("Audio Source", audio_to_play);
+	save_object.AddInt("Music Swap Time", music_swap_time);
+	save_object.AddInt("Priority", priority);
+	save_object.AddFloat("Volume", volume);
+	save_object.AddFloat("Pitch", pitch);
+	save_object.AddFloat("Stereo Pan", stereo_pan);
+	save_object.AddFloat("Spatial Min Distance", spatial_min_distance);
+	save_object.AddFloat("Spatial Max Distance", spatial_max_distance);
 	save_object.AddBool("Muted", is_muted);
 	save_object.AddBool("Play On Awake", play_on_awake);
 	save_object.AddBool("Loop", to_loop);
-
-	//is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial
+	save_object.AddBool("Stereo", is_stereo);
+	save_object.AddBool("Mono", is_mono);
+	save_object.AddBool("Spatial", is_spatial);
 
 	save_array.AddObject(save_object);
 }
 
 void AudioSource::Load(GnJSONObj& load_object)
 {
+	name = (char*)load_object.GetString("Name", "");
 	audio_to_play = (char*)load_object.GetString("Audio Source", "");
+	music_swap_time = load_object.GetInt("Music Swap Time");
+	priority = load_object.GetInt("Priority");
+	volume = load_object.GetFloat("Volume");
+	pitch = load_object.GetFloat("Pitch");
+	stereo_pan = load_object.GetFloat("Stereo Pan");
+	spatial_min_distance = load_object.GetFloat("Spatial Min Distance");
+	spatial_max_distance = load_object.GetFloat("Spatial Max Distance");
 	is_muted = load_object.GetBool("Muted");
 	play_on_awake = load_object.GetBool("Play On Awake");
 	to_loop = load_object.GetBool("Loop");
+	is_stereo = load_object.GetBool("Stereo");
+	is_mono = load_object.GetBool("Mono");
+	is_spatial = load_object.GetBool("Spatial");
 }
 
 const char* AudioSource::GetName()
@@ -358,6 +380,7 @@ void AudioSource::SetAudioToPlay(char* audio)
 void AudioSource::PlayAudioByEvent(const char* name)
 {
 	AK::SoundEngine::PostEvent(name, id);
+	this;
 }
 
 void AudioSource::PauseAudioByEvent(const char* name)

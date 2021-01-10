@@ -30,9 +30,8 @@ update_status ModuleAudio::Update(float dt)
 		if (!isAudioPlayed)
 		{
 			PlayOnAwake();
+			isAudioPlayed = true;
 		}
-
-		isAudioPlayed = true;
 	}
 	/*if (Time::gameClock.paused) {
 		
@@ -56,7 +55,6 @@ update_status ModuleAudio::Update(float dt)
 
 update_status ModuleAudio::PostUpdate(float dt)
 {
-	banks;
 	ProcessAudio();
 	return UPDATE_CONTINUE;
 }
@@ -171,7 +169,7 @@ void ModuleAudio::PlayOnAwake() const
 	{
 		if ((*it)->GetPlayOnAwake() == true)
 		{
-			(*it)->PlayAudioByEvent(banks[0]->events[4084976851].c_str());
+			(*it)->PlayAudioByEvent((*it)->GetAudioToPlay());
 		}
 	}
 }
@@ -202,6 +200,11 @@ void ModuleAudio::ResumeAudio() const
 void ModuleAudio::SetListener(AudioListener* new_listener)
 {
 	listener = new_listener;
+}
+
+void ModuleAudio::SetIsAudioPlayed(bool boolean)
+{
+	isAudioPlayed = boolean;
 }
 
 void ModuleAudio::AddListenerToList(AudioListener* listener)

@@ -109,3 +109,17 @@ void AudioListener::SetListenerPos(float pos_x, float pos_y, float pos_z, float 
 	AK::SoundEngine::SetPosition(id, listener_position);
 
 }
+
+void AudioListener::Save(GnJSONArray& save_array)
+{
+	GnJSONObj save_object;
+	save_object.AddInt("Type", type);
+	save_object.AddString("Name", name);
+
+	save_array.AddObject(save_object);
+}
+
+void AudioListener::Load(GnJSONObj& load_object)
+{
+	name = (char*)load_object.GetString("Name", "");
+}
