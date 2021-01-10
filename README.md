@@ -65,7 +65,7 @@ There are plenty of importing options specially for textures. When the file is d
 
 ## Additional functionality
 
-### First Assignment
+## First Assignment
  - The engine settings are loaded directly from a JSON file named config and located in GenesisEngine/Assets/Config. 
    this settings include the modules values and which windows are opened on start. 
  - When and FBX is loaded the hierarchy of the objects is mantained and the name of the objects in the FBX will be assigned
