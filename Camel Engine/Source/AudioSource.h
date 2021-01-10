@@ -34,9 +34,6 @@ public:
 	const bool& GetLoopActive();
 	void SetLoopActive(bool& on_loop);
 
-	const int& GetPriority();
-	void SetPriority(int& _priority);
-
 	const float& GetVolume();
 	void SetVolume(float& _volume);
 

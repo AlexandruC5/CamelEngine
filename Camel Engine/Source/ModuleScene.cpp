@@ -55,6 +55,9 @@ bool ModuleScene::Start()
 	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
 	background_audio = (AudioSource*)testSound->GetComponent(ComponentType::AUDIO_SOURCE);
+
+	CreateTestAudioObjects();
+
 	return ret;
 }
 
@@ -299,12 +302,14 @@ void ModuleScene::CreateTestAudioObjects()
 	GameObject* cube = new GameObject();
 	cube = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
 	cube->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-
+	cube->SetName("Cube_Test");
+	AddGameObject(cube);
 
 	//Moving Object
 	GameObject* sphere = new GameObject();
 	sphere = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
-
+	sphere->SetName("Shpere_Test");
+	AddGameObject(sphere);
 
 	
 	
