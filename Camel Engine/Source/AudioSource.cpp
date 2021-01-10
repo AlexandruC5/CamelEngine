@@ -15,9 +15,9 @@ AudioSource::AudioSource(GameObject* parent)
 	audio_to_play = new char[256];
 	name = parent->GetName();
 	audio_to_play = (char*)App->audio->banks[0]->audios[811455978].c_str();
-	music_swap_time = 40.0f;
+	music_swap_time = 100.0f;
 	volume = 0.5, pitch = 0, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
-	is_muted = false, play_on_awake = false, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
+	is_muted = false, play_on_awake = true, to_loop = false, is_stereo = false, is_mono = true, is_spatial = false;
 	_gameObject = parent;
 
 	AKRESULT eResult = AK::SoundEngine::RegisterGameObj(id, name);
@@ -100,44 +100,47 @@ void AudioSource::OnEditor()
 			SetVolume(volume);
 		}
 		
+		GetPitch();
 		if (ImGui::SliderFloat("Pitch", &pitch, -1.0f, 1.0f))
 		{
 			SetPitch(pitch);
 		}
-		
-		ImGui::Checkbox("Stereo", &is_stereo);
-		if (is_stereo) {
 
-			is_mono = false;
+		GetIsSpatial();
+		if (ImGui::SliderInt("Spatial Audio", &position, 0, 1)) 
+		{
+			SetIsSpatial(position);
+		}
 
-			if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
+		if (position == 0) {
 
-				SetStereoPan(stereo_pan);
+			if (ImGui::Checkbox("Stereo", &is_stereo))
+			{
+				is_stereo = true;
+				is_mono = false;
+
+				SetStereo(is_stereo);
 			}
-			SetStereo(is_stereo);
+
+			if (is_stereo) {
+
+
+				if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
+
+					SetStereoPan(stereo_pan);
+				}
+			}
+
+			GetStereo();
+			if (ImGui::Checkbox("Mono", &is_mono))
+			{
+				is_mono = true;
+				is_stereo = false;
+				SetStereo(is_stereo);
+			}
 		}
-		/*if (ImGui::SliderFloat("Stereo Pan", &stereo_pan, -1.0f, 1.0f)) {
 
-			SetStereo(is_stereo);
-				
-		}
-		is_mono = false;
-		is_stereo = true;*/
-
-		ImGui::SameLine();
-
-		GetStereo();
-		if (ImGui::Checkbox("Mono", &is_mono))
-		{
-			is_mono = true;
-			is_stereo = false;
-			SetStereo(is_stereo);
-		}
-
-		if (ImGui::Checkbox("Spatial Audio", &is_spatial))
-		{
-
-		}
+		
 		
 		if (ImGui::SliderFloat("Min distance", &spatial_min_distance, 1.0f, 10000.0f))
 		{
@@ -287,12 +290,13 @@ void AudioSource::SetStereoPan(float& pan)
 
 const bool& AudioSource::GetIsSpatial()
 {
-	return is_spatial;
+	return position;
 }
 
-void AudioSource::SetIsSpatial(bool& spatial)
+void AudioSource::SetIsSpatial(int& pos)
 {
-	is_spatial = spatial;
+	AK::SoundEngine::SetRTPCValue("Position", position, id);
+	position = pos;
 }
 
 const float& AudioSource::GetSpatialMaxDist()

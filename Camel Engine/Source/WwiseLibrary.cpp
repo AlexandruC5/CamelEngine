@@ -151,6 +151,8 @@ bool InitSoundEngine()
 	// RTPCs
 	AK::SoundEngine::SetRTPCValue("Pitch", 0, AK_INVALID_GAME_OBJECT);
 	AK::SoundEngine::SetRTPCValue("Pan", 0, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("Position", 0, AK_INVALID_GAME_OBJECT);
+
 	//AK::SoundEngine::SetRTPCValue("Pan_Right", 0, AK_INVALID_GAME_OBJECT);
 
 	return true;

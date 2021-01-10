@@ -1,7 +1,7 @@
 {
     "Game Objects": [
         {
-            "UUID": 80577343,
+            "UUID": 2041531986,
             "Parent UUID": 0,
             "Name": "Root",
             "Components": [
@@ -27,8 +27,8 @@
             ]
         },
         {
-            "UUID": 1993376878,
-            "Parent UUID": 80577343,
+            "UUID": 514741310,
+            "Parent UUID": 2041531986,
             "Name": "rayman",
             "Components": [
                 {
@@ -53,8 +53,8 @@
             ]
         },
         {
-            "UUID": 2002009882,
-            "Parent UUID": 1993376878,
+            "UUID": 522260378,
+            "Parent UUID": 514741310,
             "Name": "DrawCall_0",
             "Components": [
                 {
@@ -88,8 +88,8 @@
             ]
         },
         {
-            "UUID": 2010364402,
-            "Parent UUID": 1993376878,
+            "UUID": 529570583,
+            "Parent UUID": 514741310,
             "Name": "DrawCall_8",
             "Components": [
                 {
@@ -123,8 +123,8 @@
             ]
         },
         {
-            "UUID": 961792157,
-            "Parent UUID": 80577343,
+            "UUID": 1611272121,
+            "Parent UUID": 2041531986,
             "Name": "Main Camera",
             "Components": [
                 {
@@ -179,8 +179,8 @@
             ]
         },
         {
-            "UUID": 1060723598,
-            "Parent UUID": 80577343,
+            "UUID": 1685975454,
+            "Parent UUID": 2041531986,
             "Name": "Test Sound",
             "Components": [
                 {
@@ -212,8 +212,8 @@
             ]
         },
         {
-            "UUID": 113889631,
-            "Parent UUID": 80577343,
+            "UUID": 531238586,
+            "Parent UUID": 2041531986,
             "Name": "Cube_Test",
             "Components": [
                 {
@@ -238,8 +238,8 @@
             ]
         },
         {
-            "UUID": 119459311,
-            "Parent UUID": 113889631,
+            "UUID": 538896896,
+            "Parent UUID": 531238586,
             "Name": "Cube",
             "Components": [
                 {
@@ -272,8 +272,8 @@
             ]
         },
         {
-            "UUID": 1421952730,
-            "Parent UUID": 80577343,
+            "UUID": 868116807,
+            "Parent UUID": 2041531986,
             "Name": "Shpere_Test",
             "Components": [
                 {
@@ -298,8 +298,8 @@
             ]
         },
         {
-            "UUID": 1428427483,
-            "Parent UUID": 1421952730,
+            "UUID": 872851035,
+            "Parent UUID": 868116807,
             "Name": "Sphere",
             "Components": [
                 {
