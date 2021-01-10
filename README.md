@@ -153,7 +153,7 @@ In the inspector you can choose what bank you can use and what event you want to
  - Hold Shift: Duplicate movement speed.
  
  
-  ### Licenses
+ ### Licenses
  
  Copyright (c) 2020 Pol Camacho, Alexandru Cercel, Marc Rosell, Marc Pages Francesch
  
