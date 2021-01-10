@@ -44,6 +44,8 @@ public:
 
 	void AddListenerToList(AudioListener* listener);
 	void AddSourceToList(AudioSource* source);
+	void ApplyEnvReverb(AkReal32 desired_level, const char* target);
+
 
 private:
 	AudioListener* listener;

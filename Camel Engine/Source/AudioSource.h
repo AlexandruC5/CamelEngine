@@ -31,8 +31,6 @@ public:
 	const bool& GetPlayOnAwake();
 	void SetPlayOnAwake(bool& _play_on_awake);
 
-	const bool& GetLoopActive();
-	void SetLoopActive(bool& on_loop);
 
 	const float& GetVolume();
 	void SetVolume(float& _volume);
@@ -66,7 +64,6 @@ public:
 	void ResumeAudioByEvent(const char* name);
 	void StopAudioByEvent(const char* name);
 	void SetSourcePos(float x, float y,float z, float x_front, float y_front, float z_front, float x_top, float y_top, float z_top);
-
 	void ChangeEvent(const char* name);
 
 private:
@@ -78,7 +75,7 @@ private:
 
 	int position;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
-	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
+	bool is_muted, play_on_awake, is_stereo, is_mono, is_spatial;
 
 	GnJSONObj tmp_obj;
 

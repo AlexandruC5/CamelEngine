@@ -205,3 +205,15 @@ void ModuleAudio::AddSourceToList(AudioSource* source)
 {
 	sources.push_back(source);
 }
+
+
+
+void ModuleAudio::ApplyEnvReverb(AkReal32 desired_level, const char* target)
+{
+	AkAuxSendValue environment;
+	environment.listenerID = GetListenerID();
+	environment.fControlValue = desired_level;
+	environment.auxBusID = AK::SoundEngine::GetIDFromString(target);
+
+	AKRESULT res = AK::SoundEngine::SetGameObjectAuxSendValues(GetListenerID(), &environment, 2);
+}
