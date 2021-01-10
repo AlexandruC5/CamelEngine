@@ -451,20 +451,27 @@ void Editor::ShowGameButtons()
 				App->StartGame();
 		}
 		else {
-			if (ImGui::Button("Stop", ImVec2(40, 20)))
+			if (ImGui::Button("Stop", ImVec2(40, 20))) {
 				App->StopGame();
+				App->audio->StopAudio();
+				App->audio->SetIsAudioPlayed();
+			}
 		}
 
 		ImGui::NextColumn();
 		if (Time::gameClock.paused) 
 		{
-			if (ImGui::Button("Resume", ImVec2(45, 20)))
+			if (ImGui::Button("Resume", ImVec2(45, 20))){
 				Time::gameClock.Resume();
+				App->audio->ResumeAudio();
+			}
 		}
 		else 
 		{
-			if (ImGui::Button("Pause", ImVec2(45, 20))) 
+			if (ImGui::Button("Pause", ImVec2(45, 20))) {
 				Time::gameClock.Pause();
+				App->audio->PauseAudio();
+			}
 		}
 
 	}

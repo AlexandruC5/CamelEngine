@@ -149,10 +149,11 @@ bool InitSoundEngine()
 		assert(!"Invalid language!");
 
 	// RTPCs
-	AK::SoundEngine::SetRTPCValue("Priority", 0, AK_INVALID_GAME_OBJECT);
 	AK::SoundEngine::SetRTPCValue("Pitch", 0, AK_INVALID_GAME_OBJECT);
-	//AK::SoundEngine::SetRTPCValue("StereoPan", 0, AK_INVALID_GAME_OBJECT);
-	AK::SoundEngine::SetState("Change Track", "state2");
+	AK::SoundEngine::SetRTPCValue("Pan", 0, AK_INVALID_GAME_OBJECT);
+	AK::SoundEngine::SetRTPCValue("Position", 0, AK_INVALID_GAME_OBJECT);
+
+	//AK::SoundEngine::SetRTPCValue("Pan_Right", 0, AK_INVALID_GAME_OBJECT);
 
 	return true;
 }

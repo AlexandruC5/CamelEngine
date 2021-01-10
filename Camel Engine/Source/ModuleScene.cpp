@@ -13,7 +13,6 @@ ModuleScene::ModuleScene(bool start_enabled) : Module(start_enabled), show_grid(
 {
 	name = "scene";
 	background_audio = nullptr;
-	swapped = false;
 	current_time = 0.0f;
 	mCurrentGizmoOperation = ImGuizmo::OPERATION::TRANSLATE;
 	mCurrentGizmoMode = ImGuizmo::MODE::WORLD;
@@ -48,16 +47,17 @@ bool ModuleScene::Start()
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
 
-	
-
-
-
+	// Empty music game object
 	GameObject* testSound = new GameObject();
 	testSound->SetName("Test Sound");
 	testSound->AddComponent(ComponentType::AUDIO_SOURCE);
 	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
 	background_audio = (AudioSource*)testSound->GetComponent(ComponentType::AUDIO_SOURCE);
+	background_audio->SetAudioToPlay("Play_Warriors");
+
+	CreateTestAudioObjects();
+
 	return ret;
 }
 
@@ -81,16 +81,10 @@ update_status ModuleScene::Update(float dt)
 
 	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - current_time) > background_audio->GetMusicSwapTime()))
 	{
-		if (swapped)
-		{
-			background_audio->ChangeState("Change_Track", "Warriors");
-			swapped = false;
-		}
-		if (!swapped)
-		{
-			background_audio->ChangeState("Change_Track", "Legends");
-			swapped = true;
-		}
+		if (background_audio->GetAudioToPlay() == "Play_Warriors")
+			background_audio->ChangeEvent("Play_Legends");
+		else
+			background_audio->ChangeEvent("Play_Warriors");
 		current_time = Time::gameClock.timer.ReadSec();
 	}
 
@@ -302,12 +296,14 @@ void ModuleScene::CreateTestAudioObjects()
 	GameObject* cube = new GameObject();
 	cube = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
 	cube->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-
+	cube->SetName("Cube_Test");
+	AddGameObject(cube);
 
 	//Moving Object
 	GameObject* sphere = new GameObject();
 	sphere = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
-
+	sphere->SetName("Shpere_Test");
+	AddGameObject(sphere);
 
 	
 	

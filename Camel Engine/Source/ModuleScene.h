@@ -48,5 +48,4 @@ private:
 
 	AudioSource* background_audio;
 	float current_time;
-	bool swapped;
 };

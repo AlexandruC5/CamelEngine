@@ -30,16 +30,31 @@ update_status ModuleAudio::Update(float dt)
 		if (!isAudioPlayed)
 		{
 			PlayOnAwake();
+			isAudioPlayed = true;
 		}
-
-		isAudioPlayed = true;
 	}
+	/*if (Time::gameClock.paused) {
+		
+		if (!isAudioPlayed) {
+			std::vector<AudioSource*>::const_iterator it;
+			for (it = sources.begin(); it != sources.end(); ++it)
+			{
+				if ((*it)->GetPlayOnAwake() == true)
+				{
+					(*it)->PauseAudioByEvent(banks[0]->events[3864097025].c_str());
+				}
+			}
+		}
+		isAudioPlayed = false;
+	}*/
+	/*else if (!Time::gameClock.paused) {
+		ResumeAudio();
+	}*/
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleAudio::PostUpdate(float dt)
 {
-	banks;
 	ProcessAudio();
 	return UPDATE_CONTINUE;
 }
@@ -154,7 +169,7 @@ void ModuleAudio::PlayOnAwake() const
 	{
 		if ((*it)->GetPlayOnAwake() == true)
 		{
-			(*it)->PlayAudioByEvent(App->audio->banks[0]->events[4084976851].c_str());
+			(*it)->PlayAudioByEvent((*it)->GetAudioToPlay());
 		}
 	}
 }
@@ -166,17 +181,30 @@ void ModuleAudio::StopAudio() const
 
 void ModuleAudio::PauseAudio() const
 {
-	AK::SoundEngine::PostEvent("Pause_All", AK_INVALID_GAME_OBJECT);
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AK::SoundEngine::PostEvent("Pause_All", (*it)->GetID());
+	}
 }
 
 void ModuleAudio::ResumeAudio() const
 {
-	AK::SoundEngine::PostEvent("Resume_All", AK_INVALID_GAME_OBJECT);
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AK::SoundEngine::PostEvent("Resume_All", (*it)->GetID());
+	}
 }
 
 void ModuleAudio::SetListener(AudioListener* new_listener)
 {
 	listener = new_listener;
+}
+
+void ModuleAudio::SetIsAudioPlayed(bool boolean)
+{
+	isAudioPlayed = boolean;
 }
 
 void ModuleAudio::AddListenerToList(AudioListener* listener)

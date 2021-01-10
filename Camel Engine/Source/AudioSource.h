@@ -4,9 +4,11 @@
 #include "WwiseLibrary.h"
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "GnJSON.h"
+#include "ModuleAudio.h"
 #include <string>
 
 class GameObject;
+class AudioEvent;
 
 class AudioSource : public Component {
 public:
@@ -34,9 +36,6 @@ public:
 	const bool& GetLoopActive();
 	void SetLoopActive(bool& on_loop);
 
-	const int& GetPriority();
-	void SetPriority(int& _priority);
-
 	const float& GetVolume();
 	void SetVolume(float& _volume);
 
@@ -50,7 +49,7 @@ public:
 	void SetStereoPan(float& pan);
 
 	const bool& GetIsSpatial();
-	void SetIsSpatial(bool& spatial);
+	void SetIsSpatial(int& pos);
 
 	const float& GetSpatialMaxDist();
 	void SetSpatialMaxDist(float& max_dist);
@@ -70,7 +69,7 @@ public:
 	void StopAudioByEvent(const char* name);
 	void SetSourcePos(float x, float y,float z, float x_front, float y_front, float z_front, float x_top, float y_top, float z_top);
 
-	void ChangeState(const char* general_state, const char* sub_state);
+	void ChangeEvent(const char* name);
 
 private:
 
@@ -78,12 +77,11 @@ private:
 	char* audio_to_play;
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
+	Bank* reference;
 
-	int priority;
+	int position;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
 	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
-
-	GnJSONObj tmp_obj;
 
 public:
 	AkVector ak_position, ak_front_rotation, ak_top_rotation;
