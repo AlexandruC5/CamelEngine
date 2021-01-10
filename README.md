@@ -80,11 +80,11 @@ There are plenty of importing options specially for textures. When the file is d
  - Inside the configuration window there is an option under the resources tab which lets you delete all meta files and library files at shutdown so projects can be cleaned    before releases or sending to mates. 
  
  
- ## Third Assignment
+## Third Assignment
  
  - Included Wwise SDK and libraries into our engine
  
- ## Audio Sub-System
+## Audio Sub-System
 Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to read and use the audio banks.
 
 ### Audio Listener
