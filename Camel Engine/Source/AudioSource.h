@@ -4,6 +4,7 @@
 #include "WwiseLibrary.h"
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "GnJSON.h"
+#include "ModuleAudio.h"
 #include <string>
 
 class GameObject;
@@ -79,6 +80,7 @@ private:
 	char* audio_to_play;
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
+	Bank* reference;
 
 	int priority;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;

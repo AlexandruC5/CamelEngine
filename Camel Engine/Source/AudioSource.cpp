@@ -12,9 +12,10 @@ AudioSource::AudioSource(GameObject* parent)
 	type = ComponentType::AUDIO_SOURCE;
 	
 	id = LCG().Int();
+	reference = App->audio->banks[0];
 	audio_to_play = new char[256];
 	name = parent->GetName();
-	audio_to_play = (char*)App->audio->banks[0]->events[4084976851].c_str();
+	audio_to_play = "";
 	music_swap_time = 15.0f;
 	priority = 128;
 	volume = 0.5, pitch = 0, stereo_pan = 0, spatial_min_distance = 1, spatial_max_distance = 500;
@@ -76,8 +77,41 @@ void AudioSource::OnEditor()
 	{
 		ImGui::Checkbox(" Enabled", &enabled);
 
-		GetAudioToPlay();
-		ImGui::Text("Audio File: %s", audio_to_play);
+		if (ImGui::BeginCombo("Bank", reference->bank_name.c_str()))
+		{
+			std::vector<Bank*>::const_iterator it;
+			for (it = App->audio->banks.begin(); it != App->audio->banks.end(); ++it)
+			{
+				bool is_selected = (reference == (*it));
+				if (ImGui::Selectable((*it)->bank_name.c_str()))
+				{
+					reference = (*it);
+					App->audio->LoadAudioBank(reference->bank_name.c_str());
+				}
+				if (is_selected)
+					ImGui::SetItemDefaultFocus();
+			}
+			ImGui::EndCombo();
+		}
+
+		if(ImGui::BeginCombo("Audio Event", audio_to_play))
+		{
+			std::map<uint64, std::string>::const_iterator ev_it;
+			for (ev_it = reference->events.begin(); ev_it != reference->events.end(); ++ev_it)
+			{
+				if (!(*ev_it).second.find("Play"))
+				{
+					bool is_selected = (audio_to_play == (*ev_it).second.c_str());
+					if (ImGui::Selectable((*ev_it).second.c_str()))
+					{
+						audio_to_play = (char*)(*ev_it).second.c_str();
+					}
+					if (is_selected)
+						ImGui::SetItemDefaultFocus();
+				}
+			}
+			ImGui::EndCombo();
+		}
 
 		GetMuted();
 		if (ImGui::Checkbox("Muted", &is_muted))
@@ -379,8 +413,8 @@ void AudioSource::SetAudioToPlay(char* audio)
 
 void AudioSource::PlayAudioByEvent(const char* name)
 {
-	AK::SoundEngine::PostEvent(name, id);
-	this;
+	if (this->enabled)
+		AK::SoundEngine::PostEvent(name, id);
 }
 
 void AudioSource::PauseAudioByEvent(const char* name)
