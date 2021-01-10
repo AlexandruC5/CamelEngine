@@ -2,7 +2,7 @@
 ![](WebAssets/camel.jpg)
 
 
-Genesis Engine is a game engine made in C and C++ for learning purposes.
+Camel Engine is a game engine made in C and C++ for learning purposes.
 This engine is made for Game Engine subject in the 3rd year of [Game Design and Development](https://www.citm.upc.edu/ing/estudis/graus-videojocs/) grade of [CITM](https://www.citm.upc.edu/ing/)   [UPC](https://www.upc.edu/en?set_language=en). It has been done in a four month period and tries to be a basic Unity like engine with one high level system.
   
 The high level system we had to implement its an audio engine called [Wwise](https://www.audiokinetic.com/products/wwise/), so in this engine you are able to create audio listeners, audio sources and audio reverb zones to give audio to the games made with it.
