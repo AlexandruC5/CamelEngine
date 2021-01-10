@@ -214,6 +214,8 @@ In the inspector you can choose what bank you can use and what event you want to
 ### Video
  
 <iframe width="560" height="315" src="https://youtu.be/5aWU25UBkmc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Video](https://youtu.be/5aWU25UBkmc)
  
 ### Licenses
  
