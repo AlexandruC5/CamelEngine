@@ -7,6 +7,7 @@
 #include <string>
 
 class GameObject;
+class AudioEvent;
 
 class AudioSource : public Component {
 public:

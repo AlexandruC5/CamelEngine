@@ -183,12 +183,20 @@ void ModuleAudio::StopAudio() const
 
 void ModuleAudio::PauseAudio() const
 {
-	AK::SoundEngine::PostEvent("Pause_All", AK_INVALID_GAME_OBJECT);
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AK::SoundEngine::PostEvent("Pause_All", (*it)->GetID());
+	}
 }
 
 void ModuleAudio::ResumeAudio() const
 {
-	AK::SoundEngine::PostEvent("Resume_All", AK_INVALID_GAME_OBJECT);
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AK::SoundEngine::PostEvent("Resume_All", (*it)->GetID());
+	}
 }
 
 void ModuleAudio::SetListener(AudioListener* new_listener)
