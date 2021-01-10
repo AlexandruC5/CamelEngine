@@ -17,7 +17,7 @@ Main Contributions:
 Main Contributions:
 
 ### [Alexandru Cercel](https://github.com/alexandruc5)
-![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png =600x800)
+![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png)
 
 Main Contributions::
 
