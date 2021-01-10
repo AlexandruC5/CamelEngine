@@ -5,28 +5,18 @@
 Genesis Engine is a game engine made in C and C++ for learning purposes.
 This engine is made for Game Engine subject in the 3rd year of [Game Design and Development](https://www.citm.upc.edu/ing/estudis/graus-videojocs/) grade of [CITM](https://www.citm.upc.edu/ing/)   [UPC](https://www.upc.edu/en?set_language=en). It has been done in a four month period and tries to be a basic Unity like engine with one high level system.
   
-The high level system we had to implement its an audio engine called [Wwise] https://www.audiokinetic.com/products/wwise/), so in this engine you are able to create audio listeners, audio sources and audio reverb zones to give audio to the games made with it.
+The high level system we had to implement its an audio engine called [Wwise](https://www.audiokinetic.com/products/wwise/), so in this engine you are able to create audio listeners, audio sources and audio reverb zones to give audio to the games made with it.
 
 ## Team Members
 
 ### [Marc Rosell](https://github.com/MarcRosellH)
 ![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/marc.png)
 
-Main Contributions:
-
-### [Pol Camacho](https://github.com/polcamacho)
-![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/pok.png)
-
-Main Contributions:
-
 ### [Alexandru Cercel](https://github.com/alexandruc5)
 ![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png)
 
-Main Contributions:
-
-## Controls: 
- 
-  To freely move the camera in the scene, the scene window must be selected or focused.
+### [Pol Camacho](https://github.com/polcamacho)
+![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/pok.png)
 
 
 ### Game Objects Inspector actions
@@ -63,7 +53,6 @@ There are plenty of importing options specially for textures. When the file is d
 ### Things to take into account
  - At the end of the inspector window there is a ab called Resources. In this tab it is shown all the resources which are currently loaded into memory. If numbers seem to not match for textures take into account that assets window icon textures and preview textures are included in the list.
 
-## Additional functionality
 
 ## First Assignment
  - The engine settings are loaded directly from a JSON file named config and located in GenesisEngine/Assets/Config. 
@@ -89,6 +78,7 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 
 ### Audio Listener
 * Audio Listener component to mark from whatever GameObject we want to listen our sounds in our case we have the main camera as our main listener.
+![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/Listener.jpg)
 
 ### Audio Source
 
@@ -131,7 +121,10 @@ In the inspector you can choose what bank you can use and what event you want to
 * If we choose to be 2d we can use stereo option, if we enable it, we can edit the pan of the left and right speakers as we want. We can also mute.
 
  
+## Controls: 
  
+  To freely move the camera in the scene, the scene window must be selected or focused.
+  
 ### Camera Controls:
 
  - W / Up Arrow: Move Forward
