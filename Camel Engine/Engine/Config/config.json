@@ -1,6 +1,6 @@
 {
   "engineName": "Camel Engine",
-  "version": "0.2",
+  "version": "0.57",
   "modules_config": [
     {
       "name" :  "resources"

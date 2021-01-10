@@ -4,9 +4,11 @@
 #include "WwiseLibrary.h"
 #include "MathGeoLib/include/MathGeoLib.h"
 #include "GnJSON.h"
+#include "ModuleAudio.h"
 #include <string>
 
 class GameObject;
+class AudioEvent;
 
 class AudioSource : public Component {
 public:
@@ -72,12 +74,11 @@ private:
 	char* audio_to_play;
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
+	Bank* reference;
 
 	int position;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
 	bool is_muted, play_on_awake, is_stereo, is_mono, is_spatial;
-
-	GnJSONObj tmp_obj;
 
 public:
 	AkVector ak_position, ak_front_rotation, ak_top_rotation;

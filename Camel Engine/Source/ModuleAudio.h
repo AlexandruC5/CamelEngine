@@ -42,6 +42,8 @@ public:
 	void ResumeAudio()const;
 	void SetListener(AudioListener* new_listener);
 
+	void SetIsAudioPlayed(bool boolean = false);
+
 	void AddListenerToList(AudioListener* listener);
 	void AddSourceToList(AudioSource* source);
 	void ApplyEnvReverb(AkReal32 desired_level, const char* target);

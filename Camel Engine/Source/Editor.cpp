@@ -454,6 +454,7 @@ void Editor::ShowGameButtons()
 			if (ImGui::Button("Stop", ImVec2(40, 20))) {
 				App->StopGame();
 				App->audio->StopAudio();
+				App->audio->SetIsAudioPlayed();
 			}
 		}
 

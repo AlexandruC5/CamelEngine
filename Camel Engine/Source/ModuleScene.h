@@ -51,5 +51,4 @@ private:
 
 	AudioSource* background_audio;
 	float current_time;
-	int music_state;
 };
