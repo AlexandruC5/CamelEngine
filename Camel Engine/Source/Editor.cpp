@@ -413,16 +413,13 @@ bool Editor::CreateMainMenuBar() {
 		if (ImGui::BeginMenu("Help"))
 		{
 			if (ImGui::MenuItem("Documentation"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/wiki", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/AlexandruC5/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("Download latest"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/releases", NULL, NULL, SW_SHOWNORMAL);
-
-			if (ImGui::MenuItem("Report a bug"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/issues", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/AlexandruC5/GenesisEngine/releases", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("View on GitHub"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/AlexandruC5/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("About"))
 				windows[ABOUT_WINDOW]->visible = true;
@@ -451,20 +448,27 @@ void Editor::ShowGameButtons()
 				App->StartGame();
 		}
 		else {
-			if (ImGui::Button("Stop", ImVec2(40, 20)))
+			if (ImGui::Button("Stop", ImVec2(40, 20))) {
 				App->StopGame();
+				App->audio->StopAudio();
+				App->audio->SetIsAudioPlayed();
+			}
 		}
 
 		ImGui::NextColumn();
 		if (Time::gameClock.paused) 
 		{
-			if (ImGui::Button("Resume", ImVec2(45, 20)))
+			if (ImGui::Button("Resume", ImVec2(45, 20))){
 				Time::gameClock.Resume();
+				App->audio->ResumeAudio();
+			}
 		}
 		else 
 		{
-			if (ImGui::Button("Pause", ImVec2(45, 20))) 
+			if (ImGui::Button("Pause", ImVec2(45, 20))) {
 				Time::gameClock.Pause();
+				App->audio->PauseAudio();
+			}
 		}
 
 	}

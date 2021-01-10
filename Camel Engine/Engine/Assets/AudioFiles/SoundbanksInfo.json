@@ -30,9 +30,24 @@
     "Path": "Engine_Banks.bnk",
     "IncludedEvents": [
      {
+      "Id": "3092587493",
+      "Name": "Pause",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause"
+     },
+     {
+      "Id": "3864097025",
+      "Name": "Pause_All",
+      "ObjectPath": "\\Events\\Default Work Unit\\Pause_All"
+     },
+     {
       "Id": "782097372",
       "Name": "Play_Legends",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Legends"
+     },
+     {
+      "Id": "3368098295",
+      "Name": "Play_Rammus",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Rammus"
      },
      {
       "Id": "4084976851",
@@ -40,12 +55,28 @@
       "ObjectPath": "\\Events\\Default Work Unit\\Play_Warriors"
      },
      {
-      "Id": "788884573",
-      "Name": "Stop",
-      "ObjectPath": "\\Events\\Default Work Unit\\Stop"
+      "Id": "953277036",
+      "Name": "Resume",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume"
+     },
+     {
+      "Id": "3679762312",
+      "Name": "Resume_All",
+      "ObjectPath": "\\Events\\Default Work Unit\\Resume_All"
+     },
+     {
+      "Id": "452547817",
+      "Name": "Stop_All",
+      "ObjectPath": "\\Events\\Default Work Unit\\Stop_All"
      }
     ],
     "IncludedMemoryFiles": [
+     {
+      "Id": "685680153",
+      "Language": "SFX",
+      "ShortName": "rammus-ok.wav",
+      "Path": "SFX\\rammus-ok_1C9C67B2.wem"
+     },
      {
       "Id": "811455978",
       "Language": "SFX",

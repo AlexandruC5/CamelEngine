@@ -6,11 +6,14 @@
 #include "FileSystem.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "Time.h"
+#include "AudioSource.h"
 
 ModuleScene::ModuleScene(bool start_enabled) : Module(start_enabled), show_grid(true), selectedGameObject(nullptr), root(nullptr) 
 {
 	name = "scene";
-
+	background_audio = nullptr;
+	sfx_time = current_time = 0.0f;
 	mCurrentGizmoOperation = ImGuizmo::OPERATION::TRANSLATE;
 	mCurrentGizmoMode = ImGuizmo::MODE::WORLD;
 }
@@ -33,8 +36,8 @@ bool ModuleScene::Start()
 	GameObject* rayman = App->resources->RequestGameObject("Assets/Models/Rayman/rayman.fbx");
 	AddGameObject(rayman);
 
-	GameObject* street_environment = App->resources->RequestGameObject("Assets/Models/street/Street environment_V01.fbx");
-	AddGameObject(street_environment);
+	/*GameObject* street_environment = App->resources->RequestGameObject("Assets/Models/street/Street environment_V01.fbx");
+	AddGameObject(street_environment);*/
 	
 	GameObject* camera = new GameObject();
 	camera->SetName("Main Camera");
@@ -44,12 +47,16 @@ bool ModuleScene::Start()
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
 
+	// Empty music game object
 	GameObject* testSound = new GameObject();
 	testSound->SetName("Test Sound");
 	testSound->AddComponent(ComponentType::AUDIO_SOURCE);
 	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
+	background_audio = (AudioSource*)testSound->GetComponent(ComponentType::AUDIO_SOURCE);
+	background_audio->SetAudioToPlay("Play_Warriors");
 
+	CreateTestAudioObjects();
 
 	return ret;
 }
@@ -71,6 +78,25 @@ update_status ModuleScene::Update(float dt)
 	HandleInput();
 
 	root->Update();
+
+	/*MoveObject(spehre_ref);
+	MoveObject(spehre_ref);*/
+
+	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - current_time) > background_audio->GetMusicSwapTime()))
+	{
+		if (background_audio->GetAudioToPlay() == "Play_Warriors")
+			background_audio->ChangeEvent("Play_Legends");
+		else
+			background_audio->ChangeEvent("Play_Warriors");
+		current_time = Time::gameClock.timer.ReadSec();
+	}
+
+	if (Time::gameClock.started && ((Time::gameClock.timer.ReadSec() - sfx_time) > Rammus->GetMusicSwapTime()))
+	{
+		Rammus->ChangeEvent("Play_Rammus");
+		Rammus2->ChangeEvent("Play_Rammus");
+		sfx_time = Time::gameClock.timer.ReadSec();
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -270,6 +296,73 @@ bool ModuleScene::LoadConfig(GnJSONObj& config)
 	return true;
 }
 
+void ModuleScene::CreateTestAudioObjects()
+{
+	uint aux = 2u;
+
+	//Static Object
+	cube_ref = new GameObject();
+	cube_ref = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/cube.fbx");
+	cube_ref->SetName("Cube");
+	cube_ref->AddComponent(ComponentType::TRANSFORM);
+	cube_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	AddGameObject(cube_ref);
+	Rammus2 = (AudioSource*)cube_ref->AddComponent(ComponentType::AUDIO_SOURCE);
+	Rammus2->SetAudioToPlay("Play_Rammus");
+	Rammus2->SetMusicSwapTime(aux);
+
+	//Moving Object
+	spehre_ref = new GameObject();
+	spehre_ref = App->resources->RequestGameObject("Assets/EngineAssets/Primitives/sphere.fbx");
+	spehre_ref->SetName("Sphere");
+	spehre_ref->AddComponent(ComponentType::TRANSFORM);
+	spehre_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	AddGameObject(spehre_ref);
+	Rammus = (AudioSource*)spehre_ref->AddComponent(ComponentType::AUDIO_SOURCE);
+	Rammus->SetAudioToPlay("Play_Rammus");
+	Rammus->SetMusicSwapTime(aux);
+}
+
+void ModuleScene::MoveObject(GameObject* objectToMove)
+{
+	math::float3 cur_position = objectToMove->GetChildAt(0)->GetTransform()->GetPosition();
+	math::float3 pos_a = {3.0f,0.0f, 0.0f};
+	math::float3 pos_b = {-3.0f,0.0f, 0.0f};
+
+	bool going_a=true, going_b=false;
+	
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
+
+	float velocity = 0.25f;
+
+	if (going_a == true)
+	{
+		if (cur_position.x <= pos_a.x)
+		{
+			cur_position.x += velocity;
+		}
+		else {
+			going_a = false;
+			going_b = true;
+		}
+	}
+	else {
+		if (cur_position.x >= pos_b.x)
+		{
+			cur_position.x -= velocity;
+		}
+		else {
+			going_a = true;
+			going_b = false;
+		}
+	}
 
 
+	math::float3 move = math::float3(x, y, z);
+	move += cur_position;
+	LOG("%.2f, %.2f, %.2f", move.x, move.y, move.z);
+	objectToMove->GetChildAt(0)->GetTransform()->SetPosition(move.x, move.y, move.z);
 
+}

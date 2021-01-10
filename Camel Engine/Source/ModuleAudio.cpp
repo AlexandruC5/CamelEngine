@@ -30,16 +30,15 @@ update_status ModuleAudio::Update(float dt)
 		if (!isAudioPlayed)
 		{
 			PlayOnAwake();
+			isAudioPlayed = true;
 		}
-
-		isAudioPlayed = true;
 	}
+	
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleAudio::PostUpdate(float dt)
 {
-	banks;
 	ProcessAudio();
 	return UPDATE_CONTINUE;
 }
@@ -154,7 +153,7 @@ void ModuleAudio::PlayOnAwake() const
 	{
 		if ((*it)->GetPlayOnAwake() == true)
 		{
-			(*it)->PlayAudioByEvent("Play_Legends");
+			(*it)->PlayAudioByEvent((*it)->GetAudioToPlay());
 		}
 	}
 }
@@ -166,17 +165,30 @@ void ModuleAudio::StopAudio() const
 
 void ModuleAudio::PauseAudio() const
 {
-	AK::SoundEngine::PostEvent("Pause_All", AK_INVALID_GAME_OBJECT);
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AK::SoundEngine::PostEvent("Pause_All", (*it)->GetID());
+	}
 }
 
 void ModuleAudio::ResumeAudio() const
 {
-	AK::SoundEngine::PostEvent("Resume_All", AK_INVALID_GAME_OBJECT);
+	std::vector<AudioSource*>::const_iterator it;
+	for (it = sources.begin(); it != sources.end(); ++it)
+	{
+		AK::SoundEngine::PostEvent("Resume_All", (*it)->GetID());
+	}
 }
 
 void ModuleAudio::SetListener(AudioListener* new_listener)
 {
 	listener = new_listener;
+}
+
+void ModuleAudio::SetIsAudioPlayed(bool boolean)
+{
+	isAudioPlayed = boolean;
 }
 
 void ModuleAudio::AddListenerToList(AudioListener* listener)
@@ -187,4 +199,16 @@ void ModuleAudio::AddListenerToList(AudioListener* listener)
 void ModuleAudio::AddSourceToList(AudioSource* source)
 {
 	sources.push_back(source);
+}
+
+
+
+void ModuleAudio::ApplyEnvReverb(AkReal32 desired_level, const char* target)
+{
+	AkAuxSendValue environment;
+	environment.listenerID = GetListenerID();
+	environment.fControlValue = desired_level;
+	environment.auxBusID = AK::SoundEngine::GetIDFromString(target);
+
+	AKRESULT res = AK::SoundEngine::SetGameObjectAuxSendValues(GetListenerID(), &environment, 2);
 }
