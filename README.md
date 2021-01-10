@@ -19,27 +19,13 @@ Main Contributions:
 ### [Alexandru Cercel](https://github.com/alexandruc5)
 ![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png)
 
-Main Contributions::
+Main Contributions:
 
 ## Controls: 
  
   To freely move the camera in the scene, the scene window must be selected or focused.
 
-### Camera Controls:
 
- - W / Up Arrow: Move Forward
- - A / Left Arrow: Move Left
- - S / Down Arrow: Move Backwards
- - D / Right Arrow: Move Right
-
- - Mouse Wheel: Zoom In/Out
- - Middle Mouse: Drag to move horizontally and vertically. 
- - Right Click: Orbit around the selected object. (If an object is not selected it will orbit around the center of the scene).
- - F: Focus the camera around the selected object.(If an object is not selected it will focus around the center of the scene).
- - O: Move Up.
- - L: Move Down.
- - Hold Shift: Duplicate movement speed.
- 
 ### Game Objects Inspector actions
  - Transform: Translate, Rotate and Scale the object. 
  - Mesh: Toggle the view of the vertex and face normals. 
@@ -88,3 +74,77 @@ There are plenty of importing options specially for textures. When the file is d
  - Interactive path in assets window which lets the user move easilly bacwards in the file or folder path. 
  - Meshes can be selected individually from inside a model pushing the arrow next to the file in the assets window. 
  - Inside the configuration window there is an option under the resources tab which lets you delete all meta files and library files at shutdown so projects can be cleaned before releases or sending to mates. 
+ 
+ 
+ ## Third Assignment
+ 
+ - Included Wwise SDK and libraries into our engine
+ 
+ ## Audio Sub-System
+Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to read and use the audio banks.
+
+### Audio Listener
+* Audio Listener component to mark from whatever GameObject we want to listen our sounds
+
+### Audio Source
+
+* With this component we can add it to a object to mark it as a Audio Emitter and it will reproduce audios if we add a AudioSource to it.
+
+### Audio Clip
+
+* In case the clip has 2 audios attached to it you can set the time it will have to wait until it changes the audio.
+
+### Time to Swap
+
+* With this function we can crossfade audios and swap them with a smooth transition.
+
+### Play Stop
+* It allows you to play and stop the clip so you have a preview of how it will sound when you enter to the game-mode.
+
+### Mute
+
+* It let's you mute the clip.
+
+### PlayOnAwake
+* It has the option to set the audio as PlayOnAwake, so it starts reproducing at the moment you enter to the game_mode.
+
+###Volume
+
+* It lets you select the volume that the clip will have when it’s reproduced.
+
+
+
+* It has the option to modify the pitch of the clip.
+
+!["Pitch"](Images/Pitch.png) 
+
+* If the clip is a 2D track it lets you choose the PAN of the audio.
+
+!["PAN"](Images/PAN.png) 
+
+* The audios can have a 3D positioning, so how they sound depends on where they are placed respect to the listener.
+
+### Audio Reverb Zone
+!["AudioReverbZoneComp"](Images/ReverbZoneComp.png) 
+
+* This GameObject component allows you to create a zone (cube or sphere depending on users preference) that will affect the reverberation of the AudioSources that are inside it.
+
+!["AudioReverbZone"](Images/ReverbZonegif.gif) 
+ 
+ 
+ 
+ ### Camera Controls:
+
+ - W / Up Arrow: Move Forward
+ - A / Left Arrow: Move Left
+ - S / Down Arrow: Move Backwards
+ - D / Right Arrow: Move Right
+
+ - Mouse Wheel: Zoom In/Out
+ - Middle Mouse: Drag to move horizontally and vertically. 
+ - Right Click: Orbit around the selected object. (If an object is not selected it will orbit around the center of the scene).
+ - F: Focus the camera around the selected object.(If an object is not selected it will focus around the center of the scene).
+ - O: Move Up.
+ - L: Move Down.
+ - Hold Shift: Duplicate movement speed.
+ 
