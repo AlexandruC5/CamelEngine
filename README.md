@@ -87,15 +87,17 @@ There are plenty of importing options specially for textures. When the file is d
 Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to read and use the audio banks.
 
 ### Audio Listener
-* Audio Listener component to mark from whatever GameObject we want to listen our sounds
+* Audio Listener component to mark from whatever GameObject we want to listen our sounds in our case we have the main camera as our main listener.
 
 ### Audio Source
 
 * With this component we can add it to a object to mark it as a Audio Emitter and it will reproduce audios if we add a AudioSource to it.
 
 ### Audio Clip
-
-* In case the clip has 2 audios attached to it you can set the time it will have to wait until it changes the audio.
+* In case the clip has 2 audios attached to it you can add events to it.
+  In the inspector you can choose what bank you can use and what event you want to use in the respective gameObject, the events makes a call to the respective audio and it saves   on the object that the event is called
+  
+  Enable/Disable option for the source and listener wich cannot play a track if its disabled.
 
 ### Time to Swap
 
@@ -111,14 +113,35 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 ### PlayOnAwake
 * It has the option to set the audio as PlayOnAwake, so it starts reproducing at the moment you enter to the game_mode.
 
-###Volume
+### Volume
 
 * It lets you select the volume that the clip will have when it’s reproduced.
 
+### Pitch
 
-### Audio Reverb Zone
+Depending on the slider value the sound will reproduce with more deep tones or higher tones.
+ 
+ 
+### IsSpatial
 
-* This GameObject component allows you to create a zone (cube or sphere depending on users preference) that will affect the reverberation of the AudioSources that are inside it.
+VALORS 0-1
+SI ES 2D -> POTS FER SERVIR STEREO O MUTE
+SI ES 3D -> SPATIAL AUDIO
+INICIALMENT EL VALOR DE SPATIAL AUDIO SURT AMB UNS VALORS RAROS PERO UN COP ES SELECCIONE ES SETEJA BE
+
+Stereo/Mono Si fiquem que es stereo sens fa enable a la option de PAN
+Mono = segueix igual
+
+Min/Max Distances(still developing), we can select the minimal distance and the max distance of where we can listen our songs.
+
+
+
+Si marquem que la opcio es 3d(valor 1)
+
+El so es sentira respecte la posicio i la ortientacio de la main camera(listener) o del objecte que tingui el DefaultListener
+
+
+
 
 
  
