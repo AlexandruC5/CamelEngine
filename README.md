@@ -1,5 +1,5 @@
 # Camel Engine 
-![Logo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/camel.jpg)
+![](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/camel.jpg)
 
 
 Genesis Engine is a game engine made in C and C++ for learning purposes.
@@ -10,13 +10,13 @@ The high level system we had to implement its an audio engine called [Wwise](htt
 ## Team Members
 
 ### [Marc Rosell](https://github.com/MarcRosellH)
-![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/marc.png)
+![](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/marc.png)
 
 ### [Alexandru Cercel](https://github.com/alexandruc5)
-![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png)
+![](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/drum.png)
 
 ### [Pol Camacho](https://github.com/polcamacho)
-![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/pok.png)
+![](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/pok.png)
 
 
 ### Game Objects Inspector actions
@@ -79,7 +79,7 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 ### Audio Listener
 * Audio Listener component to mark from whatever GameObject we want to listen our sounds in our case we have the main camera as our main listener.
 
-![Photo](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/Listener.jpg)
+![](https://github.com/AlexandruC5/GenesisEngine/blob/Web/WebAssets/Listener.jpg)
 
 ### Audio Source
 
