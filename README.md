@@ -77,7 +77,7 @@ There are plenty of importing options specially for textures. When the file is d
  - Textures can be previewed in the assets window. 
  - Interactive path in assets window which lets the user move easilly bacwards in the file or folder path. 
  - Meshes can be selected individually from inside a model pushing the arrow next to the file in the assets window. 
- - Inside the configuration window there is an option under the resources tab which lets you delete all meta files and library files at shutdown so projects can be cleaned before releases or sending to mates. 
+ - Inside the configuration window there is an option under the resources tab which lets you delete all meta files and library files at shutdown so projects can be cleaned    before releases or sending to mates. 
  
  
  ## Third Assignment
@@ -96,9 +96,9 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
 
 ### Audio Clip
 * In case the clip has 2 audios attached to it you can add events to it.
-  In the inspector you can choose what bank you can use and what event you want to use in the respective gameObject, the events makes a call to the respective audio and it saves   on the object that the event is called
+In the inspector you can choose what bank you can use and what event you want to use in the respective gameObject, the events makes a call to the respective audio and it    saves  on the object that the event is called
   
-    - Enable/Disable option for the source and listener wich cannot play a track if its disabled.
+   - Enable/Disable option for the source and listener wich cannot play a track if its disabled.
 
 ### Time to Swap
 
@@ -125,14 +125,14 @@ Audio sub-system uses [Wwise](https://www.audiokinetic.com/products/wwise/) to r
  
 ### IsSpatial
 * SpatialAudio option has 2 values(0 and 1) and if we choose 1 the spatial option is enabled and we can hear the sound depending where the default listener is.
-*(Still developing)* We can choose the minimal distance and the max distance of where we can hear the audio in the 3D spatial mode
+  - *(Still developing)* We can choose the minimal distance and the max distance of where we can hear the audio in the 3D spatial mode
 
 
 * If we choose to be 2d we can use stereo option, if we enable it, we can edit the pan of the left and right speakers as we want. We can also mute.
 
  
  
- ### Camera Controls:
+### Camera Controls:
 
  - W / Up Arrow: Move Forward
  - A / Left Arrow: Move Left
