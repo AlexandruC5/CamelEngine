@@ -53,7 +53,8 @@ Main Contributions:
 ### Importing Files
  For proper file import it is recommended that the files are already inside the Assets folder before starting the engine. If they are not, files can be dragged and dropped onto the engine in order to be imported. One last way to import files is copying them in the Assets folder and push the Reload button under the Assets hierarchy in the Assets window. Even though fbx files can be imported directly dropping them onto the engine it is recommended that for textures they are first copied in a folder inside assets and then dragged onto the engine to acces the importing options. 
 
- ### Importing Options
+### Importing Options
+
 There are plenty of importing options specially for textures. When the file is dropped onto the engine an importing window will pop up to select the desired options. The only model format supported is fbx so if a warning or error message is displayed saying that a file from a different format can't be imported, this is the reason. 
 
 ### Camera Culling
@@ -62,9 +63,9 @@ There are plenty of importing options specially for textures. When the file is d
 ### Things to take into account
  - At the end of the inspector window there is a ab called Resources. In this tab it is shown all the resources which are currently loaded into memory. If numbers seem to not match for textures take into account that assets window icon textures and preview textures are included in the list.
 
- ## Additional functionality
+## Additional functionality
 
- ### First Assignment
+### First Assignment
  - The engine settings are loaded directly from a JSON file named config and located in GenesisEngine/Assets/Config. 
    this settings include the modules values and which windows are opened on start. 
  - When and FBX is loaded the hierarchy of the objects is mantained and the name of the objects in the FBX will be assigned
