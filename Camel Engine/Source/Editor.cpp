@@ -413,16 +413,13 @@ bool Editor::CreateMainMenuBar() {
 		if (ImGui::BeginMenu("Help"))
 		{
 			if (ImGui::MenuItem("Documentation"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/wiki", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/AlexandruC5/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("Download latest"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/releases", NULL, NULL, SW_SHOWNORMAL);
-
-			if (ImGui::MenuItem("Report a bug"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine/issues", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/AlexandruC5/GenesisEngine/releases", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("View on GitHub"))
-				ShellExecuteA(NULL, "open", "https://github.com/marcpages2020/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
+				ShellExecuteA(NULL, "open", "https://github.com/AlexandruC5/GenesisEngine", NULL, NULL, SW_SHOWNORMAL);
 
 			if (ImGui::MenuItem("About"))
 				windows[ABOUT_WINDOW]->visible = true;

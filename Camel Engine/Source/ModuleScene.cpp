@@ -46,7 +46,7 @@ bool ModuleScene::Start()
 	camera->GetTransform()->SetPosition(float3(0.0f, 1.0f, -5.0f));
 	AddGameObject(camera);
 	App->renderer3D->SetMainCamera((Camera*)camera->GetComponent(ComponentType::CAMERA));
-	CreateTestAudioObjects();
+
 	// Empty music game object
 	GameObject* testSound = new GameObject();
 	testSound->SetName("Test Sound");
@@ -89,8 +89,6 @@ update_status ModuleScene::Update(float dt)
 			background_audio->ChangeEvent("Play_Warriors");
 		current_time = Time::gameClock.timer.ReadSec();
 	}
-
-	
 
 	return UPDATE_CONTINUE;
 }
@@ -310,7 +308,7 @@ void ModuleScene::CreateTestAudioObjects()
 	spehre_ref->SetName("Sphere");
 	spehre_ref->AddComponent(ComponentType::TRANSFORM);
 	spehre_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
-	AddGameObject(spehre_ref);
+	AddGameObject(spehre_ref->GetChildAt(0));
     
 
 }
@@ -319,17 +317,17 @@ void ModuleScene::CreateTestAudioObjects()
 void ModuleScene::MoveObject(GameObject* objectToMove)
 {
 
-	math::float3 cur_position = objectToMove->GetTransform()->GetPosition();
+	math::float3 cur_position = objectToMove->GetChildAt(0)->GetTransform()->GetPosition();
 	math::float3 pos_a = {3.0f,0.0f, 0.0f};
 	math::float3 pos_b = {-3.0f,0.0f, 0.0f};
 
-	bool going_a=false, going_b=false;
+	bool going_a=true, going_b=false;
 	
 	float x = 0.0f;
 	float y = 0.0f;
 	float z = 0.0f;
 
-	int velocity = 1;
+	float velocity = 0.25f;
 
 	if (going_a == true)
 	{
@@ -356,6 +354,7 @@ void ModuleScene::MoveObject(GameObject* objectToMove)
 
 	math::float3 move = math::float3(x, y, z);
 	move += cur_position;
-	objectToMove->GetChildAt(0)->GetTransform()->SetPosition(move);
+	LOG("%.2f, %.2f, %.2f", move.x, move.y, move.z);
+	objectToMove->GetChildAt(0)->GetTransform()->SetPosition(move.x, move.y, move.z);
 
 }
