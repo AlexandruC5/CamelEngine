@@ -34,9 +34,6 @@ public:
 	const bool& GetLoopActive();
 	void SetLoopActive(bool& on_loop);
 
-	const int& GetPriority();
-	void SetPriority(int& _priority);
-
 	const float& GetVolume();
 	void SetVolume(float& _volume);
 
@@ -50,7 +47,7 @@ public:
 	void SetStereoPan(float& pan);
 
 	const bool& GetIsSpatial();
-	void SetIsSpatial(bool& spatial);
+	void SetIsSpatial(int& pos);
 
 	const float& GetSpatialMaxDist();
 	void SetSpatialMaxDist(float& max_dist);
@@ -79,7 +76,7 @@ private:
 	AkSoundPosition source_pos;
 	uint id, music_swap_time;
 
-	int priority;
+	int position;
 	float volume, pitch, stereo_pan, spatial_min_distance, spatial_max_distance;
 	bool is_muted, play_on_awake, to_loop, is_stereo, is_mono, is_spatial;
 

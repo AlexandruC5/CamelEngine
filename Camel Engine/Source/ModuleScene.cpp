@@ -55,6 +55,9 @@ bool ModuleScene::Start()
 	testSound->GetTransform()->SetPosition(float3(0.0f, 10.0f, 0.0f));
 	AddGameObject(testSound);
 	background_audio = (AudioSource*)testSound->GetComponent(ComponentType::AUDIO_SOURCE);
+
+	CreateTestAudioObjects();
+
 	return ret;
 }
 
@@ -314,6 +317,7 @@ void ModuleScene::CreateTestAudioObjects()
 	spehre_ref->AddComponent(ComponentType::TRANSFORM);
 	spehre_ref->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
 	AddGameObject(spehre_ref);
+    
 
 }
 

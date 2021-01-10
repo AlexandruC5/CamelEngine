@@ -9,7 +9,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	4084976851	Play_Warriors			\Default Work Unit\Play_Warriors	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
-	960462717	Priority			\Default Work Unit\Priority	
+	1249339706	Pan			\Default Work Unit\Pan	
+	1578750580	Position			\Default Work Unit\Position	
 	1908158473	Pitch			\Default Work Unit\Pitch	
 	2415836739	Volume			\Default Work Unit\Volume	
 
