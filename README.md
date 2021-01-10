@@ -155,7 +155,7 @@ In the inspector you can choose what bank you can use and what event you want to
  
  ### Video
  
- ![](https://youtu.be/5aWU25UBkmc)
+<iframe width="560" height="315" src="https://youtu.be/5aWU25UBkmc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
  
  
  ### Licenses
